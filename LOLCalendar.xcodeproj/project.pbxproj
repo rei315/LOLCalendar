@@ -3,27 +3,63 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3150E7F20C5FFFAE064E1D46 /* Pods_LOLCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */; };
+		8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7562553AAA700D47F23 /* LOLCalendar.swift */; };
+		8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7592553AB6E00D47F23 /* APIService.swift */; };
 		8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA92325529E1600517415 /* AppDelegate.swift */; };
-		8C6DA92625529E1600517415 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA92525529E1600517415 /* SceneDelegate.swift */; };
 		8C6DA92825529E1600517415 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA92725529E1600517415 /* ViewController.swift */; };
 		8C6DA92B25529E1600517415 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DA92925529E1600517415 /* Main.storyboard */; };
 		8C6DA92D25529E1700517415 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DA92C25529E1700517415 /* Assets.xcassets */; };
 		8C6DA93025529E1700517415 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DA92E25529E1700517415 /* LaunchScreen.storyboard */; };
+		8C6DA9392552A9CA00517415 /* LOLESports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA9382552A9CA00517415 /* LOLESports.swift */; };
+		8C6DA93C2552C1E100517415 /* LOLBracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA93B2552C1E100517415 /* LOLBracket.swift */; };
+		8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BA92553FD880053E8C1 /* Array+Extension.swift */; };
+		8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */; };
+		8CC02BB1255414C80053E8C1 /* CalendarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */; };
+		8CC02BB7255417630053E8C1 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BB6255417630053E8C1 /* CommonViewModel.swift */; };
+		8CC02BBB255417940053E8C1 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BBA255417940053E8C1 /* Scene.swift */; };
+		8CC02BBF2554179D0053E8C1 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BBE2554179D0053E8C1 /* SceneCoordinatorType.swift */; };
+		8CC02BC2255417A40053E8C1 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BC1255417A40053E8C1 /* TransitionModel.swift */; };
+		8CC02BC5255417AB0053E8C1 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BC4255417AB0053E8C1 /* SceneCoordinator.swift */; };
+		8CC02BCA25541A320053E8C1 /* CalendarListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BC825541A320053E8C1 /* CalendarListTableViewCell.swift */; };
+		8CC02BCB25541A320053E8C1 /* CalendarListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CC02BC925541A320053E8C1 /* CalendarListTableViewCell.xib */; };
+		8CC02BCE255427B50053E8C1 /* CalendarListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BCD255427B50053E8C1 /* CalendarListModel.swift */; };
+		8CC02BD2255429180053E8C1 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BD1255429170053E8C1 /* App.swift */; };
+		8CC02BD6255429460053E8C1 /* App.String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BD5255429460053E8C1 /* App.String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOLCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6680C3BB6BA40762B32C3CD8 /* Pods-LOLCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLCalendar.release.xcconfig"; path = "Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar.release.xcconfig"; sourceTree = "<group>"; };
+		8C37C7562553AAA700D47F23 /* LOLCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLCalendar.swift; sourceTree = "<group>"; };
+		8C37C7592553AB6E00D47F23 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8C6DA92025529E1600517415 /* LOLCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOLCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6DA92325529E1600517415 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8C6DA92525529E1600517415 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8C6DA92725529E1600517415 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8C6DA92A25529E1600517415 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C6DA92C25529E1700517415 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C6DA92F25529E1700517415 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C6DA93125529E1700517415 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C6DA9382552A9CA00517415 /* LOLESports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLESports.swift; sourceTree = "<group>"; };
+		8C6DA93B2552C1E100517415 /* LOLBracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLBracket.swift; sourceTree = "<group>"; };
+		8CC02BA92553FD880053E8C1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListViewModel.swift; sourceTree = "<group>"; };
+		8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListViewController.swift; sourceTree = "<group>"; };
+		8CC02BB6255417630053E8C1 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		8CC02BBA255417940053E8C1 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		8CC02BBE2554179D0053E8C1 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
+		8CC02BC1255417A40053E8C1 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
+		8CC02BC4255417AB0053E8C1 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		8CC02BC825541A320053E8C1 /* CalendarListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListTableViewCell.swift; sourceTree = "<group>"; };
+		8CC02BC925541A320053E8C1 /* CalendarListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarListTableViewCell.xib; sourceTree = "<group>"; };
+		8CC02BCD255427B50053E8C1 /* CalendarListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListModel.swift; sourceTree = "<group>"; };
+		8CC02BD1255429170053E8C1 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		8CC02BD5255429460053E8C1 /* App.String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.String.swift; sourceTree = "<group>"; };
+		8FECEB8EFF84C3885DFB6103 /* Pods-LOLCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLCalendar.debug.xcconfig"; path = "Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +67,119 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3150E7F20C5FFFAE064E1D46 /* Pods_LOLCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37DF0DB7E6C55DE959BDD3BB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C37C7492553A92800D47F23 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8C6DA92925529E1600517415 /* Main.storyboard */,
+				8C6DA92C25529E1700517415 /* Assets.xcassets */,
+				8C6DA92E25529E1700517415 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8C37C74A2553A92B00D47F23 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BD0255429100053E8C1 /* Define */,
+				8CC02BB92554178D0053E8C1 /* Scene */,
+				8CC02BB52554175B0053E8C1 /* Common */,
+				8C37C7542553A9C000D47F23 /* Extensions */,
+				8C37C7532553A9B900D47F23 /* Model */,
+				8C37C7522553A99300D47F23 /* Domain */,
+				8C37C74D2553A93B00D47F23 /* Presentation */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8C37C74D2553A93B00D47F23 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8C37C7512553A98700D47F23 /* 003 - Setting */,
+				8C37C7502553A97400D47F23 /* 002 - Calendar */,
+				8C37C74F2553A96500D47F23 /* 001 - MainTab */,
+				8C37C74E2553A94800D47F23 /* 000 - Lobby */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8C37C74E2553A94800D47F23 /* 000 - Lobby */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "000 - Lobby";
+			sourceTree = "<group>";
+		};
+		8C37C74F2553A96500D47F23 /* 001 - MainTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "001 - MainTab";
+			sourceTree = "<group>";
+		};
+		8C37C7502553A97400D47F23 /* 002 - Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BC725541A0B0053E8C1 /* Components */,
+				8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */,
+				8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */,
+				8CC02BCD255427B50053E8C1 /* CalendarListModel.swift */,
+			);
+			path = "002 - Calendar";
+			sourceTree = "<group>";
+		};
+		8C37C7512553A98700D47F23 /* 003 - Setting */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "003 - Setting";
+			sourceTree = "<group>";
+		};
+		8C37C7522553A99300D47F23 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8C37C7592553AB6E00D47F23 /* APIService.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		8C37C7532553A9B900D47F23 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C37C7562553AAA700D47F23 /* LOLCalendar.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8C37C7542553A9C000D47F23 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BA92553FD880053E8C1 /* Array+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8C6DA91725529E1600517415 = {
 			isa = PBXGroup;
 			children = (
 				8C6DA92225529E1600517415 /* LOLCalendar */,
 				8C6DA92125529E1600517415 /* Products */,
+				E5BDE451AC910163B1B8B0FC /* Pods */,
+				37DF0DB7E6C55DE959BDD3BB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +194,61 @@
 		8C6DA92225529E1600517415 /* LOLCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				8C6DA92325529E1600517415 /* AppDelegate.swift */,
-				8C6DA92525529E1600517415 /* SceneDelegate.swift */,
-				8C6DA92725529E1600517415 /* ViewController.swift */,
-				8C6DA92925529E1600517415 /* Main.storyboard */,
-				8C6DA92C25529E1700517415 /* Assets.xcassets */,
-				8C6DA92E25529E1700517415 /* LaunchScreen.storyboard */,
 				8C6DA93125529E1700517415 /* Info.plist */,
+				8C37C74A2553A92B00D47F23 /* Sources */,
+				8C37C7492553A92800D47F23 /* Resources */,
+				8C6DA92325529E1600517415 /* AppDelegate.swift */,
+				8C6DA92725529E1600517415 /* ViewController.swift */,
+				8C6DA9382552A9CA00517415 /* LOLESports.swift */,
+				8C6DA93B2552C1E100517415 /* LOLBracket.swift */,
 			);
 			path = LOLCalendar;
+			sourceTree = "<group>";
+		};
+		8CC02BB52554175B0053E8C1 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BB6255417630053E8C1 /* CommonViewModel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		8CC02BB92554178D0053E8C1 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BBA255417940053E8C1 /* Scene.swift */,
+				8CC02BBE2554179D0053E8C1 /* SceneCoordinatorType.swift */,
+				8CC02BC1255417A40053E8C1 /* TransitionModel.swift */,
+				8CC02BC4255417AB0053E8C1 /* SceneCoordinator.swift */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		8CC02BC725541A0B0053E8C1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BC825541A320053E8C1 /* CalendarListTableViewCell.swift */,
+				8CC02BC925541A320053E8C1 /* CalendarListTableViewCell.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8CC02BD0255429100053E8C1 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				8CC02BD1255429170053E8C1 /* App.swift */,
+				8CC02BD5255429460053E8C1 /* App.String.swift */,
+			);
+			path = Define;
+			sourceTree = "<group>";
+		};
+		E5BDE451AC910163B1B8B0FC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8FECEB8EFF84C3885DFB6103 /* Pods-LOLCalendar.debug.xcconfig */,
+				6680C3BB6BA40762B32C3CD8 /* Pods-LOLCalendar.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +258,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C6DA93425529E1700517415 /* Build configuration list for PBXNativeTarget "LOLCalendar" */;
 			buildPhases = (
+				37722060B961AD0E5100122F /* [CP] Check Pods Manifest.lock */,
 				8C6DA91C25529E1600517415 /* Sources */,
 				8C6DA91D25529E1600517415 /* Frameworks */,
 				8C6DA91E25529E1600517415 /* Resources */,
+				20BF9F0830D079B0AEA2CBA7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,10 +313,53 @@
 				8C6DA93025529E1700517415 /* LaunchScreen.storyboard in Resources */,
 				8C6DA92D25529E1700517415 /* Assets.xcassets in Resources */,
 				8C6DA92B25529E1600517415 /* Main.storyboard in Resources */,
+				8CC02BCB25541A320053E8C1 /* CalendarListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20BF9F0830D079B0AEA2CBA7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		37722060B961AD0E5100122F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LOLCalendar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8C6DA91C25529E1600517415 /* Sources */ = {
@@ -138,8 +367,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C6DA92825529E1600517415 /* ViewController.swift in Sources */,
+				8CC02BC2255417A40053E8C1 /* TransitionModel.swift in Sources */,
+				8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */,
 				8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */,
-				8C6DA92625529E1600517415 /* SceneDelegate.swift in Sources */,
+				8CC02BCA25541A320053E8C1 /* CalendarListTableViewCell.swift in Sources */,
+				8C6DA93C2552C1E100517415 /* LOLBracket.swift in Sources */,
+				8CC02BC5255417AB0053E8C1 /* SceneCoordinator.swift in Sources */,
+				8CC02BD2255429180053E8C1 /* App.swift in Sources */,
+				8CC02BB1255414C80053E8C1 /* CalendarListViewController.swift in Sources */,
+				8CC02BD6255429460053E8C1 /* App.String.swift in Sources */,
+				8CC02BBF2554179D0053E8C1 /* SceneCoordinatorType.swift in Sources */,
+				8CC02BCE255427B50053E8C1 /* CalendarListModel.swift in Sources */,
+				8C6DA9392552A9CA00517415 /* LOLESports.swift in Sources */,
+				8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */,
+				8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */,
+				8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */,
+				8CC02BB7255417630053E8C1 /* CommonViewModel.swift in Sources */,
+				8CC02BBB255417940053E8C1 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +527,7 @@
 		};
 		8C6DA93525529E1700517415 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FECEB8EFF84C3885DFB6103 /* Pods-LOLCalendar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +547,7 @@
 		};
 		8C6DA93625529E1700517415 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6680C3BB6BA40762B32C3CD8 /* Pods-LOLCalendar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
