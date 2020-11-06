@@ -12,9 +12,9 @@ import RxCocoa
 
 class ViewController: UIViewController {
     
-    let url = "https://api.pandascore.co/leagues/293/matches?token=6pZk6i_t5FHDEVoJCBFW_saGZOeI0452Ye87ib8yH-zt3PbNs98&range[begin_at]=2020-01-01T00:00:00Z,2020-12-31T23:59:59Z"
+    let url = ""
     
-    let bracketURLString = "https://api.pandascore.co/tournaments/%d/brackets?token=6pZk6i_t5FHDEVoJCBFW_saGZOeI0452Ye87ib8yH-zt3PbNs98"
+    let bracketURLString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,5 @@ class ViewController: UIViewController {
 //            .subscribe { print($0) }
 
     }
-    
-    //https://api.pandascore.co/teams/2882?token=6pZk6i_t5FHDEVoJCBFW_saGZOeI0452Ye87ib8yH-zt3PbNs98
 }
 

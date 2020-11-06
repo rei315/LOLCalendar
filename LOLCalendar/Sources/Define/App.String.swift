@@ -15,6 +15,6 @@ extension App {
         static let brancketURL = "https://api.pandascore.co/tournaments/%d/brackets?token=%@"
     }
     enum Token {
-        static let token = ""
+        static let token = "6pZk6i_t5FHDEVoJCBFW_saGZOeI0452Ye87ib8yH-zt3PbNs98"
     }
 }

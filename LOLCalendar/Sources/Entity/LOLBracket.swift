@@ -28,7 +28,7 @@ struct LOLBracketElement: Codable {
     let detailedStats, draw: Bool
     let endAt: Date
     let forfeit: Bool
-    let gameAdvantage: BracketJSONNull?
+    let gameAdvantage: JSONNull?
     let games: [BracketGame]
     let id: Int
     let live: BracketLive
@@ -92,7 +92,7 @@ struct BracketGame: Codable {
     let length: Int?
     let matchID, position: Int
     let status: Status
-    let videoURL: BracketJSONNull?
+    let videoURL: JSONNull?
     let winner: Winner
     let winnerType: TypeEnum?
 
@@ -147,9 +147,9 @@ enum TypeEnum: String, Codable {
 
 // MARK: - BracketLive
 struct BracketLive: Codable {
-    let opensAt: BracketJSONNull?
+    let opensAt: JSONNull?
     let supported: Bool
-    let url: BracketJSONNull?
+    let url: JSONNull?
 
     enum CodingKeys: String, CodingKey {
         case opensAt = "opens_at"
@@ -261,63 +261,45 @@ typealias LOLBracket = [LOLBracketElement]
 
 // MARK: - Helper functions for creating encoders and decoders
 
-func BracketnewJSONDecoder() -> JSONDecoder {
-    let decoder = JSONDecoder()
-    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-        decoder.dateDecodingStrategy = .iso8601
-    }
-    return decoder
-}
-
-func BracketnewJSONEncoder() -> JSONEncoder {
-    let encoder = JSONEncoder()
-    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-        encoder.dateEncodingStrategy = .iso8601
-    }
-    return encoder
-}
-
-// MARK: - URLSession response handlers
-
-extension URLSession {
-    fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                completionHandler(nil, response, error)
-                return
-            }
-            completionHandler(try? BracketnewJSONDecoder().decode(T.self, from: data), response, nil)
-        }
-    }
-
-    func lOLBracketTask(with url: URL, completionHandler: @escaping (LOLBracket?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.codableTask(with: url, completionHandler: completionHandler)
-    }
-}
+//func BracketnewJSONDecoder() -> JSONDecoder {
+//    let decoder = JSONDecoder()
+//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+//        decoder.dateDecodingStrategy = .iso8601
+//    }
+//    return decoder
+//}
+//
+//func BracketnewJSONEncoder() -> JSONEncoder {
+//    let encoder = JSONEncoder()
+//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
+//        encoder.dateEncodingStrategy = .iso8601
+//    }
+//    return encoder
+//}
 
 // MARK: - Encode/decode helpers
 
-class BracketJSONNull: Codable, Hashable {
-
-    public static func == (lhs: BracketJSONNull, rhs: BracketJSONNull) -> Bool {
-        return true
-    }
-
-    public var hashValue: Int {
-        return 0
-    }
-
-    public init() {}
-
-    public required init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if !container.decodeNil() {
-            throw DecodingError.typeMismatch(BracketJSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for BracketJSONNull"))
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encodeNil()
-    }
-}
+//class BracketJSONNull: Codable, Hashable {
+//
+//    public static func == (lhs: BracketJSONNull, rhs: BracketJSONNull) -> Bool {
+//        return true
+//    }
+//
+//    public var hashValue: Int {
+//        return 0
+//    }
+//
+//    public init() {}
+//
+//    public required init(from decoder: Decoder) throws {
+//        let container = try decoder.singleValueContainer()
+//        if !container.decodeNil() {
+//            throw DecodingError.typeMismatch(BracketJSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for BracketJSONNull"))
+//        }
+//    }
+//
+//    public func encode(to encoder: Encoder) throws {
+//        var container = encoder.singleValueContainer()
+//        try container.encodeNil()
+//    }
+//}
