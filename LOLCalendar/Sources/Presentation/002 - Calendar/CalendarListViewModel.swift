@@ -20,18 +20,41 @@ protocol CalendarModelBindable {
 
 class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     
-    let cellData: Driver<[CalendarListTableViewCell.Data]>    
-    let viewWillAppear: PublishSubject<Void>
-    let willDisplayCell: PublishRelay<IndexPath>
-//    let reloadList: Signal<Void>
-//    let errorMessage: Signal<String>
+    let cellData: Driver<[CalendarListTableViewCell.Data]>
+    let viewWillAppear = PublishSubject<Void>()
+    let willDisplayCell = PublishRelay<IndexPath>()
+//    let reloadList: Signal<Void>()
+//    let errorMessage: Signal<String>()
     
     private var cells = BehaviorRelay<[LOLBracketElement]>(value: [])
     
-    init(model: CalendarListModel = CalendarListModel()){
+    let disposeBag = DisposeBag()
+    
+    init(coordinator: SceneCoordinatorType, model: CalendarListModel = CalendarListModel()){
+        
+        let tournamentIds = viewWillAppear
+            .flatMapLatest(model.getLOLEsport)
+            .asObservable()
+            .share()
+                
+        
+        let allBranckets = tournamentIds
+            .map{ $0.tournamentID }
+            .flatMap { id in
+                APIService.fetchBracket(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
+            }
+            .toArray()
+            .asObservable()
+        
+        allBranckets
+            .bind(to: cells)
+            .disposed(by: disposeBag)
+        
         self.cellData = cells
             .map(model.parseBrancket)
             .asDriver(onErrorDriveWith: .empty())
+        
+        super.init(sceneCoordinator: coordinator)
     }
     
     

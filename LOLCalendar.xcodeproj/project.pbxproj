@@ -17,6 +17,14 @@
 		8C6DA93025529E1700517415 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DA92E25529E1700517415 /* LaunchScreen.storyboard */; };
 		8C6DA9392552A9CA00517415 /* LOLESports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA9382552A9CA00517415 /* LOLESports.swift */; };
 		8C6DA93C2552C1E100517415 /* LOLBracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA93B2552C1E100517415 /* LOLBracket.swift */; };
+		8C9EE9C52555C8F50088E8DB /* LobbyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9C42555C8F50088E8DB /* LobbyViewModel.swift */; };
+		8C9EE9C82555C8FC0088E8DB /* LobbyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9C72555C8FC0088E8DB /* LobbyModel.swift */; };
+		8C9EE9CB2555C9030088E8DB /* LobbyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9CA2555C9030088E8DB /* LobbyController.swift */; };
+		8C9EE9CE2555C90F0088E8DB /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9CD2555C90F0088E8DB /* HomeTabViewController.swift */; };
+		8C9EE9D12555C9160088E8DB /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D02555C9160088E8DB /* HomeTabViewModel.swift */; };
+		8C9EE9D42555C91F0088E8DB /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D32555C91F0088E8DB /* SettingViewModel.swift */; };
+		8C9EE9D72555C9250088E8DB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D62555C9250088E8DB /* SettingViewController.swift */; };
+		8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */; };
 		8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BA92553FD880053E8C1 /* Array+Extension.swift */; };
 		8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */; };
 		8CC02BB1255414C80053E8C1 /* CalendarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */; };
@@ -46,6 +54,14 @@
 		8C6DA93125529E1700517415 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6DA9382552A9CA00517415 /* LOLESports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLESports.swift; sourceTree = "<group>"; };
 		8C6DA93B2552C1E100517415 /* LOLBracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLBracket.swift; sourceTree = "<group>"; };
+		8C9EE9C42555C8F50088E8DB /* LobbyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyViewModel.swift; sourceTree = "<group>"; };
+		8C9EE9C72555C8FC0088E8DB /* LobbyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyModel.swift; sourceTree = "<group>"; };
+		8C9EE9CA2555C9030088E8DB /* LobbyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyController.swift; sourceTree = "<group>"; };
+		8C9EE9CD2555C90F0088E8DB /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
+		8C9EE9D02555C9160088E8DB /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
+		8C9EE9D32555C91F0088E8DB /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		8C9EE9D62555C9250088E8DB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		8CC02BA92553FD880053E8C1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListViewModel.swift; sourceTree = "<group>"; };
 		8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +115,7 @@
 				8CC02BB92554178D0053E8C1 /* Scene */,
 				8CC02BB52554175B0053E8C1 /* Common */,
 				8C37C7542553A9C000D47F23 /* Extensions */,
-				8C37C7532553A9B900D47F23 /* Model */,
+				8C37C7532553A9B900D47F23 /* Entity */,
 				8C37C7522553A99300D47F23 /* Domain */,
 				8C37C74D2553A93B00D47F23 /* Presentation */,
 			);
@@ -120,6 +136,9 @@
 		8C37C74E2553A94800D47F23 /* 000 - Lobby */ = {
 			isa = PBXGroup;
 			children = (
+				8C9EE9C42555C8F50088E8DB /* LobbyViewModel.swift */,
+				8C9EE9C72555C8FC0088E8DB /* LobbyModel.swift */,
+				8C9EE9CA2555C9030088E8DB /* LobbyController.swift */,
 			);
 			path = "000 - Lobby";
 			sourceTree = "<group>";
@@ -127,6 +146,8 @@
 		8C37C74F2553A96500D47F23 /* 001 - MainTab */ = {
 			isa = PBXGroup;
 			children = (
+				8C9EE9CD2555C90F0088E8DB /* HomeTabViewController.swift */,
+				8C9EE9D02555C9160088E8DB /* HomeTabViewModel.swift */,
 			);
 			path = "001 - MainTab";
 			sourceTree = "<group>";
@@ -145,6 +166,8 @@
 		8C37C7512553A98700D47F23 /* 003 - Setting */ = {
 			isa = PBXGroup;
 			children = (
+				8C9EE9D32555C91F0088E8DB /* SettingViewModel.swift */,
+				8C9EE9D62555C9250088E8DB /* SettingViewController.swift */,
 			);
 			path = "003 - Setting";
 			sourceTree = "<group>";
@@ -157,12 +180,12 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		8C37C7532553A9B900D47F23 /* Model */ = {
+		8C37C7532553A9B900D47F23 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				8C37C7562553AAA700D47F23 /* LOLCalendar.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		8C37C7542553A9C000D47F23 /* Extensions */ = {
@@ -209,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				8CC02BB6255417630053E8C1 /* CommonViewModel.swift */,
+				8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -369,17 +393,25 @@
 				8C6DA92825529E1600517415 /* ViewController.swift in Sources */,
 				8CC02BC2255417A40053E8C1 /* TransitionModel.swift in Sources */,
 				8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */,
+				8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */,
 				8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */,
 				8CC02BCA25541A320053E8C1 /* CalendarListTableViewCell.swift in Sources */,
 				8C6DA93C2552C1E100517415 /* LOLBracket.swift in Sources */,
 				8CC02BC5255417AB0053E8C1 /* SceneCoordinator.swift in Sources */,
+				8C9EE9CE2555C90F0088E8DB /* HomeTabViewController.swift in Sources */,
 				8CC02BD2255429180053E8C1 /* App.swift in Sources */,
+				8C9EE9C82555C8FC0088E8DB /* LobbyModel.swift in Sources */,
+				8C9EE9D72555C9250088E8DB /* SettingViewController.swift in Sources */,
 				8CC02BB1255414C80053E8C1 /* CalendarListViewController.swift in Sources */,
+				8C9EE9C52555C8F50088E8DB /* LobbyViewModel.swift in Sources */,
 				8CC02BD6255429460053E8C1 /* App.String.swift in Sources */,
 				8CC02BBF2554179D0053E8C1 /* SceneCoordinatorType.swift in Sources */,
+				8C9EE9CB2555C9030088E8DB /* LobbyController.swift in Sources */,
+				8C9EE9D12555C9160088E8DB /* HomeTabViewModel.swift in Sources */,
 				8CC02BCE255427B50053E8C1 /* CalendarListModel.swift in Sources */,
 				8C6DA9392552A9CA00517415 /* LOLESports.swift in Sources */,
 				8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */,
+				8C9EE9D42555C91F0088E8DB /* SettingViewModel.swift in Sources */,
 				8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */,
 				8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */,
 				8CC02BB7255417630053E8C1 /* CommonViewModel.swift in Sources */,

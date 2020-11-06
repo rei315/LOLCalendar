@@ -10,9 +10,17 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
-class CalendarListViewController: UIViewController {
+class CalendarListViewController: UIViewController, ViewModelBindableType {
+    
+    var viewModel: CalendarListViewModel!
     
     override func viewDidLoad() {
+        
+    }
+}
+
+extension CalendarListViewController {
+    func bindViewModel() {
         
     }
 }
