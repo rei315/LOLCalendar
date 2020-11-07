@@ -22,7 +22,7 @@ extension Scene {
             guard let nav = storyboard.instantiateViewController(withIdentifier: "LobbyNav") as? UINavigationController else {
             fatalError()
         }
-            guard var lobbyVC = nav.viewControllers.first as? LobbyController else {
+            guard var lobbyVC = nav.viewControllers.first as? LobbyViewController else {
             fatalError()
         }
             lobbyVC.bind(viewModel: viewModel)

@@ -11,6 +11,7 @@ pod 'Action'
 pod 'NSObject+Rx'
 pod 'RxDataSources'
 pod 'RxCoreData'
+pod 'RxGesture'
 
   # Pods for LOLCalendar
 
