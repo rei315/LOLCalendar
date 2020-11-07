@@ -12,6 +12,9 @@ pod 'NSObject+Rx'
 pod 'RxDataSources'
 pod 'RxCoreData'
 pod 'RxGesture'
+pod 'RxAppState'
+pod 'RxOptional'
+pod 'Kingfisher'
 
   # Pods for LOLCalendar
 

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxOptional
 
 protocol CalendarModelBindable {
     var viewWillAppear: PublishSubject<Void> { get }
@@ -36,16 +37,14 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
             .flatMapLatest(model.getLOLEsport)
             .asObservable()
             .share()
-                
-        
+
         let allBranckets = tournamentIds
             .map{ $0.tournamentID }
-            .flatMap { id in
-                APIService.fetchBracket(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
+            .flatMapLatest { id -> Observable<[LOLBracketElement]> in
+                return APIService.test(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
             }
-            .toArray()
             .asObservable()
-        
+            
         allBranckets
             .bind(to: cells)
             .disposed(by: disposeBag)
@@ -53,6 +52,7 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         self.cellData = cells
             .map(model.parseBrancket)
             .asDriver(onErrorDriveWith: .empty())
+            
         
         super.init(sceneCoordinator: coordinator)
     }

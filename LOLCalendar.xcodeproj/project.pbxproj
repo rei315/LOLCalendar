@@ -26,6 +26,7 @@
 		8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */; };
 		8C9EE9DD2555CEFB0088E8DB /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9DC2555CEFB0088E8DB /* URLSession+Extension.swift */; };
 		8C9EE9E12555CF410088E8DB /* JSON+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9E02555CF410088E8DB /* JSON+Tools.swift */; };
+		8C9EEA00255702520088E8DB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9FF255702520088E8DB /* UIImageView+Extension.swift */; };
 		8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BA92553FD880053E8C1 /* Array+Extension.swift */; };
 		8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */; };
 		8CC02BB1255414C80053E8C1 /* CalendarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */; };
@@ -64,6 +65,7 @@
 		8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		8C9EE9DC2555CEFB0088E8DB /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		8C9EE9E02555CF410088E8DB /* JSON+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Tools.swift"; sourceTree = "<group>"; };
+		8C9EE9FF255702520088E8DB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		8CC02BA92553FD880053E8C1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		8CC02BAC2554142B0053E8C1 /* CalendarListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListViewModel.swift; sourceTree = "<group>"; };
 		8CC02BB0255414C80053E8C1 /* CalendarListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				8CC02BA92553FD880053E8C1 /* Array+Extension.swift */,
 				8C9EE9DC2555CEFB0088E8DB /* URLSession+Extension.swift */,
+				8C9EE9FF255702520088E8DB /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 			files = (
 				8C6DA92825529E1600517415 /* ViewController.swift in Sources */,
 				8C9EE9E12555CF410088E8DB /* JSON+Tools.swift in Sources */,
+				8C9EEA00255702520088E8DB /* UIImageView+Extension.swift in Sources */,
 				8CC02BC2255417A40053E8C1 /* TransitionModel.swift in Sources */,
 				8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */,
 				8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */,

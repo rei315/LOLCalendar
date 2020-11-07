@@ -3,8 +3,14 @@ PODS:
     - RxCocoa (< 7.0, >= 5.0)
     - RxSwift (< 7.0, >= 5.0)
   - Differentiator (4.0.1)
+  - Kingfisher (5.15.7):
+    - Kingfisher/Core (= 5.15.7)
+  - Kingfisher/Core (5.15.7)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
+  - RxAppState (1.6.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -18,42 +24,54 @@ PODS:
   - RxGesture (3.0.2):
     - RxCocoa (~> 5.1)
     - RxSwift (~> 5.1)
+  - RxOptional (4.1.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
 
 DEPENDENCIES:
   - Action
+  - Kingfisher
   - "NSObject+Rx"
+  - RxAppState
   - RxCocoa
   - RxCoreData
   - RxDataSources
   - RxGesture
+  - RxOptional
   - RxSwift
 
 SPEC REPOS:
   trunk:
     - Action
     - Differentiator
+    - Kingfisher
     - "NSObject+Rx"
+    - RxAppState
     - RxCocoa
     - RxCoreData
     - RxDataSources
     - RxGesture
+    - RxOptional
     - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
   Action: 5dc2194f7a0b77857c82a677b0da655f197c005f
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  Kingfisher: 6e1a13523fcb1c86924ce53affe4ac957e544d59
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
+  RxAppState: b633d7370970ecb80081912ea08a7bf3eb644b4e
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxCoreData: 1ed5f83e80facccc90fc054eb7f39a44177de56a
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
+  RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: 88cc55eb21e58109f787e125a07b0bb946055a81
+PODFILE CHECKSUM: d9258bc433cb695726998b094e9a09fa8e13af5a
 
 COCOAPODS: 1.8.4
