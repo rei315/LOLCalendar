@@ -41,7 +41,8 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         let allBranckets = tournamentIds
             .map{ $0.tournamentID }
             .flatMapLatest { id -> Observable<[LOLBracketElement]> in
-                return APIService.test(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
+//                return APIService.test(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
+                return model.getBrancket(id: id)
             }
             .asObservable()
             

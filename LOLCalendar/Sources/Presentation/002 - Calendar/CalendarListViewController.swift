@@ -43,12 +43,6 @@ extension CalendarListViewController {
                 return cell
             }
             .disposed(by: rx.disposeBag)
-        
-        viewModel.cellData
-            .asObservable()
-            .subscribe(onNext: { tmp in
-                print("hihihi")
-            })
             
     }
     
