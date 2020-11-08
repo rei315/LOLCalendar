@@ -1,13 +1,20 @@
+//
+//  LOLESports.swift
+//  LOLCalendar
+//
+//  Created by 김민국 on 2020/11/04.
+//
+
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let lOLESport = try? newJSONDecoder().decode(LOLESport.self, from: jsonData)
+//   let lOLESports = try? newJSONDecoder().decode(LOLESports.self, from: jsonData)
 
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.lOLESportElementTask(with: url) { lOLESportElement, response, error in
-//     if let lOLESportElement = lOLESportElement {
+//   let task = URLSession.shared.lOLESportTask(with: url) { lOLESport, response, error in
+//     if let lOLESport = lOLESport {
 //       ...
 //     }
 //   }
@@ -15,67 +22,69 @@
 
 import Foundation
 
-// MARK: - LOLESportElement
+// MARK: - LOLESport
 struct LOLESport: Codable {
-    let league: League
-    let live: Live
-    let draw: Bool
-    let serie: Serie
-    let tournament: Tournament
-    let opponents: [Opponent]
-    let winner: OpponentClass
-    let results: [Result]
-    let numberOfGames: Int
-    let status: Status
-    let winnerID: Int
-    let gameAdvantage: JSONNull?
-    let tournamentID: Int
-    let scheduledAt: Date
-    let liveURL: String
-    let forfeit: Bool
-    let officialStreamURL: String
-    let matchType: MatchType
-    let beginAt: Date
-    let slug: String
-    let liveEmbedURL: String
-    let endAt: Date
-    let name: String
-    let rescheduled: Bool
-    let games: [Game]
-    let detailedStats: Bool
-    let serieID, leagueID: Int
-    let modifiedAt: Date
-    let videogame: Videogame
-    let id: Int
-    let originalScheduledAt: Date
     let streams: Streams
+    let slug: String
+    let tournament: Tournament
+    let endAt: Date
+    let status: Status
+    let league: League
+    let originalScheduledAt: Date
+    let live: Live
+    let beginAt: Date
+    let detailedStats: Bool
     let videogameVersion: VideogameVersion
+    let scheduledAt: Date
+    let name: String
+    let draw: Bool
+    let winner: OpponentClass
+    let officialStreamURL: String
+    let games: [Game]
+    let tournamentID: Int
+    let forfeit: Bool
+    let videogame: Videogame
+    let matchType: MatchType
+    let results: [ESportResult]
+    let serieID, leagueID: Int
+    let opponents: [Opponent]
+    let numberOfGames: Int
+    let modifiedAt: Date
+    let gameAdvantage: JSONNull?
+    let liveEmbedURL: String
+    let winnerID: Int
+    let rescheduled: Bool
+    let id: Int
+    let serie: Serie
+    let liveURL: String
 
     enum CodingKeys: String, CodingKey {
-        case league, live, draw, serie, tournament, opponents, winner, results
-        case numberOfGames = "number_of_games"
-        case status
-        case winnerID = "winner_id"
-        case gameAdvantage = "game_advantage"
-        case tournamentID = "tournament_id"
-        case scheduledAt = "scheduled_at"
-        case liveURL = "live_url"
-        case forfeit
-        case officialStreamURL = "official_stream_url"
-        case matchType = "match_type"
-        case beginAt = "begin_at"
-        case slug
-        case liveEmbedURL = "live_embed_url"
+        case streams, slug, tournament
         case endAt = "end_at"
-        case name, rescheduled, games
+        case status, league
+        case originalScheduledAt = "original_scheduled_at"
+        case live
+        case beginAt = "begin_at"
         case detailedStats = "detailed_stats"
+        case videogameVersion = "videogame_version"
+        case scheduledAt = "scheduled_at"
+        case name, draw, winner
+        case officialStreamURL = "official_stream_url"
+        case games
+        case tournamentID = "tournament_id"
+        case forfeit, videogame
+        case matchType = "match_type"
+        case results
         case serieID = "serie_id"
         case leagueID = "league_id"
+        case opponents
+        case numberOfGames = "number_of_games"
         case modifiedAt = "modified_at"
-        case videogame, id
-        case originalScheduledAt = "original_scheduled_at"
-        case streams
-        case videogameVersion = "videogame_version"
+        case gameAdvantage = "game_advantage"
+        case liveEmbedURL = "live_embed_url"
+        case winnerID = "winner_id"
+        case rescheduled, id, serie
+        case liveURL = "live_url"
     }
 }
 
@@ -247,12 +256,10 @@ enum Acronym: String, Codable {
     case dwg = "DWG"
     case dyn = "DYN"
     case gen = "GEN"
-    case grf = "GRF"
     case hle = "HLE"
     case kt = "KT"
     case sb = "SB"
     case sp = "SP"
-    case srb = "SRB"
     case t1 = "T1"
 }
 
@@ -265,12 +272,10 @@ enum WinnerName: String, Codable {
     case damwonGaming = "DAMWON Gaming"
     case drx = "DRX"
     case genG = "Gen.G"
-    case griffin = "Griffin"
     case hanwhaLifeEsports = "Hanwha Life Esports"
     case ktRolster = "KT Rolster"
     case sandboxGaming = "SANDBOX Gaming"
     case seolHaeOnePrince = "SeolHaeOne Prince"
-    case seorabeolGaming = "Seorabeol Gaming"
     case t1 = "T1"
     case teamDynamics = "Team Dynamics"
 }
@@ -281,11 +286,9 @@ enum WinnerSlug: String, Codable {
     case damwonGaming = "damwon-gaming"
     case dragonx = "dragonx"
     case geng = "geng"
-    case griffin = "griffin"
     case hanwhaLifeEsports = "hanwha-life-esports"
     case ktRolster = "kt-rolster"
     case sandboxGaming = "sandbox-gaming"
-    case seorabeolGaming = "seorabeol-gaming"
     case t1 = "t1"
     case teamDynamics = "team-dynamics"
 }
@@ -301,7 +304,7 @@ enum WinnerSlug: String, Codable {
 //   task.resume()
 
 // MARK: - Result
-struct Result: Codable {
+struct ESportResult: Codable {
     let score, teamID: Int
 
     enum CodingKeys: String, CodingKey {
@@ -413,7 +416,8 @@ struct English: Codable {
 
 // MARK: - Tournament
 struct Tournament: Codable {
-    let beginAt, endAt: Date
+    let beginAt: Date
+    let endAt: Date?
     let id, leagueID: Int
     let liveSupported: Bool
     let modifiedAt: Date
@@ -441,7 +445,6 @@ struct Tournament: Codable {
 
 enum TournamentName: String, Codable {
     case playoffs = "Playoffs"
-    case promotion = "Promotion"
     case regionalFinals = "Regional finals"
     case regularSeason = "Regular season"
 }
@@ -488,32 +491,10 @@ struct VideogameVersion: Codable {
 }
 
 enum VideogameVersionName: String, Codable {
-    case the10111 = "10.11.1"
-    case the10121 = "10.12.1"
     case the10131 = "10.13.1"
     case the10141 = "10.14.1"
     case the10151 = "10.15.1"
     case the10161 = "10.16.1"
-    case the1071 = "10.7.1"
 }
 
 typealias LOLESports = [LOLESport]
-
-
-// MARK: - URLSession response handlers
-
-extension URLSession {
-    fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                completionHandler(nil, response, error)
-                return
-            }
-            completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
-        }
-    }
-
-    func lOLESportTask(with url: URL, completionHandler: @escaping (LOLESport?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.codableTask(with: url, completionHandler: completionHandler)
-    }
-}
