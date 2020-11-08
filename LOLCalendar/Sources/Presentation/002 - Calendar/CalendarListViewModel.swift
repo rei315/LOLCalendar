@@ -34,14 +34,9 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     let disposeBag = DisposeBag()
     
     init(coordinator: SceneCoordinatorType, model: CalendarListModel = CalendarListModel()){
-//
-//        let tournamentIds = viewWillAppear
-//            .flatMapLatest(model.getLOLEsport)
-//            .asObservable()
-//            .share()
         
-        let task = model.getLOLEsport()
-        let allBranckets = task
+        let eSport = model.getLOLEsport()
+        let allBranckets = eSport
             .map { $0.tournamentID }
             .flatMap(model.getBrancket)
             .toArray()
@@ -52,16 +47,6 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
                 }
             })
         
-//        let allBranckets = tournamentIds
-//            .map{ $0.tournamentID }
-//            .flatMap { id -> Observable<LOLBracketElement> in
-//                return model.getBrancket(id: id)
-//            }
-//            .toArray()
-            
-//            .asObservable()
-//
-//
         allBranckets
             .bind(to: cells)
             .disposed(by: disposeBag)
