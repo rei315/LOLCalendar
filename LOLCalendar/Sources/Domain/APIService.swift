@@ -14,18 +14,41 @@ class APIService {
     static func fetchLOLESport(url: URL) -> Observable<LOLESport> {
         return Observable.create { observer in
             let task = URLSession.shared.lOLESportsTask(with: url) { (league, response, error) in
-                
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    print("statusCode should be 200, but is (httpStatus.statusCode)")
-                    observer.onError(error!)
-                } else if let lolESport = league {
-                    for lol in lolESport {
-                        observer.onNext(lol)
+                if let error = error{
+                    print(error)
+                    observer.onError(error)
+                }
+                if let lolEports = league {
+                    print("hi")
+                    var tmp:[Int] = []
+                    for lol in lolEports {
+                        print(lol)
+                        if !tmp.contains(lol.tournamentID){
+                            print(lol.tournamentID)
+                            tmp.append(lol.tournamentID)
+                            observer.onNext(lol)
+                        }
                     }
                     observer.onCompleted()
-                } else{
-                    observer.onError(error!)
+                }else{
+                    print("fuck")
                 }
+//                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+//                    print("statusCode should be 200, but is (httpStatus.statusCode)")
+//                    observer.onError(error!)
+//                } else if let lolESport = league {
+//                    var tmp:[Int] = []
+//                    for lol in lolESport {
+//                        if !tmp.contains(lol.tournamentID){
+//                            print(lol.tournamentID)
+//                            tmp.append(lol.tournamentID)
+//                            observer.onNext(lol)
+//                        }
+//                    }
+//                    observer.onCompleted()
+//                } else{
+//                    observer.onError(error!)
+//                }
             }
             task.resume()
             
@@ -34,7 +57,7 @@ class APIService {
             }
         }
     }
-    static func fetchBracket(url: URL) -> Observable<LOLBracket> {
+    static func fetchBracket(url: URL) -> Observable<LOLBracketElement> {
         return Observable.create { observer in
             let task = URLSession.shared.lOLBracketTask(with: url) { (data, response, error) in
                 
@@ -42,7 +65,10 @@ class APIService {
                     print("statusCode should be 200, but is (httpStatus.statusCode)")
                     observer.onError(error!)
                 } else if let data = data {
-                    observer.onNext(data)
+                    for bra in data {
+                        observer.onNext(bra)
+                    }
+//                    observer.onNext(data)
                     observer.onCompleted()
                 } else {
                     observer.onError(error!)

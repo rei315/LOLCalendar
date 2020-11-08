@@ -1,24 +1,3 @@
-//
-//  LOLBracket.swift
-//  LOLCalendar
-//
-//  Created by 김민국 on 2020/11/04.
-//
-
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let lOLBracket = try? BracketnewJSONDecoder().decode(LOLBracket.self, from: jsonData)
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.lOLBracketElementTask(with: url) { lOLBracketElement, response, error in
-//     if let lOLBracketElement = lOLBracketElement {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 import Foundation
 
@@ -33,7 +12,7 @@ struct LOLBracketElement: Codable {
     let id: Int
     let live: BracketLive
     let liveEmbedURL, liveURL: String
-    let matchType: String
+    let matchType: BracketMatchType
     let modifiedAt: Date
     let name: String
     let numberOfGames: Int
@@ -75,14 +54,14 @@ struct LOLBracketElement: Codable {
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.gameTask(with: url) { BracketGame, response, error in
-//     if let BracketGame = BracketGame {
+//   let task = URLSession.shared.gameTask(with: url) { game, response, error in
+//     if let game = game {
 //       ...
 //     }
 //   }
 //   task.resume()
 
-// MARK: - BracketGame
+// MARK: - Game
 struct BracketGame: Codable {
     let beginAt: Date?
     let complete, detailedStats: Bool
@@ -94,7 +73,7 @@ struct BracketGame: Codable {
     let status: Status
     let videoURL: JSONNull?
     let winner: Winner
-    let winnerType: TypeEnum?
+    let winnerType: String?
 
     enum CodingKeys: String, CodingKey {
         case beginAt = "begin_at"
@@ -128,24 +107,24 @@ enum Status: String, Codable {
 // MARK: - Winner
 struct Winner: Codable {
     let id: Int?
-    let type: TypeEnum?
+    let type: String?
 }
 
-enum TypeEnum: String, Codable {
+enum BracketWinnerTypeEnum: String, Codable {
     case team = "Team"
 }
 
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.liveTask(with: url) { BracketLive, response, error in
-//     if let BracketLive = BracketLive {
+//   let task = URLSession.shared.liveTask(with: url) { live, response, error in
+//     if let live = live {
 //       ...
 //     }
 //   }
 //   task.resume()
 
-// MARK: - BracketLive
+// MARK: - Live
 struct BracketLive: Codable {
     let opensAt: JSONNull?
     let supported: Bool
@@ -155,6 +134,10 @@ struct BracketLive: Codable {
         case opensAt = "opens_at"
         case supported, url
     }
+}
+
+enum BracketMatchType: String, Codable {
+    case bestOf = "best_of"
 }
 
 //
@@ -170,7 +153,7 @@ struct BracketLive: Codable {
 // MARK: - OpponentElement
 struct OpponentElement: Codable {
     let opponent: OpponentOpponent
-    let type: TypeEnum
+    let type: WinnerTypeEnum
 }
 
 //
@@ -201,6 +184,10 @@ struct OpponentOpponent: Codable {
     }
 }
 
+enum BracketLocation: String, Codable {
+    case kr = "KR"
+}
+
 //
 // To read values from URLs:
 //
@@ -214,7 +201,7 @@ struct OpponentOpponent: Codable {
 // MARK: - PreviousMatch
 struct PreviousMatch: Codable {
     let matchID: Int
-    let type: String
+    let type: PreviousMatchType
 
     enum CodingKeys: String, CodingKey {
         case matchID = "match_id"
@@ -222,17 +209,22 @@ struct PreviousMatch: Codable {
     }
 }
 
+enum PreviousMatchType: String, Codable {
+    case loser = "loser"
+    case winner = "winner"
+}
+
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.streamsTask(with: url) { BracketStreams, response, error in
-//     if let BracketStreams = BracketStreams {
+//   let task = URLSession.shared.streamsTask(with: url) { streams, response, error in
+//     if let streams = streams {
 //       ...
 //     }
 //   }
 //   task.resume()
 
-// MARK: - BracketStreams
+// MARK: - Streams
 struct BracketStreams: Codable {
     let english, russian: BracketEnglish
 }
@@ -240,14 +232,14 @@ struct BracketStreams: Codable {
 //
 // To read values from URLs:
 //
-//   let task = URLSession.shared.englishTask(with: url) { BracketEnglish, response, error in
-//     if let BracketEnglish = BracketEnglish {
+//   let task = URLSession.shared.englishTask(with: url) { english, response, error in
+//     if let english = english {
 //       ...
 //     }
 //   }
 //   task.resume()
 
-// MARK: - BracketEnglish
+// MARK: - English
 struct BracketEnglish: Codable {
     let embedURL, rawURL: String?
 
@@ -259,47 +251,20 @@ struct BracketEnglish: Codable {
 
 typealias LOLBracket = [LOLBracketElement]
 
-// MARK: - Helper functions for creating encoders and decoders
+// MARK: - URLSession response handlers
 
-//func BracketnewJSONDecoder() -> JSONDecoder {
-//    let decoder = JSONDecoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        decoder.dateDecodingStrategy = .iso8601
-//    }
-//    return decoder
-//}
-//
-//func BracketnewJSONEncoder() -> JSONEncoder {
-//    let encoder = JSONEncoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        encoder.dateEncodingStrategy = .iso8601
-//    }
-//    return encoder
-//}
-
-// MARK: - Encode/decode helpers
-
-//class BracketJSONNull: Codable, Hashable {
-//
-//    public static func == (lhs: BracketJSONNull, rhs: BracketJSONNull) -> Bool {
-//        return true
-//    }
-//
-//    public var hashValue: Int {
-//        return 0
-//    }
-//
-//    public init() {}
-//
-//    public required init(from decoder: Decoder) throws {
-//        let container = try decoder.singleValueContainer()
-//        if !container.decodeNil() {
-//            throw DecodingError.typeMismatch(BracketJSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for BracketJSONNull"))
+//extension URLSession {
+//    fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+//        return self.dataTask(with: url) { data, response, error in
+//            guard let data = data, error == nil else {
+//                completionHandler(nil, response, error)
+//                return
+//            }
+//            completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
 //        }
 //    }
 //
-//    public func encode(to encoder: Encoder) throws {
-//        var container = encoder.singleValueContainer()
-//        try container.encodeNil()
+//    func lOLBracketTask(with url: URL, completionHandler: @escaping (LOLBracket?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+//        return self.codableTask(with: url, completionHandler: completionHandler)
 //    }
 //}

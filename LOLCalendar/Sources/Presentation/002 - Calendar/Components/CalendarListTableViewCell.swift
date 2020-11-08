@@ -37,6 +37,10 @@ class CalendarListTableViewCell: UITableViewCell {
     }
     
     func setData(data: Data) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateLabel.text = dateFormatter.string(from: data.scheduledAt)
+        
         rightResultLabel.text = "패"
         
 //        APIService.loadImage(url: URL(string: data.firstLogoUrl)!)
@@ -48,8 +52,15 @@ class CalendarListTableViewCell: UITableViewCell {
 //            .observeOn(MainScheduler.instance)
 //            .bind(to: rightTeamImage.rx.image)
 //            .disposed(by: disposeBag)
+        leftTeamImage.translatesAutoresizingMaskIntoConstraints = false
+        rightTeamImage.translatesAutoresizingMaskIntoConstraints = false
         
-        leftTeamImage.kf.setImage(with: URL(string: data.firstLogoUrl)!)
+        leftTeamImage.kf.setImage(with: URL(string: data.firstLogoUrl)!,
+                                  placeholder: nil,
+                                  options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
+            self!.leftTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.leftTeamImage.frame.width)
+            
+        }
         rightTeamImage.kf.setImage(with: URL(string: data.secondLogoUrl)!)
             
         

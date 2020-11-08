@@ -49,5 +49,7 @@ extension CalendarListViewController {
     func attribute() {
         let cellNib = UINib(nibName: String(describing: CalendarListTableViewCell.self), bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: String(describing: CalendarListTableViewCell.self))
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 112
     }
 }

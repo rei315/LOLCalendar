@@ -18,7 +18,7 @@ struct CalendarListModel {
     func getLOLEsport() -> Observable<LOLESport> {
         return APIService.fetchLOLESport(url: URL(string: String(format: App.Url.leagueURL, App.Token.token))!)
     }
-    func getBrancket(id: Int) -> Observable<LOLBracket> {
+    func getBrancket(id: Int) -> Observable<LOLBracketElement> {
         return APIService.fetchBracket(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
     }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3150E7F20C5FFFAE064E1D46 /* Pods_LOLCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */; };
+		8C11DA982557FF7D00C570BE /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11DA972557FF7D00C570BE /* ImageUtils.swift */; };
 		8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7562553AAA700D47F23 /* LOLCalendar.swift */; };
 		8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7592553AB6E00D47F23 /* APIService.swift */; };
 		8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA92325529E1600517415 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOLCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6680C3BB6BA40762B32C3CD8 /* Pods-LOLCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLCalendar.release.xcconfig"; path = "Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar.release.xcconfig"; sourceTree = "<group>"; };
+		8C11DA972557FF7D00C570BE /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		8C37C7562553AAA700D47F23 /* LOLCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLCalendar.swift; sourceTree = "<group>"; };
 		8C37C7592553AB6E00D47F23 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8C6DA92025529E1600517415 /* LOLCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOLCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				8C9EE9E02555CF410088E8DB /* JSON+Tools.swift */,
+				8C11DA972557FF7D00C570BE /* ImageUtils.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				8C9EEA00255702520088E8DB /* UIImageView+Extension.swift in Sources */,
 				8CC02BC2255417A40053E8C1 /* TransitionModel.swift in Sources */,
 				8CC02BAD2554142B0053E8C1 /* CalendarListViewModel.swift in Sources */,
+				8C11DA982557FF7D00C570BE /* ImageUtils.swift in Sources */,
 				8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */,
 				8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */,
 				8C9EE9DD2555CEFB0088E8DB /* URLSession+Extension.swift in Sources */,

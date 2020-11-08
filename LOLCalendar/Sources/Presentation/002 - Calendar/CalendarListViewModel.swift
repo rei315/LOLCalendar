@@ -29,27 +29,44 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     
     private var cells = BehaviorRelay<[LOLBracketElement]>(value: [])
     
+    private var tmpData = BehaviorSubject<LOLBracket>(value: [])
+    
     let disposeBag = DisposeBag()
     
     init(coordinator: SceneCoordinatorType, model: CalendarListModel = CalendarListModel()){
+//
+//        let tournamentIds = viewWillAppear
+//            .flatMapLatest(model.getLOLEsport)
+//            .asObservable()
+//            .share()
         
-        let tournamentIds = viewWillAppear
-            .flatMapLatest(model.getLOLEsport)
+        let task = model.getLOLEsport()
+        let allBranckets = task
+            .map { $0.tournamentID }
+            .flatMap(model.getBrancket)
+            .toArray()
             .asObservable()
-            .share()
-
-        let allBranckets = tournamentIds
-            .map{ $0.tournamentID }
-            .flatMapLatest { id -> Observable<[LOLBracketElement]> in
-//                return APIService.test(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
-                return model.getBrancket(id: id)
-            }
-            .asObservable()
+            .map( { (items) -> LOLBracket in
+                return items.sorted { (bracket1, bracket2) -> Bool in
+                    return bracket1.scheduledAt > bracket2.scheduledAt
+                }
+            })
+        
+//        let allBranckets = tournamentIds
+//            .map{ $0.tournamentID }
+//            .flatMap { id -> Observable<LOLBracketElement> in
+//                return model.getBrancket(id: id)
+//            }
+//            .toArray()
             
+//            .asObservable()
+//
+//
         allBranckets
             .bind(to: cells)
             .disposed(by: disposeBag)
-        
+
+            
         self.cellData = cells
             .map(model.parseBrancket)
             .asDriver(onErrorDriveWith: .empty())
