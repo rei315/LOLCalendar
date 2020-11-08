@@ -3,7 +3,8 @@ League of Legends E-Sports Calendar
 <br></br>
 
 ## Using
-Using RxSwift - MVVM
+1. RxSwift - MVVM
+2. KingFisher -> ImageDownload, Cache
 
 ### To do
 1. change URLSession to Alamofire
