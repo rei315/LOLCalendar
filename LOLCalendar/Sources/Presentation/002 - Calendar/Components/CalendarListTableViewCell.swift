@@ -12,8 +12,7 @@ import Kingfisher
 
 class CalendarListTableViewCell: UITableViewCell {
 
-    typealias Data = (id: Int, scheduledAt: Date, status: Status, winnerTeam: String, firstLogoUrl: String, secondLogoUrl: String)
-    
+    typealias Data = (scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -24,6 +23,11 @@ class CalendarListTableViewCell: UITableViewCell {
     @IBOutlet weak var rightTeamImage: UIImageView!
     
     let disposeBag = DisposeBag()
+    
+    enum Result: String {
+        case Win = "승"
+        case Defeat = "패"
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,29 +43,39 @@ class CalendarListTableViewCell: UITableViewCell {
     func setData(data: Data) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateLabel.text = dateFormatter.string(from: data.scheduledAt)
+        dateLabel.text = dateFormatter.string(from: data.scheduleAt)
+        leftResultLabel.text = ""
+        let left = data.opponents.first
+        let right = data.opponents.last
+        // Result
+        leftResultLabel.text = Result.Defeat.rawValue
+        rightResultLabel.text = Result.Defeat.rawValue
+        leftResultLabel.textColor = .red
+        rightResultLabel.textColor = .red
+        if (data.winnner == left?.id){
+            leftResultLabel.text = Result.Win.rawValue
+            leftResultLabel.textColor = .blue
+        } else {
+            rightResultLabel.text = Result.Win.rawValue
+            rightResultLabel.textColor = .blue
+        }
         
-        rightResultLabel.text = "패"
-        
-//        APIService.loadImage(url: URL(string: data.firstLogoUrl)!)
-//            .observeOn(MainScheduler.instance)
-//            .bind(to: leftTeamImage.rx.image)
-//            .disposed(by: disposeBag)
-//
-//        APIService.loadImage(url: URL(string: data.secondLogoUrl)!)
-//            .observeOn(MainScheduler.instance)
-//            .bind(to: rightTeamImage.rx.image)
-//            .disposed(by: disposeBag)
+        // Logo Image
         leftTeamImage.translatesAutoresizingMaskIntoConstraints = false
         rightTeamImage.translatesAutoresizingMaskIntoConstraints = false
         
-        leftTeamImage.kf.setImage(with: URL(string: data.firstLogoUrl)!,
+        leftTeamImage.kf.setImage(with: URL(string: left!.logoURL)!,
                                   placeholder: nil,
                                   options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
             self!.leftTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.leftTeamImage.frame.width)
             
+            
+        }        
+        rightTeamImage.kf.setImage(with: URL(string: right!.logoURL)!,
+                                   placeholder: nil,
+                                   options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
+             self!.rightTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.rightTeamImage.frame.width)
         }
-        rightTeamImage.kf.setImage(with: URL(string: data.secondLogoUrl)!)
             
         
     }

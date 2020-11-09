@@ -27,36 +27,69 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
 //    let reloadList: Signal<Void>()
 //    let errorMessage: Signal<String>()
     
-    private var cells = BehaviorRelay<[LOLBracketElement]>(value: [])
-    
-    private var tmpData = BehaviorSubject<LOLBracket>(value: [])
+    private var cells = BehaviorRelay<[LOLCalendar]>(value: [])
     
     let disposeBag = DisposeBag()
     
     init(coordinator: SceneCoordinatorType, model: CalendarListModel = CalendarListModel()){
         
-        let eSport = model.getLOLEsport()
-        let allBranckets = eSport
-            .map { $0.tournamentID }
-            .flatMap(model.getBrancket)
+        let ids = model.getLOLLeagueTournamentId()
+            .share()
+        
+        let bracketList = ids
+            .flatMap {
+                model.getLOLBracket(id: $0.0)
+            }
             .toArray()
             .asObservable()
-            .map( { (items) -> LOLBracket in
+            .map( { (items) -> [LOLCalendar] in
                 return items.sorted { (bracket1, bracket2) -> Bool in
-                    return bracket1.scheduledAt > bracket2.scheduledAt
+                    return bracket1.scheduleAt > bracket2.scheduleAt
                 }
             })
+            .share()
         
-        allBranckets
+        let shouldMoreFatch = ids
+            .map { data -> Int? in
+                if !data.1 {
+                    return data.2
+                } else {
+                    return nil
+                }
+            }
+            .filterNil()
+        
+        let fetchList = shouldMoreFatch
+            .distinctUntilChanged()
+            .map { $0 + 1 }
+            .flatMap(model.fetchMoreData)
+            .asObservable()
+            .map { $0.0 }
+            .flatMap(model.getLOLBracket)
+            .toArray()
+            .asObservable()
+            .map( { (items) -> [LOLCalendar] in
+                return items.sorted { (bracket1, bracket2) -> Bool in
+                    return bracket1.scheduleAt > bracket2.scheduleAt
+                }
+            })
+            .share()
+            
+        Observable
+            .merge(
+                bracketList,
+                fetchList
+            )
+            .scan([]) { prev, newList in
+                return newList.isEmpty ? [] : prev + newList
+            }
             .bind(to: cells)
             .disposed(by: disposeBag)
-
-            
-        self.cellData = cells
-            .map(model.parseBrancket)
-            .asDriver(onErrorDriveWith: .empty())
-            
         
+        self.cellData = cells
+            .map(model.parseBracket)
+            .asDriver(onErrorDriveWith: .empty())
+    
         super.init(sceneCoordinator: coordinator)
     }
     

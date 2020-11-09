@@ -11,67 +11,119 @@ import RxCocoa
 
 class APIService {
     
-    static func fetchLOLESport(url: URL) -> Observable<LOLESport> {
+    static func fetchLOLLeagueTournamentID(url: URL) -> Observable<(Int,Bool,Int)> {
+        
         return Observable.create { observer in
-            let task = URLSession.shared.lOLESportsTask(with: url) { (league, response, error) in
-                if let error = error{
-                    print(error)
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
                     observer.onError(error)
                 }
-                if let lolEports = league {
-                    print("hi")
-                    var tmp:[Int] = []
-                    for lol in lolEports {
-                        print(lol)
-                        if !tmp.contains(lol.tournamentID){
-                            print(lol.tournamentID)
-                            tmp.append(lol.tournamentID)
-                            observer.onNext(lol)
-                        }
+                var isFinish = false
+                var curPage = 0
+                var perPage = 0
+                var total = 0
+                if let response = response as? HTTPURLResponse{
+                    if let headers = response.allHeaderFields as? [String:Any] {
+                        
+                        curPage = Int(headers["x-page"] as! String) ?? 0
+                        perPage = Int(headers["x-per-page"] as! String) ?? 0
+                        total = Int(headers["x-total"] as! String) ?? 0
+                        
+                        isFinish = (curPage * perPage) >= total
                     }
-                    observer.onCompleted()
-                }else{
-                    print("fuck")
+                    
                 }
-//                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-//                    print("statusCode should be 200, but is (httpStatus.statusCode)")
-//                    observer.onError(error!)
-//                } else if let lolESport = league {
-//                    var tmp:[Int] = []
-//                    for lol in lolESport {
-//                        if !tmp.contains(lol.tournamentID){
-//                            print(lol.tournamentID)
-//                            tmp.append(lol.tournamentID)
-//                            observer.onNext(lol)
-//                        }
-//                    }
-//                    observer.onCompleted()
-//                } else{
-//                    observer.onError(error!)
-//                }
-            }
-            task.resume()
-            
-            return Disposables.create {
-                task.cancel()
-            }
-        }
-    }
-    static func fetchBracket(url: URL) -> Observable<LOLBracketElement> {
-        return Observable.create { observer in
-            let task = URLSession.shared.lOLBracketTask(with: url) { (data, response, error) in
                 
-                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                    print("statusCode should be 200, but is (httpStatus.statusCode)")
-                    observer.onError(error!)
-                } else if let data = data {
-                    for bra in data {
-                        observer.onNext(bra)
+                do {
+                    if let leagues = data {
+                        let jsonObject = try JSONSerialization.jsonObject(with: leagues, options: .allowFragments)
+                        if let jsonDic = jsonObject as? [[String:Any]] {
+                            var tmpData: [Int] = []
+                            for league in jsonDic {
+                                if let tournamentID = league["tournament_id"] as? Int {
+                                    if !tmpData.contains(tournamentID){
+                                        tmpData.append(tournamentID)
+                                        observer.onNext((tournamentID, isFinish,curPage))
+                                    }                                    
+                                }
+                            }
+                        }
+                        observer.onCompleted()
+                    } else {
+                        print("error")
+                        observer.onCompleted()
                     }
-//                    observer.onNext(data)
-                    observer.onCompleted()
-                } else {
-                    observer.onError(error!)
+                } catch {
+                    observer.onError(error)
+                }
+            }
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    static func fetchLOLBracket(url: URL) -> Observable<LOLCalendar> {
+        return Observable.create { observer in
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    observer.onError(error)
+                }
+                do {
+                    if let brackets = data {
+                        let jsonObject = try JSONSerialization.jsonObject(with: brackets, options: .allowFragments)
+                        if let jsonDic = jsonObject as? [[String:Any]] {
+                            for bracket in jsonDic {
+                                var calendar = LOLCalendar()
+                                
+                                // Scheduled_At
+                                if let schedule = bracket["scheduled_at"] as? String {
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.locale = Locale(identifier: "ko_KR")
+                                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
+                                    if let date = dateFormatter.date(from: schedule) {
+                                        calendar.scheduleAt = date
+                                    }
+                                }
+                                
+                                // Opponents
+                                if let opponets = bracket["opponents"] as? [[String:Any]] {
+                                    for opponent in opponets {
+                                        if let element = opponent["opponent"] as? [String:Any] {
+                                            let team = OpponentTeam(id: element["id"] as! Int, name: element["acronym"] as! String, logoURL: element["image_url"] as! String)
+                                            calendar.opponents.append(team)
+                                        }
+                                    }
+                                }
+                                
+                                // Winner
+                                if let winner = bracket["winner_id"] as? Int {
+                                    calendar.winnner = winner
+                                }
+                                
+                                // Score
+                                if let games = bracket["games"] as? [[String:Any]] {
+                                    for game in games {
+                                        if let isFinish = game["finished"] as? String, isFinish == "True" {
+                                            if let winner = game["winner"] as? [String:Any] {
+                                                if let winnerID = winner["id"] as? Int {
+                                                    calendar.score[winnerID]! += 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                observer.onNext(calendar)
+                            }
+                        }
+                        observer.onCompleted()
+                    }
+                } catch {
+                    observer.onError(error)
                 }
             }
             task.resume()
@@ -81,32 +133,6 @@ class APIService {
             }
         }
     }
-    
-//    static func fetchBracket(url: URL) -> Observable<LOLBracketElement> {
-//        return Observable.create { observer in
-//            let task = URLSession.shared.lOLBracketTask(with: url) { (brackets, response, error) in
-//
-//                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-//                    print("statusCode should be 200, but is (httpStatus.statusCode)")
-//                    observer.onError(error!)
-//                } else if let brackets = brackets {
-//                    for bracket in brackets{
-//                        observer.onNext(bracket)
-//                    }
-//
-//
-//                    observer.onCompleted()
-//                } else {
-//                    observer.onError(error!)
-//                }
-//            }
-//            task.resume()
-//
-//            return Disposables.create {
-//                task.cancel()
-//            }
-//        }
-//    }
     
     static func loadImage(url: URL) -> Observable<UIImage?> {
         return Observable.create { observer in

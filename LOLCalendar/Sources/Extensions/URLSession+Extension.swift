@@ -9,6 +9,10 @@ import Foundation
 
 extension URLSession {
     
+//    func lolLeagueTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
+//        return self.codableTask(with: url, completionHandler: completionHandler)
+//    }
+    
     func lOLESportsTask(with url: URL, completionHandler: @escaping (LOLESports?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.codableTask(with: url, completionHandler: completionHandler)
     }

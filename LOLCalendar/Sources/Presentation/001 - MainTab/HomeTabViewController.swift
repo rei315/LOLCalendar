@@ -22,12 +22,20 @@ class HomeTabViewController: UITabBarController, ViewModelBindableType {
         .Setting: UITabBarItem(tabBarSystemItem: .more, tag: 1)
     ]
     
-    var viewModel: HomeTabViewModel!
-    
+    var viewModel: HomeTabViewModel!    
 }
 
 extension HomeTabViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        attribute()
+    }
+    
     func bindViewModel() {
+                
+    }
+    
+    func attribute() {
         calendarListViewController = Scene.calendarList(viewModel.calendarListViewModel).instantiate() as? CalendarListViewController
         
         settingViewController = Scene.setting(viewModel.settingViewModel).instantiate() as? SettingViewControler
@@ -39,11 +47,5 @@ extension HomeTabViewController {
             UINavigationController(rootViewController: calendarListViewController!),
             UINavigationController(rootViewController: settingViewController!)
         ]
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
     }
 }
