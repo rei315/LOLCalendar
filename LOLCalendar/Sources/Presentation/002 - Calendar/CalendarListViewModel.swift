@@ -29,11 +29,17 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     
     private var cells = BehaviorRelay<[LOLCalendar]>(value: [])
     
+    private let activityIndicator = ActivityIndicator()
+    
+    var isRunning: Observable<Bool> {
+        return activityIndicator.asObservable()
+    }
+    
     let disposeBag = DisposeBag()
     
-    init(coordinator: SceneCoordinatorType, model: CalendarListModel = CalendarListModel()){
+    init(coordinator: SceneCoordinatorType, leagueType: Int, model: CalendarListModel = CalendarListModel()){
         
-        let ids = model.getLOLLeagueTournamentId()
+        let ids = model.getLOLLeagueTournamentId(league: leagueType)
             .share()
         
         let bracketList = ids
@@ -62,10 +68,13 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         let fetchList = shouldMoreFatch
             .distinctUntilChanged()
             .map { $0 + 1 }
-            .flatMap(model.fetchMoreData)
+            .flatMap { page -> Observable<(Int, Bool, Int)> in
+                model.fetchMoreData(league: leagueType, page: page)
+            }
             .asObservable()
             .map { $0.0 }
             .flatMap(model.getLOLBracket)
+            .trackActivity(activityIndicator)
             .toArray()
             .asObservable()
             .map( { (items) -> [LOLCalendar] in
@@ -89,6 +98,7 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         self.cellData = cells
             .map(model.parseBracket)
             .asDriver(onErrorDriveWith: .empty())
+            
     
         super.init(sceneCoordinator: coordinator)
     }

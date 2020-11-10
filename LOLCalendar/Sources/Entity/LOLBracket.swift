@@ -51,16 +51,6 @@ struct LOLBracketElement: Codable {
     }
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.gameTask(with: url) { game, response, error in
-//     if let game = game {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Game
 struct BracketGame: Codable {
     let beginAt: Date?
@@ -94,16 +84,6 @@ enum Status: String, Codable {
     case notPlayed = "not_played"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.winnerTask(with: url) { winner, response, error in
-//     if let winner = winner {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Winner
 struct Winner: Codable {
     let id: Int?
@@ -113,16 +93,6 @@ struct Winner: Codable {
 enum BracketWinnerTypeEnum: String, Codable {
     case team = "Team"
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.liveTask(with: url) { live, response, error in
-//     if let live = live {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - Live
 struct BracketLive: Codable {
@@ -140,31 +110,11 @@ enum BracketMatchType: String, Codable {
     case bestOf = "best_of"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.opponentElementTask(with: url) { opponentElement, response, error in
-//     if let opponentElement = opponentElement {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - OpponentElement
 struct OpponentElement: Codable {
     let opponent: OpponentOpponent
     let type: WinnerTypeEnum
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.opponentOpponentTask(with: url) { opponentOpponent, response, error in
-//     if let opponentOpponent = opponentOpponent {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - OpponentOpponent
 struct OpponentOpponent: Codable {
@@ -188,16 +138,6 @@ enum BracketLocation: String, Codable {
     case kr = "KR"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.previousMatchTask(with: url) { previousMatch, response, error in
-//     if let previousMatch = previousMatch {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - PreviousMatch
 struct PreviousMatch: Codable {
     let matchID: Int
@@ -214,30 +154,10 @@ enum PreviousMatchType: String, Codable {
     case winner = "winner"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.streamsTask(with: url) { streams, response, error in
-//     if let streams = streams {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Streams
 struct BracketStreams: Codable {
     let english, russian: BracketEnglish
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.englishTask(with: url) { english, response, error in
-//     if let english = english {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - English
 struct BracketEnglish: Codable {
@@ -250,21 +170,3 @@ struct BracketEnglish: Codable {
 }
 
 typealias LOLBracket = [LOLBracketElement]
-
-// MARK: - URLSession response handlers
-
-//extension URLSession {
-//    fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-//        return self.dataTask(with: url) { data, response, error in
-//            guard let data = data, error == nil else {
-//                completionHandler(nil, response, error)
-//                return
-//            }
-//            completionHandler(try? newJSONDecoder().decode(T.self, from: data), response, nil)
-//        }
-//    }
-//
-//    func lOLBracketTask(with url: URL, completionHandler: @escaping (LOLBracket?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-//        return self.codableTask(with: url, completionHandler: completionHandler)
-//    }
-//}

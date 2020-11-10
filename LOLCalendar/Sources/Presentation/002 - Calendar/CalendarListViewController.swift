@@ -17,6 +17,8 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let indicatorView = UIActivityIndicatorView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
@@ -25,6 +27,16 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
 
 extension CalendarListViewController {
     func bindViewModel() {
+        viewModel.isRunning.subscribe(onNext: { loading in
+            switch loading {
+            case true:
+                self.indicatorView.startAnimating()
+            case false:
+                self.indicatorView.stopAnimating()
+            }
+        })
+        .disposed(by: rx.disposeBag)
+        
         self.rx.viewWillAppear
             .map { _ in Void() }
             .bind(to: viewModel.viewWillAppear)
@@ -51,5 +63,8 @@ extension CalendarListViewController {
         tableView.register(cellNib, forCellReuseIdentifier: String(describing: CalendarListTableViewCell.self))
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 112
+        indicatorView.hidesWhenStopped = true
+        indicatorView.color = .blue
+        tableView.backgroundView = indicatorView
     }
 }

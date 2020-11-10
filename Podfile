@@ -5,6 +5,7 @@ target 'LOLCalendar' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+# RxSwift
 pod 'RxSwift'
 pod 'RxCocoa'
 pod 'Action'
@@ -14,7 +15,12 @@ pod 'RxCoreData'
 pod 'RxGesture'
 pod 'RxAppState'
 pod 'RxOptional'
+
+# Image
 pod 'Kingfisher'
+
+# AutoLayout
+pod 'SnapKit'
 
   # Pods for LOLCalendar
 

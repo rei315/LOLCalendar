@@ -42,7 +42,7 @@ class CalendarListTableViewCell: UITableViewCell {
     
     func setData(data: Data) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateLabel.text = dateFormatter.string(from: data.scheduleAt)
         leftResultLabel.text = ""
         let left = data.opponents.first
@@ -63,22 +63,19 @@ class CalendarListTableViewCell: UITableViewCell {
         // Logo Image
         leftTeamImage.translatesAutoresizingMaskIntoConstraints = false
         rightTeamImage.translatesAutoresizingMaskIntoConstraints = false
-        
-        leftTeamImage.kf.setImage(with: URL(string: left!.logoURL)!,
-                                  placeholder: nil,
-                                  options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
-            self!.leftTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.leftTeamImage.frame.width)
-            
-            
-        }        
-        rightTeamImage.kf.setImage(with: URL(string: right!.logoURL)!,
-                                   placeholder: nil,
-                                   options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
-             self!.rightTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.rightTeamImage.frame.width)
-        }
-            
-        
+        leftTeamImage.kf.setImage(with: URL(string: left!.logoURL)!)
+//        leftTeamImage.kf.setImage(with: URL(string: left!.logoURL)!,
+//                                  placeholder: nil,
+//                                  options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
+//            self!.leftTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.leftTeamImage.frame.width)
+//        }
+        rightTeamImage.kf.setImage(with: URL(string: right!.logoURL)!)
+//        rightTeamImage.kf.setImage(with: URL(string: right!.logoURL)!,
+//                                   placeholder: nil,
+//                                   options: [.transition(ImageTransition.fade(1))]) { [weak self] (image, error, cacheType, imageURL) in
+//             self!.rightTeamImage.image = ImageUtils.resizeImage(image: image!, newWidth: self!.rightTeamImage.frame.width)
+//        }
+//    }
+    
     }
-    
-    
 }

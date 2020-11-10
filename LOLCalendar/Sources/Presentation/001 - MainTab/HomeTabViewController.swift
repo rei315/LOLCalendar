@@ -30,7 +30,7 @@ extension HomeTabViewController {
         super.viewDidLoad()
         attribute()
     }
-    
+
     func bindViewModel() {
                 
     }
@@ -44,8 +44,8 @@ extension HomeTabViewController {
         settingViewController?.tabBarItem = tabBarItems[.Setting]
         
         self.viewControllers = [
-            UINavigationController(rootViewController: calendarListViewController!),
-            UINavigationController(rootViewController: settingViewController!)
+            calendarListViewController! as UIViewController,
+            settingViewController! as UIViewController
         ]
     }
 }

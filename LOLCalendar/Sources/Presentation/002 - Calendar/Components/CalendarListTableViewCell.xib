@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -65,14 +66,14 @@
                     <constraint firstItem="Ub2-MP-N2e" firstAttribute="leading" secondItem="PtW-jA-7OH" secondAttribute="trailing" constant="30" id="Gro-O7-ld9"/>
                     <constraint firstAttribute="trailing" secondItem="eUJ-07-Wti" secondAttribute="trailing" priority="750" constant="34" id="Ly8-24-BxJ"/>
                     <constraint firstItem="Ub2-MP-N2e" firstAttribute="centerX" secondItem="rw4-Wl-eQp" secondAttribute="centerX" id="RtW-UJ-ePX"/>
-                    <constraint firstItem="rw4-Wl-eQp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="108" id="TfL-yd-Vzc"/>
+                    <constraint firstItem="rw4-Wl-eQp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="750" constant="108" id="TfL-yd-Vzc"/>
                     <constraint firstAttribute="bottom" secondItem="Ub2-MP-N2e" secondAttribute="bottom" constant="40" id="a8Y-8e-Qbf"/>
                     <constraint firstItem="PtW-jA-7OH" firstAttribute="leading" secondItem="Y89-Gd-L5A" secondAttribute="trailing" constant="30" id="gtJ-X4-TUs"/>
                     <constraint firstItem="rw4-Wl-eQp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="ibo-9a-zvz"/>
                     <constraint firstItem="Ub2-MP-N2e" firstAttribute="centerY" secondItem="PtW-jA-7OH" secondAttribute="centerY" id="sIN-Ri-Lzd"/>
                     <constraint firstItem="01L-Rz-YKX" firstAttribute="centerY" secondItem="Ub2-MP-N2e" secondAttribute="centerY" id="vpQ-WN-EVS"/>
                     <constraint firstItem="eUJ-07-Wti" firstAttribute="centerY" secondItem="01L-Rz-YKX" secondAttribute="centerY" id="xsa-m4-wDD"/>
-                    <constraint firstAttribute="trailing" secondItem="rw4-Wl-eQp" secondAttribute="trailing" constant="108" id="yyQ-vL-L7X"/>
+                    <constraint firstAttribute="trailing" secondItem="rw4-Wl-eQp" secondAttribute="trailing" priority="750" constant="108" id="yyQ-vL-L7X"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -5,20 +5,6 @@
 //  Created by 김민국 on 2020/11/04.
 //
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let lOLESports = try? newJSONDecoder().decode(LOLESports.self, from: jsonData)
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.lOLESportTask(with: url) { lOLESport, response, error in
-//     if let lOLESport = lOLESport {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 import Foundation
 
@@ -88,16 +74,6 @@ struct LOLESport: Codable {
     }
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.gameTask(with: url) { game, response, error in
-//     if let game = game {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Game
 struct Game: Codable {
     let beginAt: Date
@@ -124,16 +100,6 @@ struct Game: Codable {
     }
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.gameWinnerTask(with: url) { gameWinner, response, error in
-//     if let gameWinner = gameWinner {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - GameWinner
 struct GameWinner: Codable {
     let id: Int
@@ -143,16 +109,6 @@ struct GameWinner: Codable {
 enum WinnerTypeEnum: String, Codable {
     case team = "Team"
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.leagueTask(with: url) { league, response, error in
-//     if let league = league {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - League
 struct League: Codable {
@@ -179,16 +135,6 @@ enum LeagueSlug: String, Codable {
     case leagueOfLegendsLckChampionsKorea = "league-of-legends-lck-champions-korea"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.liveTask(with: url) { live, response, error in
-//     if let live = live {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Live
 struct Live: Codable {
     let opensAt: Date
@@ -205,31 +151,11 @@ enum MatchType: String, Codable {
     case bestOf = "best_of"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.opponentTask(with: url) { opponent, response, error in
-//     if let opponent = opponent {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Opponent
 struct Opponent: Codable {
     let opponent: OpponentClass
     let type: WinnerTypeEnum
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.opponentClassTask(with: url) { opponentClass, response, error in
-//     if let opponentClass = opponentClass {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - OpponentClass
 struct OpponentClass: Codable {
@@ -293,16 +219,6 @@ enum WinnerSlug: String, Codable {
     case teamDynamics = "team-dynamics"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.resultTask(with: url) { result, response, error in
-//     if let result = result {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Result
 struct ESportResult: Codable {
     let score, teamID: Int
@@ -312,16 +228,6 @@ struct ESportResult: Codable {
         case teamID = "team_id"
     }
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.serieTask(with: url) { serie, response, error in
-//     if let serie = serie {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - Serie
 struct Serie: Codable {
@@ -369,30 +275,10 @@ enum Tier: String, Codable {
     case s = "s"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.streamsTask(with: url) { streams, response, error in
-//     if let streams = streams {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Streams
 struct Streams: Codable {
     let english, russian: English
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.englishTask(with: url) { english, response, error in
-//     if let english = english {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - English
 struct English: Codable {
@@ -403,16 +289,6 @@ struct English: Codable {
         case rawURL = "raw_url"
     }
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.tournamentTask(with: url) { tournament, response, error in
-//     if let tournament = tournament {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - Tournament
 struct Tournament: Codable {
@@ -449,16 +325,6 @@ enum TournamentName: String, Codable {
     case regularSeason = "Regular season"
 }
 
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.videogameTask(with: url) { videogame, response, error in
-//     if let videogame = videogame {
-//       ...
-//     }
-//   }
-//   task.resume()
-
 // MARK: - Videogame
 struct Videogame: Codable {
     let id: Int
@@ -473,16 +339,6 @@ enum VideogameName: String, Codable {
 enum VideogameSlug: String, Codable {
     case leagueOfLegends = "league-of-legends"
 }
-
-//
-// To read values from URLs:
-//
-//   let task = URLSession.shared.videogameVersionTask(with: url) { videogameVersion, response, error in
-//     if let videogameVersion = videogameVersion {
-//       ...
-//     }
-//   }
-//   task.resume()
 
 // MARK: - VideogameVersion
 struct VideogameVersion: Codable {
