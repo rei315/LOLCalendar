@@ -48,7 +48,14 @@ extension CalendarListViewController {
             .disposed(by: rx.disposeBag)
         
         viewModel.cellData
-            .drive(tableView.rx.items) { tv, row, data in                
+            .drive(tableView.rx.items) { [self] tv, row, data in
+                if (data.opponents.isEmpty) {
+                    self.showAlert(title: "서버 오류", message: "서버에 연결하지 못하였습니다.", style: .alert, actions: [AlertAction.action(title: "확인")])
+                        .subscribe(onNext: { index in
+                            print(index)
+                        })
+                        .disposed(by: rx.disposeBag)
+                }
                 let index = IndexPath(row: row, section: 0)
                 let cell = tv.dequeueReusableCell(withIdentifier: String(describing: CalendarListTableViewCell.self), for: index) as! CalendarListTableViewCell
                 cell.setData(data: data)
@@ -66,5 +73,24 @@ extension CalendarListViewController {
         indicatorView.hidesWhenStopped = true
         indicatorView.color = .blue
         tableView.backgroundView = indicatorView
+    }
+    
+    func showAlert(title: String?, message: String?, style: UIAlertController.Style, actions: [AlertAction]) -> Observable<Int>
+    {
+        return Observable.create { observer in
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
+
+            actions.enumerated().forEach { index, action in
+                let action = UIAlertAction(title: action.title, style: action.style) { _ in
+                    observer.onNext(index)
+                    observer.onCompleted()
+                }
+                alertController.addAction(action)
+            }
+
+            self.present(alertController, animated: true, completion: nil)
+
+            return Disposables.create { alertController.dismiss(animated: true, completion: nil) }
+        }
     }
 }

@@ -40,12 +40,19 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     init(coordinator: SceneCoordinatorType, leagueType: Int, model: CalendarListModel = CalendarListModel()){
         
         let ids = model.getLOLLeagueTournamentId(league: leagueType)
+            .catchError({ (error) -> Observable<(Int, Bool, Int)> in
+                return .just((-1,false,-1))
+            })
             .share()
         
         let bracketList = ids
             .flatMap {
-                model.getLOLBracket(id: $0.0)
+                (model.getLOLBracket(id: $0.0))
             }
+            .catchError({ (error) -> Observable<LOLCalendar> in
+                let tmpCalendar = LOLCalendar()
+                return .just(tmpCalendar)
+            })
             .toArray()
             .asObservable()
             .map( { (items) -> [LOLCalendar] in
@@ -57,6 +64,9 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         
         let shouldMoreFatch = ids
             .map { data -> Int? in
+                if data.0 == -1 {
+                    return nil
+                }
                 if !data.1 {
                     return data.2
                 } else {
@@ -71,9 +81,16 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
             .flatMap { page -> Observable<(Int, Bool, Int)> in
                 model.fetchMoreData(league: leagueType, page: page)
             }
+            .catchError({ (error) -> Observable<(Int, Bool, Int)> in
+                return .just((-1,false,-1))
+            })
             .asObservable()
             .map { $0.0 }
             .flatMap(model.getLOLBracket)
+            .catchError({ (error) -> Observable<LOLCalendar> in
+                let tmpCalendar = LOLCalendar()
+                return .just(tmpCalendar)
+            })
             .trackActivity(activityIndicator)
             .toArray()
             .asObservable()
@@ -89,6 +106,7 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
                 bracketList,
                 fetchList
             )
+            .filterEmpty()
             .scan([]) { prev, newList in
                 return newList.isEmpty ? [] : prev + newList
             }
@@ -97,8 +115,7 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         
         self.cellData = cells
             .map(model.parseBracket)
-            .asDriver(onErrorDriveWith: .empty())
-            
+            .asDriver(onErrorDriveWith: .empty())        
     
         super.init(sceneCoordinator: coordinator)
     }

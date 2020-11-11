@@ -15,6 +15,7 @@ struct CalendarListModel {
         case LPL = 294
         case LEC = 4197
     }
+    //world champion 297
     
     func getLOLLeagueTournamentId(league: Int, page: Int = 1) -> Observable<(Int, Bool, Int)> {
         var tmpLeague = 0
@@ -32,7 +33,8 @@ struct CalendarListModel {
         return APIService.fetchLOLLeagueTournamentID(url: URL(string: String(format: App.Url.leagueURL, tmpLeague,App.Token.token, page))!)
     }
     func getLOLBracket(id: Int) -> Observable<LOLCalendar> {
-        return APIService.fetchLOLBracket(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!)
+        let isError = id == -1 ? true : false
+        return APIService.fetchLOLBracket(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!, isError: isError)
     }
     func parseBracket(value: [LOLCalendar]) -> [CalendarListTableViewCell.Data] {
         return value.map {

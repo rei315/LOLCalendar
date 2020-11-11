@@ -22,6 +22,8 @@ class CalendarListTableViewCell: UITableViewCell {
     @IBOutlet weak var rightResultLabel: UILabel!
     @IBOutlet weak var rightTeamImage: UIImageView!
     
+    @IBOutlet weak var vsLabel: UILabel!
+    
     let disposeBag = DisposeBag()
     
     enum Result: String {
@@ -41,6 +43,13 @@ class CalendarListTableViewCell: UITableViewCell {
     }
     
     func setData(data: Data) {
+        if (data.opponents.isEmpty) {
+            dateLabel.text = ""
+            leftResultLabel.text = ""
+            rightResultLabel.text = ""
+            vsLabel.text = ""
+            return
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateLabel.text = dateFormatter.string(from: data.scheduleAt)

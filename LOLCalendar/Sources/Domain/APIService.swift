@@ -18,7 +18,11 @@ class APIService {
             request.httpMethod = "GET"
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
-                    observer.onError(error)
+                    if let response = response as? HTTPURLResponse {
+                        let tmpError = NSError(domain: "", code: response.statusCode, userInfo: nil)
+                        observer.onError(tmpError)
+                    }
+                    observer.onError(NSError(domain: "", code: 0, userInfo: nil))
                 }
                 var isFinish = false
                 var curPage = 0
@@ -52,11 +56,17 @@ class APIService {
                         }
                         observer.onCompleted()
                     } else {
-                        print("error")
-                        observer.onCompleted()
+                        if let response = response as? HTTPURLResponse {
+                            let tmpError = NSError(domain: "", code: response.statusCode, userInfo: nil)
+                            print(response.statusCode)
+                            observer.onError(tmpError)
+                        }
+                        observer.onError(NSError(domain: "", code: 100, userInfo: nil))
                     }
                 } catch {
-                    observer.onError(error)
+                    // catch error
+                    let tmpError = NSError(domain: "", code: 1000, userInfo: nil)
+                    observer.onError(tmpError)
                 }
             }
             task.resume()
@@ -65,8 +75,12 @@ class APIService {
             }
         }
     }
-    static func fetchLOLBracket(url: URL) -> Observable<LOLCalendar> {
+    static func fetchLOLBracket(url: URL, isError: Bool) -> Observable<LOLCalendar> {
         return Observable.create { observer in
+            if isError{
+                let tmpError = NSError(domain: "", code: 300, userInfo: nil)
+                observer.onError(tmpError)
+            }
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -121,6 +135,12 @@ class APIService {
                             }
                         }
                         observer.onCompleted()
+                    } else {
+                        if let response = response as? HTTPURLResponse {
+                            let tmpError = NSError(domain: "", code: response.statusCode, userInfo: nil)
+                            observer.onError(tmpError)
+                        }
+                        observer.onError(NSError(domain: "", code: 100, userInfo: nil))
                     }
                 } catch {
                     observer.onError(error)

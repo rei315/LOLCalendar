@@ -83,6 +83,7 @@
                 <outlet property="leftTeamImage" destination="Y89-Gd-L5A" id="cgx-on-QzM"/>
                 <outlet property="rightResultLabel" destination="01L-Rz-YKX" id="AhB-0d-ozf"/>
                 <outlet property="rightTeamImage" destination="eUJ-07-Wti" id="I9F-zk-Hhz"/>
+                <outlet property="vsLabel" destination="Ub2-MP-N2e" id="qcI-je-WfY"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="119.86607142857142"/>
         </tableViewCell>
