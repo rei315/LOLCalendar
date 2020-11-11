@@ -15,13 +15,27 @@ import Foundation
 //    let opponents: [OpponentElement]
 //}
 
-struct LOLCalendar: Codable {
+struct LOLCalendar: Codable, Equatable {
+    static func == (lhs: LOLCalendar, rhs: LOLCalendar) -> Bool {
+        if lhs.identity == rhs.identity &&
+            lhs.opponents == rhs.opponents &&
+            lhs.scheduleAt == rhs.scheduleAt &&
+            lhs.score == rhs.score &&
+            lhs.winnner == rhs.winnner {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var identity: String
     var scheduleAt: Date
     var winnner: Int
     var opponents: [OpponentTeam]
     var score: [Int:Int]
     
     init(){
+        self.identity = "\(Date().timeIntervalSinceReferenceDate)"
         self.scheduleAt = Date()
         self.winnner = 0
         self.opponents = []
@@ -29,7 +43,7 @@ struct LOLCalendar: Codable {
     }
 }
 
-struct OpponentTeam: Codable {
+struct OpponentTeam: Codable, Equatable {
     let id: Int
     let name: String
     let logoURL: String

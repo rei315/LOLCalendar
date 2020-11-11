@@ -63,6 +63,15 @@ extension CalendarListViewController {
             }
             .disposed(by: rx.disposeBag)
             
+        Observable.zip(tableView.rx.modelSelected(CalendarListTableViewCell.Data.self), tableView.rx.itemSelected)
+            .subscribe(onNext : { [unowned self] (_, indexPath) in
+                self.tableView.deselectRow(at: indexPath, animated: false)
+            })
+            .disposed(by: rx.disposeBag)
+//            .do(onNext: { [unowned self] (_, indexPath) in
+//                self.tableView.deselectRow(at: indexPath, animated: true)
+//            })
+            
     }
     
     func attribute() {
