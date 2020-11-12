@@ -130,6 +130,21 @@
             </objects>
             <point key="canvasLocation" x="3857.971014492754" y="-246.42857142857142"/>
         </scene>
+        <!--Calendar Detail View Controller-->
+        <scene sceneID="d8S-Sx-rgY">
+            <objects>
+                <viewController storyboardIdentifier="CalendarDetail" id="m12-2e-3Y1" customClass="CalendarDetailViewController" customModule="LOLCalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pYQ-fi-eyJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Uj7-L8-Msk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0v7-xh-lXl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4826" y="-246"/>
+        </scene>
         <!--Setting View Controler-->
         <scene sceneID="byP-eh-lOf">
             <objects>

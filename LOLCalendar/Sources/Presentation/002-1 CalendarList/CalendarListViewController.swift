@@ -55,6 +55,7 @@ extension CalendarListViewController {
                             print(index)
                         })
                         .disposed(by: rx.disposeBag)
+                    return UITableViewCell()
                 }
                 let index = IndexPath(row: row, section: 0)
                 let cell = tv.dequeueReusableCell(withIdentifier: String(describing: CalendarListTableViewCell.self), for: index) as! CalendarListTableViewCell
@@ -64,14 +65,12 @@ extension CalendarListViewController {
             .disposed(by: rx.disposeBag)
             
         Observable.zip(tableView.rx.modelSelected(CalendarListTableViewCell.Data.self), tableView.rx.itemSelected)
-            .subscribe(onNext : { [unowned self] (_, indexPath) in
-                self.tableView.deselectRow(at: indexPath, animated: false)
+            .do(onNext: { [unowned self] (_, indexPath) in
+                self.tableView.deselectRow(at: indexPath, animated: true)
             })
+            .map { $0.0 }
+            .bind(to: viewModel.detailAction.inputs)
             .disposed(by: rx.disposeBag)
-//            .do(onNext: { [unowned self] (_, indexPath) in
-//                self.tableView.deselectRow(at: indexPath, animated: true)
-//            })
-            
     }
     
     func attribute() {

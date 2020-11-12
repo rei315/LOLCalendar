@@ -11,8 +11,9 @@ extension App {
         
     }
     enum Url {
-        static let leagueURL = "https://api.pandascore.co/leagues/293/matches?token=%@&range[begin_at]=2020-01-01T00:00:00Z,2020-12-31T23:59:59Z&page[size]=10&page[number]=1"
+        static let leagueURL = "https://api.pandascore.co/leagues/%d/matches?token=%@&range[begin_at]=2020-01-01T00:00:00Z,2020-12-31T23:59:59Z&page[size]=100&page[number]=%d"
         static let brancketURL = "https://api.pandascore.co/tournaments/%d/brackets?token=%@"
+        static let teamsURL = "https://api.pandascore.co/teams/$d?token=%@"
     }
     enum Token {
         static let token = ""

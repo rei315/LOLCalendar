@@ -75,6 +75,37 @@ class APIService {
             }
         }
     }
+    static func fetchLOLTeam(url: URL) -> Observable<Player> {
+        return Observable.create { observer in
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    observer.onError(error)
+                }
+                do {
+                    if let team = data {
+                        let jsonObjes = try JSONSerialization.jsonObject(with: team, options: .allowFragments)
+                        if let jsonDic = jsonObjes as? [String: Any] {
+                            var team = Player()
+                            if let players = jsonDic["players"] as? [[String:Any]] {
+                                for player in players {
+                                    
+                                }
+                            }
+                        }
+                    }
+                } catch {
+                    
+                }
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
     static func fetchLOLBracket(url: URL, isError: Bool) -> Observable<LOLCalendar> {
         return Observable.create { observer in
             if isError{

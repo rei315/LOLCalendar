@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxOptional
+import Action
 
 protocol CalendarModelBindable {
     var viewWillAppear: PublishSubject<Void> { get }
@@ -36,6 +37,16 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     }
     
     let disposeBag = DisposeBag()
+    
+    lazy var detailAction: Action<CalendarListTableViewCell.Data, Void> = {
+        return Action { calendarData in
+            let detailViewModel = CalendarDetailViewModel(coordinator: self.sceneCoordinator, data: calendarData)
+            
+            let calendarDetailScene = Scene.calendarDetail(detailViewModel)
+            
+            return self.sceneCoordinator.transition(to: calendarDetailScene, using: .push, animated: true).asObservable().map { _ in }
+        }
+    }()
     
     init(coordinator: SceneCoordinatorType, leagueType: Int, model: CalendarListModel = CalendarListModel()){
         
