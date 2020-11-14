@@ -38,7 +38,7 @@ struct CalendarListModel {
     }
     func parseBracket(value: [LOLCalendar]) -> [CalendarListTableViewCell.Data] {
         return value.map {
-            (scheduleAt: $0.scheduleAt, winner: $0.winnner, opponents: $0.opponents, score: $0.score)
+            (id: $0.id, scheduleAt: $0.scheduleAt, winner: $0.winnner, opponents: $0.opponents, score: $0.score)
         }
     }
     func fetchMoreData(league: Int, page: Int) -> Observable<(Int, Bool, Int)>{

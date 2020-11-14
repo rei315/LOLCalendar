@@ -18,8 +18,8 @@ class HomeTabViewController: UITabBarController, ViewModelBindableType {
     var settingViewController: SettingViewControler?
     
     let tabBarItems: [Tab:UITabBarItem] = [
-        .CalendarList: UITabBarItem(tabBarSystemItem: .recents, tag: 0),
-        .Setting: UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        .CalendarList: UITabBarItem(title: "최근 경기", image: UIImage(systemName: "sportscourt.fill"), tag: 0),
+        .Setting: UITabBarItem(title: "로스터", image: UIImage(systemName: "person.3.fill"), tag: 1)
     ]
     
     var viewModel: HomeTabViewModel!    

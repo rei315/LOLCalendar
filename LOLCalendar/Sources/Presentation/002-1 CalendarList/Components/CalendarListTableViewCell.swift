@@ -12,7 +12,7 @@ import Kingfisher
 
 class CalendarListTableViewCell: UITableViewCell {
 
-    typealias Data = (scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
+    typealias Data = (id: Int, scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
     
     @IBOutlet weak var dateLabel: UILabel!
     

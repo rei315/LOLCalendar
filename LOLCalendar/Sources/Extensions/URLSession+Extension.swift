@@ -13,13 +13,13 @@ extension URLSession {
 //        return self.codableTask(with: url, completionHandler: completionHandler)
 //    }
     
-    func lOLESportsTask(with url: URL, completionHandler: @escaping (LOLESports?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.codableTask(with: url, completionHandler: completionHandler)
-    }
-    
-    func lOLBracketTask(with url: URL, completionHandler: @escaping (LOLBracket?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return self.codableTask(with: url, completionHandler: completionHandler)
-    }
+//    func lOLESportsTask(with url: URL, completionHandler: @escaping (LOLESports?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+//        return self.codableTask(with: url, completionHandler: completionHandler)
+//    }
+//
+//    func lOLBracketTask(with url: URL, completionHandler: @escaping (LOLBracket?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+//        return self.codableTask(with: url, completionHandler: completionHandler)
+//    }
     
     fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.dataTask(with: url) { data, response, error in

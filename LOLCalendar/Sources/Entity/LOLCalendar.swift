@@ -17,7 +17,7 @@ import Foundation
 
 struct LOLCalendar: Codable, Equatable {
     static func == (lhs: LOLCalendar, rhs: LOLCalendar) -> Bool {
-        if lhs.identity == rhs.identity &&
+        if lhs.id == rhs.id && lhs.identity == rhs.identity &&
             lhs.opponents == rhs.opponents &&
             lhs.scheduleAt == rhs.scheduleAt &&
             lhs.score == rhs.score &&
@@ -27,7 +27,7 @@ struct LOLCalendar: Codable, Equatable {
             return false
         }
     }
-    
+    var id: Int
     var identity: String
     var scheduleAt: Date
     var winnner: Int
@@ -35,6 +35,7 @@ struct LOLCalendar: Codable, Equatable {
     var score: [Int:Int]
     
     init(){
+        self.id = 0
         self.identity = "\(Date().timeIntervalSinceReferenceDate)"
         self.scheduleAt = Date()
         self.winnner = 0

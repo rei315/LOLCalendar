@@ -9,6 +9,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+public enum TeamDirection: Int {
+    case Left, Right
+}
+
 class APIService {
     
     static func fetchLOLLeagueTournamentID(url: URL) -> Observable<(Int,Bool,Int)> {
@@ -75,7 +79,8 @@ class APIService {
             }
         }
     }
-    static func fetchLOLTeam(url: URL) -> Observable<Player> {
+    
+    static func fetchLOLTeam(url: URL, direction: TeamDirection) -> Observable<Player> {
         return Observable.create { observer in
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
@@ -87,16 +92,29 @@ class APIService {
                     if let team = data {
                         let jsonObjes = try JSONSerialization.jsonObject(with: team, options: .allowFragments)
                         if let jsonDic = jsonObjes as? [String: Any] {
-                            var team = Player()
                             if let players = jsonDic["players"] as? [[String:Any]] {
                                 for player in players {
+                                    let name: String = player["name"] as? String ?? ""
+                                    let first_name: String = player["first_name"] as? String ?? ""
+                                    let last_name: String = player["last_name"] as? String ?? ""
+                                    let role: String = player["role"] as? String ?? ""
+                                    let birthYear: Int = player["birth_year"] as? Int ?? 0
+                                    let image_url: String = player["image_url"] as? String ?? ""
                                     
+                                    let tmpPlayer = Player(id: direction.rawValue,name: name, first_name: first_name, last_name: last_name, role: role, birthYear: birthYear, image_url: image_url)
+                                    observer.onNext(tmpPlayer)
                                 }
                             }
                         }
+                        observer.onCompleted()
+                    }
+                    else {
+                        let tmpError = NSError(domain: "", code: 100, userInfo: nil)
+                        observer.onError(tmpError)
                     }
                 } catch {
-                    
+                    let tmpError = NSError(domain: "", code: 1000, userInfo: nil)
+                    observer.onError(tmpError)
                 }
             }
             task.resume()
@@ -106,6 +124,104 @@ class APIService {
             }
         }
     }
+    enum Role: String{
+        case top
+        case jun
+        case mid
+        case adc
+        case sup
+    }
+    static func getRoleOrder(role: String) -> Int{
+        switch role {
+        case Role.top.rawValue:
+            return 0
+        case Role.jun.rawValue:
+            return 1
+        case Role.mid.rawValue:
+            return 2
+        case Role.mid.rawValue:
+            return 3
+        case Role.adc.rawValue:
+            return 4
+        case Role.sup.rawValue:
+            return 5
+        default:
+            return 0
+        }
+    }
+    
+    static func fetchLOLOpponent(url: URL) -> Observable<OpponentCell> {
+        return Observable.create { observer in
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    observer.onError(error)
+                }
+                do {
+                    if let team = data {
+                        let jsonObjes = try JSONSerialization.jsonObject(with: team, options: .allowFragments)
+                        if let jsonDic = jsonObjes as? [String:Any] {
+                            if let opponents = jsonDic["opponents"] as? [[String:Any]] {
+                                var tmpOpponents: [[Opponent]] = []
+                                for opponent in opponents {
+                                    if let players = opponent["players"] as? [[String:Any]] {
+                                        var tmpOpponent: [Opponent] = []
+                                        for player in players {
+                                            let name = player["name"] as? String ?? ""
+                                            let role = player["role"] as? String ?? ""
+                                            let image_url = player["image_url"] as? String ?? ""
+                                            tmpOpponent.append(Opponent(name: name, role: role, image_url: image_url))
+                                        }
+                                        tmpOpponent.sort { (player1, player2) -> Bool in
+                                            return getRoleOrder(role: player1.role) < getRoleOrder(role: player2.role)
+                                        }
+                                        tmpOpponents.append(tmpOpponent)
+                                    }
+                                }
+
+                                if let leftTeam = tmpOpponents.first, let rightTeam = tmpOpponents.last {
+                                    let lessCount = leftTeam.count < rightTeam.count ? leftTeam.count : rightTeam.count
+
+                                    for i in 0...lessCount-1 {
+                                        observer.onNext(OpponentCell(playerLeft: leftTeam[i], playerRight: rightTeam[i]))
+                                    }
+                                    if leftTeam.count - lessCount > 0 {
+                                        for i in lessCount...(leftTeam.count - 1) {
+                                            observer.onNext(OpponentCell(playerLeft: leftTeam[i], playerRight: nil))
+                                        }
+                                    }
+                                    
+                                    if rightTeam.count - lessCount > 0 {
+                                        for i in lessCount...(rightTeam.count - 1) {
+                                            observer.onNext(OpponentCell(playerLeft: nil, playerRight: rightTeam[i]))
+                                        }
+                                    }
+                                } else {
+                                    let tmpError = NSError(domain: "", code: 100, userInfo: nil)
+                                    observer.onError(tmpError)
+                                }
+                            }
+                        }
+                        observer.onCompleted()
+                    }
+                    else {
+                        let tmpError = NSError(domain: "", code: 100, userInfo: nil)
+                        observer.onError(tmpError)
+                    }
+                } catch {
+                    let tmpError = NSError(domain: "", code: 1000, userInfo: nil)
+                    observer.onError(tmpError)
+                }
+            }
+            task.resume()
+            
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
     static func fetchLOLBracket(url: URL, isError: Bool) -> Observable<LOLCalendar> {
         return Observable.create { observer in
             if isError{
@@ -124,6 +240,11 @@ class APIService {
                         if let jsonDic = jsonObject as? [[String:Any]] {
                             for bracket in jsonDic {
                                 var calendar = LOLCalendar()
+                                                                
+                                // ID
+                                if let id = bracket["id"] as? Int {
+                                    calendar.id = id
+                                }
                                 
                                 // Scheduled_At
                                 if let schedule = bracket["scheduled_at"] as? String {
@@ -153,10 +274,14 @@ class APIService {
                                 // Score
                                 if let games = bracket["games"] as? [[String:Any]] {
                                     for game in games {
-                                        if let isFinish = game["finished"] as? String, isFinish == "True" {
+                                        if let isFinish = game["status"] as? String, isFinish == "finished" {
                                             if let winner = game["winner"] as? [String:Any] {
                                                 if let winnerID = winner["id"] as? Int {
-                                                    calendar.score[winnerID]! += 1
+                                                    if calendar.score[winnerID] != nil {
+                                                        calendar.score.updateValue(calendar.score[winnerID]! + 1, forKey: winnerID)
+                                                    } else {
+                                                        calendar.score.updateValue(1, forKey: winnerID)
+                                                    }
                                                 }
                                             }
                                         }

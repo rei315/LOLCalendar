@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 struct CalendarDetailModel {
-    func getTeamPlayers(teamID: Int) -> Observable<Player> {
-        return APIService.fetchLOLTeam(url: URL(string: String(format: App.Url.teamsURL, teamID, App.Token.token))!)
+
+    func getPlayers(matchID: Int) -> Observable<OpponentCell> {
+        return APIService.fetchLOLOpponent(url: URL(string: String(format: App.Url.opponentsURL, matchID, App.Token.token))!)
     }
 }
