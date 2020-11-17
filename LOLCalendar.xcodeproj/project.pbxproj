@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		3150E7F20C5FFFAE064E1D46 /* Pods_LOLCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */; };
 		8C11DA982557FF7D00C570BE /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11DA972557FF7D00C570BE /* ImageUtils.swift */; };
+		8C19A15525616B64006EE40F /* RosterTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19A15325616B64006EE40F /* RosterTopCell.swift */; };
+		8C19A15625616B64006EE40F /* RosterTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C19A15425616B64006EE40F /* RosterTopCell.xib */; };
 		8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7562553AAA700D47F23 /* LOLCalendar.swift */; };
 		8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7592553AB6E00D47F23 /* APIService.swift */; };
 		8C4B52BF255FECC900E20FAB /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B52BE255FECC900E20FAB /* Opponent.swift */; };
 		8C4B52C325601E9400E20FAB /* CalendarDetailPlayersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B52C125601E9400E20FAB /* CalendarDetailPlayersTableViewCell.swift */; };
 		8C4B52C425601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4B52C225601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib */; };
 		8C4B52C725602F7100E20FAB /* KingFisher+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B52C625602F7100E20FAB /* KingFisher+Rx.swift */; };
+		8C4B52D8256106D400E20FAB /* RosterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B52D7256106D400E20FAB /* RosterModel.swift */; };
+		8C4B52DC25612FAA00E20FAB /* Rosters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B52DB25612FAA00E20FAB /* Rosters.swift */; };
 		8C543C4B255A88D60081A7FB /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C543C4A255A88D60081A7FB /* ActivityIndicator.swift */; };
 		8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA92325529E1600517415 /* AppDelegate.swift */; };
 		8C6DA92B25529E1600517415 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6DA92925529E1600517415 /* Main.storyboard */; };
@@ -23,6 +27,9 @@
 		8C6DA9392552A9CA00517415 /* LOLESports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA9382552A9CA00517415 /* LOLESports.swift */; };
 		8C6DA93C2552C1E100517415 /* LOLBracket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA93B2552C1E100517415 /* LOLBracket.swift */; };
 		8C6E5209255C35F100ABC440 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6E5208255C35F100ABC440 /* AlertAction.swift */; };
+		8C786CAD2563800E00D96C88 /* KingFisherManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C786CAC2563800E00D96C88 /* KingFisherManager+Rx.swift */; };
+		8C786CB12563D69700D96C88 /* MoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C786CB02563D69700D96C88 /* MoreViewModel.swift */; };
+		8C786CB52563D6A400D96C88 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C786CB42563D6A400D96C88 /* MoreViewController.swift */; };
 		8C81A126255D79A1003F74EC /* CalendarDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81A125255D79A1003F74EC /* CalendarDetailViewModel.swift */; };
 		8C81A129255D79AE003F74EC /* CalendarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81A128255D79AE003F74EC /* CalendarDetailViewController.swift */; };
 		8C81A12C255D806F003F74EC /* CalendarDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C81A12B255D806F003F74EC /* CalendarDetailModel.swift */; };
@@ -31,12 +38,13 @@
 		8C9EE9CB2555C9030088E8DB /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9CA2555C9030088E8DB /* LobbyViewController.swift */; };
 		8C9EE9CE2555C90F0088E8DB /* HomeTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9CD2555C90F0088E8DB /* HomeTabViewController.swift */; };
 		8C9EE9D12555C9160088E8DB /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D02555C9160088E8DB /* HomeTabViewModel.swift */; };
-		8C9EE9D42555C91F0088E8DB /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D32555C91F0088E8DB /* SettingViewModel.swift */; };
-		8C9EE9D72555C9250088E8DB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D62555C9250088E8DB /* SettingViewController.swift */; };
+		8C9EE9D42555C91F0088E8DB /* RosterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D32555C91F0088E8DB /* RosterViewModel.swift */; };
+		8C9EE9D72555C9250088E8DB /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D62555C9250088E8DB /* RosterViewController.swift */; };
 		8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */; };
 		8C9EE9DD2555CEFB0088E8DB /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9DC2555CEFB0088E8DB /* URLSession+Extension.swift */; };
 		8C9EE9E12555CF410088E8DB /* JSON+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9E02555CF410088E8DB /* JSON+Tools.swift */; };
 		8C9EEA00255702520088E8DB /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EE9FF255702520088E8DB /* UIImageView+Extension.swift */; };
+		8CBC11C32562EEA6009BEC5C /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBC11C22562EEA6009BEC5C /* League.swift */; };
 		8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BA92553FD880053E8C1 /* Array+Extension.swift */; };
 		8CC02BB7255417630053E8C1 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BB6255417630053E8C1 /* CommonViewModel.swift */; };
 		8CC02BBB255417940053E8C1 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC02BBA255417940053E8C1 /* Scene.swift */; };
@@ -56,12 +64,16 @@
 		13FB7CD56A308D7571EDA294 /* Pods_LOLCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LOLCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6680C3BB6BA40762B32C3CD8 /* Pods-LOLCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLCalendar.release.xcconfig"; path = "Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar.release.xcconfig"; sourceTree = "<group>"; };
 		8C11DA972557FF7D00C570BE /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		8C19A15325616B64006EE40F /* RosterTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterTopCell.swift; sourceTree = "<group>"; };
+		8C19A15425616B64006EE40F /* RosterTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RosterTopCell.xib; sourceTree = "<group>"; };
 		8C37C7562553AAA700D47F23 /* LOLCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLCalendar.swift; sourceTree = "<group>"; };
 		8C37C7592553AB6E00D47F23 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8C4B52BE255FECC900E20FAB /* Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
 		8C4B52C125601E9400E20FAB /* CalendarDetailPlayersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDetailPlayersTableViewCell.swift; sourceTree = "<group>"; };
 		8C4B52C225601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarDetailPlayersTableViewCell.xib; sourceTree = "<group>"; };
 		8C4B52C625602F7100E20FAB /* KingFisher+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KingFisher+Rx.swift"; sourceTree = "<group>"; };
+		8C4B52D7256106D400E20FAB /* RosterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterModel.swift; sourceTree = "<group>"; };
+		8C4B52DB25612FAA00E20FAB /* Rosters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rosters.swift; sourceTree = "<group>"; };
 		8C543C4A255A88D60081A7FB /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		8C6DA92025529E1600517415 /* LOLCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOLCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6DA92325529E1600517415 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +84,9 @@
 		8C6DA9382552A9CA00517415 /* LOLESports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLESports.swift; sourceTree = "<group>"; };
 		8C6DA93B2552C1E100517415 /* LOLBracket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLBracket.swift; sourceTree = "<group>"; };
 		8C6E5208255C35F100ABC440 /* AlertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertAction.swift; sourceTree = "<group>"; };
+		8C786CAC2563800E00D96C88 /* KingFisherManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KingFisherManager+Rx.swift"; sourceTree = "<group>"; };
+		8C786CB02563D69700D96C88 /* MoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewModel.swift; sourceTree = "<group>"; };
+		8C786CB42563D6A400D96C88 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		8C81A125255D79A1003F74EC /* CalendarDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDetailViewModel.swift; sourceTree = "<group>"; };
 		8C81A128255D79AE003F74EC /* CalendarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDetailViewController.swift; sourceTree = "<group>"; };
 		8C81A12B255D806F003F74EC /* CalendarDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDetailModel.swift; sourceTree = "<group>"; };
@@ -80,12 +95,13 @@
 		8C9EE9CA2555C9030088E8DB /* LobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
 		8C9EE9CD2555C90F0088E8DB /* HomeTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewController.swift; sourceTree = "<group>"; };
 		8C9EE9D02555C9160088E8DB /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
-		8C9EE9D32555C91F0088E8DB /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
-		8C9EE9D62555C9250088E8DB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8C9EE9D32555C91F0088E8DB /* RosterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewModel.swift; sourceTree = "<group>"; };
+		8C9EE9D62555C9250088E8DB /* RosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewController.swift; sourceTree = "<group>"; };
 		8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		8C9EE9DC2555CEFB0088E8DB /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		8C9EE9E02555CF410088E8DB /* JSON+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Tools.swift"; sourceTree = "<group>"; };
 		8C9EE9FF255702520088E8DB /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		8CBC11C22562EEA6009BEC5C /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 		8CC02BA92553FD880053E8C1 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		8CC02BB6255417630053E8C1 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		8CC02BBA255417940053E8C1 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -122,6 +138,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8C19A15225616B47006EE40F /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8C19A15325616B64006EE40F /* RosterTopCell.swift */,
+				8C19A15425616B64006EE40F /* RosterTopCell.xib */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		8C37C7492553A92800D47F23 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +177,8 @@
 		8C37C74D2553A93B00D47F23 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				8C37C7512553A98700D47F23 /* 003 - Setting */,
+				8C786CAF2563D68700D96C88 /* 003 - More */,
+				8C4B52E32561301E00E20FAB /* 003 - Roster  */,
 				8CEE9847255D786800C77940 /* 002-2 CalendarDetail */,
 				8CEE985C255D791A00C77940 /* 002-1 CalendarList */,
 				8C37C74F2553A96500D47F23 /* 001 - MainTab */,
@@ -179,15 +205,6 @@
 			path = "001 - MainTab";
 			sourceTree = "<group>";
 		};
-		8C37C7512553A98700D47F23 /* 003 - Setting */ = {
-			isa = PBXGroup;
-			children = (
-				8C9EE9D32555C91F0088E8DB /* SettingViewModel.swift */,
-				8C9EE9D62555C9250088E8DB /* SettingViewController.swift */,
-			);
-			path = "003 - Setting";
-			sourceTree = "<group>";
-		};
 		8C37C7522553A99300D47F23 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +221,7 @@
 				8C37C7562553AAA700D47F23 /* LOLCalendar.swift */,
 				8C81A12E255D85C5003F74EC /* Player.swift */,
 				8C4B52BE255FECC900E20FAB /* Opponent.swift */,
+				8C4B52DB25612FAA00E20FAB /* Rosters.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -215,6 +233,7 @@
 				8C9EE9DC2555CEFB0088E8DB /* URLSession+Extension.swift */,
 				8C9EE9FF255702520088E8DB /* UIImageView+Extension.swift */,
 				8C4B52C625602F7100E20FAB /* KingFisher+Rx.swift */,
+				8C786CAC2563800E00D96C88 /* KingFisherManager+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -226,6 +245,33 @@
 				8C4B52C225601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8C4B52CF2561044500E20FAB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8C19A15225616B47006EE40F /* CollectionView */,
+				8C4B52D12561045300E20FAB /* TableView */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8C4B52D12561045300E20FAB /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		8C4B52E32561301E00E20FAB /* 003 - Roster  */ = {
+			isa = PBXGroup;
+			children = (
+				8C4B52CF2561044500E20FAB /* Components */,
+				8C4B52D7256106D400E20FAB /* RosterModel.swift */,
+				8C9EE9D32555C91F0088E8DB /* RosterViewModel.swift */,
+				8C9EE9D62555C9250088E8DB /* RosterViewController.swift */,
+			);
+			path = "003 - Roster ";
 			sourceTree = "<group>";
 		};
 		8C543C49255A88CA0081A7FB /* Services */ = {
@@ -265,6 +311,15 @@
 			path = LOLCalendar;
 			sourceTree = "<group>";
 		};
+		8C786CAF2563D68700D96C88 /* 003 - More */ = {
+			isa = PBXGroup;
+			children = (
+				8C786CB02563D69700D96C88 /* MoreViewModel.swift */,
+				8C786CB42563D6A400D96C88 /* MoreViewController.swift */,
+			);
+			path = "003 - More";
+			sourceTree = "<group>";
+		};
 		8C9EE9DF2555CF280088E8DB /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +354,7 @@
 			children = (
 				8CC02BD1255429170053E8C1 /* App.swift */,
 				8CC02BD5255429460053E8C1 /* App.String.swift */,
+				8CBC11C22562EEA6009BEC5C /* League.swift */,
 			);
 			path = Define;
 			sourceTree = "<group>";
@@ -406,6 +462,7 @@
 				8CEE9869255D793700C77940 /* CalendarListTableViewCell.xib in Resources */,
 				8C6DA92D25529E1700517415 /* Assets.xcassets in Resources */,
 				8C6DA92B25529E1600517415 /* Main.storyboard in Resources */,
+				8C19A15625616B64006EE40F /* RosterTopCell.xib in Resources */,
 				8C4B52C425601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,22 +533,29 @@
 				8CEE9863255D792A00C77940 /* CalendarListModel.swift in Sources */,
 				8C81A129255D79AE003F74EC /* CalendarDetailViewController.swift in Sources */,
 				8CC02BD2255429180053E8C1 /* App.swift in Sources */,
-				8C9EE9D72555C9250088E8DB /* SettingViewController.swift in Sources */,
+				8CBC11C32562EEA6009BEC5C /* League.swift in Sources */,
+				8C9EE9D72555C9250088E8DB /* RosterViewController.swift in Sources */,
+				8C4B52DC25612FAA00E20FAB /* Rosters.swift in Sources */,
 				8C9EE9C52555C8F50088E8DB /* LobbyViewModel.swift in Sources */,
 				8C4B52C725602F7100E20FAB /* KingFisher+Rx.swift in Sources */,
 				8CC02BD6255429460053E8C1 /* App.String.swift in Sources */,
 				8CC02BBF2554179D0053E8C1 /* SceneCoordinatorType.swift in Sources */,
+				8C786CB12563D69700D96C88 /* MoreViewModel.swift in Sources */,
 				8C9EE9CB2555C9030088E8DB /* LobbyViewController.swift in Sources */,
+				8C19A15525616B64006EE40F /* RosterTopCell.swift in Sources */,
 				8CEE9868255D793700C77940 /* CalendarListTableViewCell.swift in Sources */,
 				8C9EE9D12555C9160088E8DB /* HomeTabViewModel.swift in Sources */,
 				8C6DA9392552A9CA00517415 /* LOLESports.swift in Sources */,
 				8CC02BAA2553FD880053E8C1 /* Array+Extension.swift in Sources */,
 				8C81A12F255D85C5003F74EC /* Player.swift in Sources */,
+				8C786CAD2563800E00D96C88 /* KingFisherManager+Rx.swift in Sources */,
 				8C81A126255D79A1003F74EC /* CalendarDetailViewModel.swift in Sources */,
-				8C9EE9D42555C91F0088E8DB /* SettingViewModel.swift in Sources */,
+				8C9EE9D42555C91F0088E8DB /* RosterViewModel.swift in Sources */,
 				8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */,
 				8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */,
+				8C786CB52563D6A400D96C88 /* MoreViewController.swift in Sources */,
 				8C543C4B255A88D60081A7FB /* ActivityIndicator.swift in Sources */,
+				8C4B52D8256106D400E20FAB /* RosterModel.swift in Sources */,
 				8C81A12C255D806F003F74EC /* CalendarDetailModel.swift in Sources */,
 				8CC02BB7255417630053E8C1 /* CommonViewModel.swift in Sources */,
 				8CC02BBB255417940053E8C1 /* Scene.swift in Sources */,

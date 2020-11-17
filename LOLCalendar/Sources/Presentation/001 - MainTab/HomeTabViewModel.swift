@@ -10,18 +10,14 @@ import Foundation
 class HomeTabViewModel: CommonViewModel {
     
     let calendarListViewModel: CalendarListViewModel
-    let settingViewModel: SettingViewModel
-    
-//    override init(sceneCoordinator: SceneCoordinatorType) {
-//        self.calendarListViewModel = CalendarListViewModel(coordinator: sceneCoordinator)
-//        self.settingViewModel = SettingViewModel(sceneCoordinator: sceneCoordinator)
-//        super.init(sceneCoordinator: sceneCoordinator)
-//    }
+//    let rosterViewModel: RosterViewModel
+    let moreViewModel: MoreViewModel
+
     
     init(sceneCoordinator: SceneCoordinatorType, leagueType: Int) {
         self.calendarListViewModel = CalendarListViewModel(coordinator: sceneCoordinator, leagueType: leagueType)
-        self.settingViewModel = SettingViewModel(sceneCoordinator: sceneCoordinator)
-        
+//        self.rosterViewModel = RosterViewModel(leagueType: leagueType, sceneCoordinator: sceneCoordinator)
+        self.moreViewModel = MoreViewModel(sceneCoordinator: sceneCoordinator)
         super.init(sceneCoordinator: sceneCoordinator)
     }
 }

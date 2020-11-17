@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxAppState
 import NSObject_Rx
+import Action
 
 class CalendarListViewController: UIViewController, ViewModelBindableType {
     
@@ -27,6 +28,7 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
 
 extension CalendarListViewController {
     func bindViewModel() {
+        
         viewModel.isRunning.subscribe(onNext: { loading in
             switch loading {
             case true:

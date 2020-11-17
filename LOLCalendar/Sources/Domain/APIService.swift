@@ -9,11 +9,108 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-public enum TeamDirection: Int {
-    case Left, Right
-}
-
 class APIService {
+    
+    static func fetchLOLRosters(url: URL) -> Observable<Roster> {
+        return Observable.create { observer in
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if error != nil {
+                    if let response = response as? HTTPURLResponse {
+                        let tmpError = NSError(domain: "", code: response.statusCode, userInfo: nil)
+                        observer.onError(tmpError)
+                    }
+                    observer.onError(NSError(domain: "", code: 0, userInfo: nil))
+                }
+                
+                do {
+                    if let data = data {
+                        let jsonObjet = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        if let jsonDic = jsonObjet as? [String:Any] {
+                            if let rosters = jsonDic["rosters"] as? [[String:Any]] {
+                                for roster in rosters {
+                                    
+                                    let name = roster["name"] as? String ?? ""
+                                    let acronym = roster["acronym"] as? String ?? ""
+                                    let image_url = roster["image_url"] as? String ?? ""
+                                    let id = roster["id"] as? Int ?? 0
+                                    var tmpPlayers: [Player] = []
+                                    if let players = roster["players"] as? [[String:Any]] {
+                                        for player in players {
+                                            let name = player["name"] as? String ?? ""
+                                            let first_name = player["first_name"] as? String ?? ""
+                                            let last_name = player["last_name"] as? String ?? ""
+                                            let role = player["role"] as? String ?? ""
+                                            let birthYear = player["birth_year"] as? Int ?? 0
+                                            let image_url = player["image_url"] as? String ?? ""
+                                            let player = Player(name: name, first_name: first_name, last_name: last_name, role: role, birthYear: birthYear, image_url: image_url)
+                                            tmpPlayers.append(player)
+                                        }                                        
+                                    }
+                                    let tmpRoster: Roster = Roster(id: id, acronym: acronym, name: name, imageURL: image_url, players: tmpPlayers)
+                                    observer.onNext(tmpRoster)
+                                    
+                                }
+                                observer.onCompleted()
+                            }
+                        }
+                    } else {
+                        observer.onError(NSError(domain: "", code: 100, userInfo: nil))
+                    }
+                } catch {
+                    observer.onError(NSError(domain: "", code: 100, userInfo: nil))
+                }
+            }
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
+    
+    static func fetchLOLLeagueTournamentIDRecent(url: URL) -> Observable<Int> {
+        return Observable.create { observer in
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if error != nil {
+                    if let response = response as? HTTPURLResponse {
+                        let tmpError = NSError(domain: "", code: response.statusCode, userInfo: nil)
+                        observer.onError(tmpError)
+                    }
+                    observer.onError(NSError(domain: "", code: 0, userInfo: nil))
+                }
+                do {
+                    if let data = data {
+                        let jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                        if let jsonDic = jsonObject as? [[String:Any]] {
+                            if let json = jsonDic.first {
+                                if let tournamentID = json["tournament_id"] as? Int {
+                                    observer.onNext(tournamentID)
+                                    
+                                } else {
+                                    observer.onError(NSError(domain: "", code: 100, userInfo: nil))
+                                }
+                            }
+                            
+                        } else {
+                            observer.onError(NSError(domain: "", code: 100, userInfo: nil))
+                        }
+                        observer.onCompleted()
+                    }
+                } catch {
+                    observer.onError(NSError(domain: "", code: 100, userInfo: nil))
+                }
+            }
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
+        }
+    }
     
     static func fetchLOLLeagueTournamentID(url: URL) -> Observable<(Int,Bool,Int)> {
         
@@ -21,7 +118,7 @@ class APIService {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
+                if error != nil {
                     if let response = response as? HTTPURLResponse {
                         let tmpError = NSError(domain: "", code: response.statusCode, userInfo: nil)
                         observer.onError(tmpError)
@@ -80,7 +177,7 @@ class APIService {
         }
     }
     
-    static func fetchLOLTeam(url: URL, direction: TeamDirection) -> Observable<Player> {
+    static func fetchLOLTeam(url: URL) -> Observable<Player> {
         return Observable.create { observer in
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
@@ -101,7 +198,7 @@ class APIService {
                                     let birthYear: Int = player["birth_year"] as? Int ?? 0
                                     let image_url: String = player["image_url"] as? String ?? ""
                                     
-                                    let tmpPlayer = Player(id: direction.rawValue,name: name, first_name: first_name, last_name: last_name, role: role, birthYear: birthYear, image_url: image_url)
+                                    let tmpPlayer = Player(name: name, first_name: first_name, last_name: last_name, role: role, birthYear: birthYear, image_url: image_url)
                                     observer.onNext(tmpPlayer)
                                 }
                             }

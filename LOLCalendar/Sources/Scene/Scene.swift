@@ -12,7 +12,8 @@ enum Scene {
     case mainTab(HomeTabViewModel)
     case calendarList(CalendarListViewModel)
     case calendarDetail(CalendarDetailViewModel)
-    case setting(SettingViewModel)
+    case roster(RosterViewModel)
+    case more(MoreViewModel)
 }
 
 extension Scene {
@@ -51,12 +52,18 @@ extension Scene {
             calendarDetailViewController.bind(viewModel: viewModel)
             return calendarDetailViewController
             
-        case .setting(let viewModel):
-            guard var settingViewController = storyboard.instantiateViewController(withIdentifier: "Setting") as? SettingViewControler else {
+        case .more(let viewModel):
+            guard var moreVC = storyboard.instantiateViewController(withIdentifier: "More") as? MoreViewController else {
                 fatalError()
             }
-            settingViewController.bind(viewModel: viewModel)
-            return settingViewController
+            moreVC.bind(viewModel: viewModel)
+            return moreVC
+        case .roster(let viewModel):
+            guard var rosterViewController = storyboard.instantiateViewController(withIdentifier: "Roster") as? RosterViewControler else {
+                fatalError()
+            }
+            rosterViewController.bind(viewModel: viewModel)
+            return rosterViewController
         }
     }
 }

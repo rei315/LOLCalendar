@@ -11,15 +11,17 @@ class HomeTabViewController: UITabBarController, ViewModelBindableType {
     
     enum Tab: Int {
         case CalendarList
-        case Setting
+        case More
     }
     
     var calendarListViewController: CalendarListViewController?
-    var settingViewController: SettingViewControler?
+//    var rosterViewController: RosterViewControler?
+    var moreViewController: MoreViewController?
     
     let tabBarItems: [Tab:UITabBarItem] = [
         .CalendarList: UITabBarItem(title: "최근 경기", image: UIImage(systemName: "sportscourt.fill"), tag: 0),
-        .Setting: UITabBarItem(title: "로스터", image: UIImage(systemName: "person.3.fill"), tag: 1)
+        .More: UITabBarItem(title: "더보기", image: UIImage(systemName: "ellipsis.circle.fill"), tag: 1)
+        
     ]
     
     var viewModel: HomeTabViewModel!    
@@ -38,14 +40,18 @@ extension HomeTabViewController {
     func attribute() {
         calendarListViewController = Scene.calendarList(viewModel.calendarListViewModel).instantiate() as? CalendarListViewController
         
-        settingViewController = Scene.setting(viewModel.settingViewModel).instantiate() as? SettingViewControler
+//        rosterViewController = Scene.roster(viewModel.rosterViewModel).instantiate() as? RosterViewControler
+        
+        moreViewController = Scene.more(viewModel.moreViewModel).instantiate() as? MoreViewController
         
         calendarListViewController?.tabBarItem = tabBarItems[.CalendarList]
-        settingViewController?.tabBarItem = tabBarItems[.Setting]
+//        rosterViewController?.tabBarItem = tabBarItems[.Setting]
+        moreViewController?.tabBarItem = tabBarItems[.More]
         
         self.viewControllers = [
             calendarListViewController! as UIViewController,
-            settingViewController! as UIViewController
+//            rosterViewController! as UIViewController
+            moreViewController! as UIViewController
         ]
     }
 }

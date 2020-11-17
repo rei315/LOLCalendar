@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Player {
-    let id: Int
+struct Player: Equatable, Hashable {
     let name: String
     let first_name: String
     let last_name: String
@@ -17,7 +16,6 @@ struct Player {
     let image_url: String
     
     init() {
-        id = 0
         name = ""
         first_name = ""
         last_name = ""
@@ -26,8 +24,7 @@ struct Player {
         image_url = ""
     }
     
-    init (id: Int, name: String , first_name: String, last_name: String, role: String, birthYear: Int, image_url: String) {
-        self.id = id
+    init (name: String , first_name: String, last_name: String, role: String, birthYear: Int, image_url: String) {
         self.name = name
         self.first_name = first_name
         self.last_name = last_name

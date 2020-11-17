@@ -22,7 +22,7 @@ protocol CalendarModelBindable {
 
 class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     
-    let cellData: Driver<[CalendarListTableViewCell.Data]>
+    var cellData: Driver<[CalendarListTableViewCell.Data]>
     let viewWillAppear = PublishSubject<Void>()
     let willDisplayCell = PublishRelay<IndexPath>()
 //    let reloadList: Signal<Void>()
@@ -38,6 +38,11 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     
     let disposeBag = DisposeBag()
     
+    var model: CalendarListModel
+    let leagueType: Int
+    
+    private var curPage = BehaviorSubject<Int>(value: 1)
+    
     lazy var detailAction: Action<CalendarListTableViewCell.Data, Void> = {
         return Action { calendarData in
             let detailViewModel = CalendarDetailViewModel(coordinator: self.sceneCoordinator, data: calendarData)
@@ -49,7 +54,9 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     }()
     
     init(coordinator: SceneCoordinatorType, leagueType: Int, model: CalendarListModel = CalendarListModel()){
+        self.model = model
         
+        self.leagueType = leagueType
         let ids = model.getLOLLeagueTournamentId(league: leagueType)
             .catchError({ (error) -> Observable<(Int, Bool, Int)> in
                 return .just((-1,false,-1))
@@ -58,7 +65,7 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         
         let bracketList = ids
             .flatMap {
-                (model.getLOLBracket(id: $0.0))
+                model.getLOLBracket(id: $0.0)
             }
             .catchError({ (error) -> Observable<LOLCalendar> in
                 let tmpCalendar = LOLCalendar()
@@ -130,6 +137,5 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     
         super.init(sceneCoordinator: coordinator)
     }
-    
     
 }
