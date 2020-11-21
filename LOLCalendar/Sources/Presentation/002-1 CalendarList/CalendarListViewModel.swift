@@ -151,65 +151,61 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         super.init(sceneCoordinator: coordinator)
     }
 
-    func updateList() -> Observable<Void>{
-        Observable.create { observer in
-            do {
-                observer.onNext(())
-                let page = try self.nextPageNum.value()
-                let lastPage = try self.lastPageNum.value()
-                if (page == lastPage) { return Disposables.create() }
-                
-                let ids = self.model.fetchMoreData(league: self.leagueType, page: page)
-                    .catchError({ (error) -> Observable<(Int, Bool, Int)> in
-                        self.nextPageNum.onNext(page-1)
-                        return .just((-1,false,-1))
-                    })
-                    .share()
-                    .trackActivity(self.activityIndicator)
-                                
-                let _ = ids
-                    .flatMap {
-                        self.model.getLOLBracket(id: $0.0)
+    func updateList() -> Bool {
+        do {
+            let page = try self.nextPageNum.value()
+            let lastPage = try self.lastPageNum.value()
+            if (page == lastPage) { return false }
+            
+            let ids = self.model.fetchMoreData(league: self.leagueType, page: page)
+                .catchError({ (error) -> Observable<(Int, Bool, Int)> in
+                    self.nextPageNum.onNext(page-1)
+                    return .just((-1,false,-1))
+                })
+                .share()
+                .trackActivity(self.activityIndicator)
+                            
+            let _ = ids
+                .flatMap {
+                    self.model.getLOLBracket(id: $0.0)
+                }
+                .catchError({ (error) -> Observable<LOLCalendar> in
+                    let tmpCalendar = LOLCalendar()
+                    return .just(tmpCalendar)
+                })
+                .toArray()
+                .asObservable()
+                .map( { (items) -> [LOLCalendar] in
+                    return items.sorted { (bracket1, bracket2) -> Bool in
+                        return bracket1.scheduleAt > bracket2.scheduleAt
                     }
-                    .catchError({ (error) -> Observable<LOLCalendar> in
-                        let tmpCalendar = LOLCalendar()
-                        return .just(tmpCalendar)
-                    })
-                    .toArray()
-                    .asObservable()
-                    .map( { (items) -> [LOLCalendar] in
-                        return items.sorted { (bracket1, bracket2) -> Bool in
-                            return bracket1.scheduleAt > bracket2.scheduleAt
-                        }
-                    })
-                    .trackActivity(self.activityIndicator)
-                    .subscribe(onNext: { list in
-                        let new = self.cells.value + list
-                        self.cells.accept(new)
-                        self.lastPageNum.onNext(lastPage+1)
-                        observer.onCompleted()
-                    })
-                    .disposed(by: self.disposeBag)
-                
-                let _ = ids
-                    .map { data -> Int? in
-                        if data.0 == -1 {
-                            return nil
-                        }
-                        if !data.1 {
-                            return data.2
-                        } else {
-                            return nil
-                        }
+                })
+                .trackActivity(self.activityIndicator)
+                .subscribe(onNext: { list in
+                    let new = self.cells.value + list
+                    self.cells.accept(new)
+                    self.lastPageNum.onNext(lastPage+1)
+                })
+                .disposed(by: self.disposeBag)
+            
+            let _ = ids
+                .map { data -> Int? in
+                    if data.0 == -1 {
+                        return nil
                     }
-                    .filterNil()
-                    .trackActivity(self.activityIndicator)
-                    .bind(to: self.nextPageNum)
-                    .disposed(by: self.disposeBag)
-            } catch {
-                print("catch")
-            }
-            return Disposables.create()
+                    if !data.1 {
+                        return data.2
+                    } else {
+                        return nil
+                    }
+                }
+                .filterNil()
+                .trackActivity(self.activityIndicator)
+                .bind(to: self.nextPageNum)
+                .disposed(by: self.disposeBag)
+            return true
+        } catch {
+            return false
         }
     }
 }

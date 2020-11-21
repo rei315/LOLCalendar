@@ -18,12 +18,6 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
     
     @IBOutlet weak var tableView: UITableView!
     
-    static let startLoadingOffset: CGFloat = 20.0
-
-    static func isNearTheBottomEdge(contentOffset: CGPoint, _ tableView: UITableView) -> Bool {
-        return contentOffset.y + tableView.frame.size.height + startLoadingOffset > tableView.contentSize.height
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
@@ -51,20 +45,6 @@ extension CalendarListViewController {
             .map { $0.indexPath }
             .bind(to: viewModel.willDisplayCell)
             .disposed(by: rx.disposeBag)
-        
-        let _ = tableView.rx.contentOffset
-            .flatMap { offset in
-                CalendarListViewController.isNearTheBottomEdge(contentOffset: offset, self.tableView)
-                    ? Observable.just(())
-                    : Observable.empty()
-            }
-            .subscribe({ _ in
-                print("hi")
-//                self.onUpdateList()
-            })
-            .disposed(by: rx.disposeBag)
-        
-            
         
         viewModel.cells
             .bind(to: tableView.rx.items) { [unowned self] tv, row, data in
@@ -98,40 +78,35 @@ extension CalendarListViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 112
         
-//        let footerView = UIView()
-//        tableView.tableFooterView = footerView
-//        footerView.snp.makeConstraints { (make) in
-//            make.width.equalToSuperview()
-//            make.height.equalTo(100)
-//
-//        }
-//        footerView.backgroundColor = .brown
-//        let moreButton = UIButton()
-//        moreButton.rx.tap
-//            .subscribe({ _ in
-//                self.onUpdateList()
-//            })
-//            .disposed(by: rx.disposeBag)
-//
-//        footerView.addSubview(moreButton)
-//        moreButton.snp.makeConstraints { (make) in
-//            make.width.equalToSuperview()
-//            make.height.equalToSuperview()
-//            make.centerX.equalToSuperview()
-//            make.centerY.equalToSuperview()
-//        }
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width/7))
+        let moreButton = LCAnimatedButton(title: "더보기", backgroundColor: .lightGray)
+        moreButton.rx.tap
+            .subscribe({ _ in
+                self.onUpdateList()
+            })
+            .disposed(by: rx.disposeBag)
+        moreButton.setTitleColor(.white, for: .normal)
+        footerView.addSubview(moreButton)
+        
+        moreButton.snp.makeConstraints { (make) in
+            make.width.equalToSuperview().dividedBy(3)
+            make.height.equalToSuperview().dividedBy(2)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        tableView.tableFooterView = footerView
+        
     }
     
     private func onUpdateList() {
-        IndicatorView.shared.show()
-        viewModel.updateList()
-            .observeOn(MainScheduler.instance)
-            .subscribe(
-                onCompleted: {
-                    IndicatorView.shared.hide()
-                    print("complete")
-            })
-            .disposed(by: rx.disposeBag)
+        if !viewModel.updateList() {
+            self.showAlert(title: "로딩 실패", message: "마지막 페이지 입니다.", style: .alert, actions: [AlertAction.action(title: "확인")])
+                .subscribe(onNext: { index in
+                    print(index)
+                })
+                .disposed(by: rx.disposeBag)                
+        }
     }
 
     
