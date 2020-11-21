@@ -18,7 +18,11 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let indicatorView = UIActivityIndicatorView()
+    static let startLoadingOffset: CGFloat = 20.0
+
+    static func isNearTheBottomEdge(contentOffset: CGPoint, _ tableView: UITableView) -> Bool {
+        return contentOffset.y + tableView.frame.size.height + startLoadingOffset > tableView.contentSize.height
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +32,12 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
 
 extension CalendarListViewController {
     func bindViewModel() {
-        
         viewModel.isRunning.subscribe(onNext: { loading in
             switch loading {
             case true:
-                self.indicatorView.startAnimating()
+                IndicatorView.shared.show()
             case false:
-                self.indicatorView.stopAnimating()
+                IndicatorView.shared.hide()
             }
         })
         .disposed(by: rx.disposeBag)
@@ -49,8 +52,22 @@ extension CalendarListViewController {
             .bind(to: viewModel.willDisplayCell)
             .disposed(by: rx.disposeBag)
         
-        viewModel.cellData
-            .drive(tableView.rx.items) { [self] tv, row, data in
+        let _ = tableView.rx.contentOffset
+            .flatMap { offset in
+                CalendarListViewController.isNearTheBottomEdge(contentOffset: offset, self.tableView)
+                    ? Observable.just(())
+                    : Observable.empty()
+            }
+            .subscribe({ _ in
+                print("hi")
+//                self.onUpdateList()
+            })
+            .disposed(by: rx.disposeBag)
+        
+            
+        
+        viewModel.cells
+            .bind(to: tableView.rx.items) { [unowned self] tv, row, data in
                 if (data.opponents.isEmpty) {
                     self.showAlert(title: "서버 오류", message: "서버에 연결하지 못하였습니다.", style: .alert, actions: [AlertAction.action(title: "확인")])
                         .subscribe(onNext: { index in
@@ -66,7 +83,7 @@ extension CalendarListViewController {
             }
             .disposed(by: rx.disposeBag)
             
-        Observable.zip(tableView.rx.modelSelected(CalendarListTableViewCell.Data.self), tableView.rx.itemSelected)
+        Observable.zip(tableView.rx.modelSelected(LOLCalendar.self), tableView.rx.itemSelected)
             .do(onNext: { [unowned self] (_, indexPath) in
                 self.tableView.deselectRow(at: indexPath, animated: true)
             })
@@ -80,10 +97,43 @@ extension CalendarListViewController {
         tableView.register(cellNib, forCellReuseIdentifier: String(describing: CalendarListTableViewCell.self))
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 112
-        indicatorView.hidesWhenStopped = true
-        indicatorView.color = .blue
-        tableView.backgroundView = indicatorView
+        
+//        let footerView = UIView()
+//        tableView.tableFooterView = footerView
+//        footerView.snp.makeConstraints { (make) in
+//            make.width.equalToSuperview()
+//            make.height.equalTo(100)
+//
+//        }
+//        footerView.backgroundColor = .brown
+//        let moreButton = UIButton()
+//        moreButton.rx.tap
+//            .subscribe({ _ in
+//                self.onUpdateList()
+//            })
+//            .disposed(by: rx.disposeBag)
+//
+//        footerView.addSubview(moreButton)
+//        moreButton.snp.makeConstraints { (make) in
+//            make.width.equalToSuperview()
+//            make.height.equalToSuperview()
+//            make.centerX.equalToSuperview()
+//            make.centerY.equalToSuperview()
+//        }
     }
+    
+    private func onUpdateList() {
+        IndicatorView.shared.show()
+        viewModel.updateList()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onCompleted: {
+                    IndicatorView.shared.hide()
+                    print("complete")
+            })
+            .disposed(by: rx.disposeBag)
+    }
+
     
     func showAlert(title: String?, message: String?, style: UIAlertController.Style, actions: [AlertAction]) -> Observable<Int>
     {

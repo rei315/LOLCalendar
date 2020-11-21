@@ -25,7 +25,6 @@ class RosterTopCell: UICollectionViewCell {
     }
     
     func setData(data: Data) {
-        print(data.acronym)
         imageView.kf.rx.setImage(with: URL(string: data.imageURL)!)
         self.id = data.id
     }

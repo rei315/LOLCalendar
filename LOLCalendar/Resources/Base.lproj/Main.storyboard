@@ -122,6 +122,7 @@
                             <constraint firstItem="l23-rd-2v9" firstAttribute="leading" secondItem="5XQ-YW-BfF" secondAttribute="leading" id="e9Q-J2-4I2"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="l23-rd-2v9" id="oLm-0w-DaU"/>
                     </connections>

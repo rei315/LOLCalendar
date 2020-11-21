@@ -131,14 +131,11 @@ class APIService {
                 var total = 0
                 if let response = response as? HTTPURLResponse{
                     if let headers = response.allHeaderFields as? [String:Any] {
-                        
                         curPage = Int(headers["x-page"] as! String) ?? 0
                         perPage = Int(headers["x-per-page"] as! String) ?? 0
-                        total = Int(headers["x-total"] as! String) ?? 0
-                        
+                        total = Int(headers["x-total"] as! String) ?? 0                        
                         isFinish = (curPage * perPage) >= total
                     }
-                    
                 }
                 
                 do {
@@ -351,6 +348,7 @@ class APIService {
                                     if let date = dateFormatter.date(from: schedule) {
                                         calendar.scheduleAt = date
                                     }
+                                    
                                 }
                                 
                                 // Opponents

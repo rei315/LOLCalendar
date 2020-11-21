@@ -22,11 +22,11 @@ protocol CalendarDetailModelBindable {
 }
 
 class CalendarDetailViewModel: CommonViewModel, CalendarDetailModelBindable {
-    typealias Data = (id: Int, scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
+//    typealias Data = (id: Int, scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
     
     let disposedBag = DisposeBag()
     
-    var matchData: Data
+    var matchData: LOLCalendar
     
     var scheduleAt: BehaviorSubject<String>
     var leftScore: BehaviorSubject<Int>
@@ -46,7 +46,7 @@ class CalendarDetailViewModel: CommonViewModel, CalendarDetailModelBindable {
         return activityIndicator.asObservable()
     }
     
-    init(coordinator: SceneCoordinatorType, data: Data, model: CalendarDetailModel = CalendarDetailModel()) {
+    init(coordinator: SceneCoordinatorType, data: LOLCalendar, model: CalendarDetailModel = CalendarDetailModel()) {
         self.matchData = data
         
         let dateFormatter = DateFormatter()

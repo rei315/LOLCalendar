@@ -12,7 +12,7 @@ import Kingfisher
 
 class CalendarListTableViewCell: UITableViewCell {
 
-    typealias Data = (id: Int, scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
+//    typealias Data = (id: Int, scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -42,7 +42,7 @@ class CalendarListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(data: Data) {
+    func setData(data: LOLCalendar) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         dateLabel.text = dateFormatter.string(from: data.scheduleAt)
