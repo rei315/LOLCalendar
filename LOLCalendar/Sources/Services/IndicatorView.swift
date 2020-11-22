@@ -26,7 +26,8 @@ class IndicatorView {
         loadingView.layer.cornerRadius = 10
         activityIndicator.frame = CGRect(x:0, y:0, width:40, height:40)
         activityIndicator.style = .large
-        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2, y:loadingView.frame.size.height / 2);
+        activityIndicator.color = .white
+        activityIndicator.center = CGPoint(x:loadingView.frame.size.width / 2, y:loadingView.frame.size.height / 2)
         loadingView.addSubview(activityIndicator)
         container.addSubview(loadingView)
         parentView.addSubview(container)

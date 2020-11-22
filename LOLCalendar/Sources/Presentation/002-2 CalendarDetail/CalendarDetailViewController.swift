@@ -10,29 +10,20 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import SnapKit
-import Kingfisher
 
 class CalendarDetailViewController: UIViewController, ViewModelBindableType {
     
     var viewModel: CalendarDetailViewModel!
-    
-    @IBOutlet weak var leftImageView: UIImageView!
-    @IBOutlet weak var leftScoreLabel: UILabel!
-    @IBOutlet weak var rightImageView: UIImageView!
-    @IBOutlet weak var rightScoreLabel: UILabel!
-    
-    @IBOutlet weak var vsLabel: UILabel!
-    @IBOutlet weak var scoreDivideLabel: UILabel!
-    
-    @IBOutlet weak var timeLabel: UILabel!
-    
+
     @IBOutlet weak var tableView: UITableView!
+    
     let indicatorView = UIActivityIndicatorView()
+    
+    var headerView: DetailHeaderView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
-        
     }
 }
 
@@ -62,37 +53,22 @@ extension CalendarDetailViewController {
             }
         .disposed(by: rx.disposeBag)
         
-        viewModel.scheduleAt
-            .bind(to: timeLabel.rx.text)
-            .disposed(by: rx.disposeBag)
-
-        viewModel.leftScore
-            .map { String(describing: $0) }
-            .bind(to: leftScoreLabel.rx.text)
-            .disposed(by: rx.disposeBag)
-        viewModel.rightScore
-            .map { String(describing: $0) }
-            .bind(to: rightScoreLabel.rx.text)
-            .disposed(by: rx.disposeBag)
-            
-        viewModel.leftURL
-            .map { URL(string: $0) }
-            .bind(to: leftImageView.kf.rx.image(options: [.transition(.fade(0.2)),
-                                                          .keepCurrentImageWhileLoading,
-                                                          .forceTransition]))
-            .disposed(by: rx.disposeBag)
+        headerView = DetailHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 252))
+        tableView.tableHeaderView = headerView
         
-        viewModel.rightURL
-            .map { URL(string: $0) }
-            .bind(to: rightImageView.kf.rx.image(options: [.transition(.fade(0.2)),
-                                                          .keepCurrentImageWhileLoading,
-                                                          .forceTransition]))
+        viewModel.topData
+            .asObserver()
+            .bind(to: headerView.headerData)
             .disposed(by: rx.disposeBag)
-        
     }
 
     func attribute() {
-        
+        tableView.snp.makeConstraints { (make) in
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
         tableView.register(UINib(nibName: String(describing: CalendarDetailPlayersTableViewCell.self), bundle: .main), forCellReuseIdentifier: String(describing: CalendarDetailPlayersTableViewCell.self))
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 143
@@ -101,15 +77,6 @@ extension CalendarDetailViewController {
         indicatorView.hidesWhenStopped = true
         indicatorView.color = .blue
         tableView.backgroundView = indicatorView
-        
-        leftImageView.translatesAutoresizingMaskIntoConstraints = false
-        leftScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        rightImageView.translatesAutoresizingMaskIntoConstraints = false
-        rightScoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        vsLabel.translatesAutoresizingMaskIntoConstraints = false
-        scoreDivideLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 

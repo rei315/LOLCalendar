@@ -33,12 +33,6 @@ struct CalendarListModel {
         return APIService.fetchLOLBracket(url: URL(string: String(format: App.Url.brancketURL, id, App.Token.token))!, isError: isError)
     }
     
-//    func parseBracket(value: [LOLCalendar]) -> [CalendarListTableViewCell.Data] {
-//        return value.map {
-//            (id: $0.id, scheduleAt: $0.scheduleAt, winner: $0.winnner, opponents: $0.opponents, score: $0.score)
-//        }
-//    }
-    
     func fetchMoreData(league: Int, page: Int) -> Observable<(Int, Bool, Int)>{
         var tmpLeague = 0
         switch league {

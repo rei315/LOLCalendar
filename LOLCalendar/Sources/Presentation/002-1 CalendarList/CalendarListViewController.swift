@@ -11,6 +11,8 @@ import RxCocoa
 import RxAppState
 import NSObject_Rx
 import Action
+import SnapKit
+import RxSwiftExt
 
 class CalendarListViewController: UIViewController, ViewModelBindableType {
     
@@ -26,6 +28,10 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
 
 extension CalendarListViewController {
     func bindViewModel() {
+        tableView
+            .rx.setDelegate(self)
+            .disposed(by: rx.disposeBag)
+        
         viewModel.isRunning.subscribe(onNext: { loading in
             switch loading {
             case true:
@@ -73,6 +79,14 @@ extension CalendarListViewController {
     }
     
     func attribute() {
+        
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+        }
+        
         let cellNib = UINib(nibName: String(describing: CalendarListTableViewCell.self), bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: String(describing: CalendarListTableViewCell.self))
         tableView.rowHeight = UITableView.automaticDimension
@@ -127,5 +141,11 @@ extension CalendarListViewController {
 
             return Disposables.create { alertController.dismiss(animated: true, completion: nil) }
         }
+    }
+}
+
+extension CalendarListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 112
     }
 }

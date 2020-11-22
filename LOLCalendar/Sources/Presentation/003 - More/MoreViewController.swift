@@ -6,17 +6,18 @@
 //
 
 import UIKit
+import SnapKit
 
 class MoreViewController: UIViewController, ViewModelBindableType {
     
+    @IBOutlet weak var nameLabel: UILabel!
     
 
     var viewModel: MoreViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        attribute()
     }
 
 }
@@ -24,5 +25,12 @@ class MoreViewController: UIViewController, ViewModelBindableType {
 extension MoreViewController {
     func bindViewModel() {
         
+    }
+    
+    func attribute() {
+        nameLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
     }
 }

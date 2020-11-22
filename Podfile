@@ -15,6 +15,7 @@ pod 'RxCoreData'
 pod 'RxGesture'
 pod 'RxAppState'
 pod 'RxOptional'
+pod 'RxSwiftExt'
 
 # Image
 pod 'Kingfisher'

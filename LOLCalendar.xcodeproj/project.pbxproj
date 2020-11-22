@@ -60,6 +60,9 @@
 		8CEE9863255D792A00C77940 /* CalendarListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE9860255D792A00C77940 /* CalendarListModel.swift */; };
 		8CEE9868255D793700C77940 /* CalendarListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEE9866255D793700C77940 /* CalendarListTableViewCell.swift */; };
 		8CEE9869255D793700C77940 /* CalendarListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CEE9867255D793700C77940 /* CalendarListTableViewCell.xib */; };
+		8CF56F25256A40AB009DDBE9 /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF56F24256A40AB009DDBE9 /* DetailHeaderView.swift */; };
+		8CF56F29256A40B6009DDBE9 /* DetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF56F28256A40B6009DDBE9 /* DetailHeaderView.xib */; };
+		8CF56F2C256A4157009DDBE9 /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF56F2B256A4157009DDBE9 /* XibView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +122,9 @@
 		8CEE9860255D792A00C77940 /* CalendarListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarListModel.swift; sourceTree = "<group>"; };
 		8CEE9866255D793700C77940 /* CalendarListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarListTableViewCell.swift; sourceTree = "<group>"; };
 		8CEE9867255D793700C77940 /* CalendarListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarListTableViewCell.xib; sourceTree = "<group>"; };
+		8CF56F24256A40AB009DDBE9 /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
+		8CF56F28256A40B6009DDBE9 /* DetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailHeaderView.xib; sourceTree = "<group>"; };
+		8CF56F2B256A4157009DDBE9 /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		8FECEB8EFF84C3885DFB6103 /* Pods-LOLCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOLCalendar.debug.xcconfig"; path = "Target Support Files/Pods-LOLCalendar/Pods-LOLCalendar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,8 +251,8 @@
 		8C4B52A0255F967900E20FAB /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8C4B52C125601E9400E20FAB /* CalendarDetailPlayersTableViewCell.swift */,
-				8C4B52C225601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib */,
+				8CF56F2E256A940D009DDBE9 /* TableCell */,
+				8CF56F23256A4085009DDBE9 /* HeaderView */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 			children = (
 				8CC02BB6255417630053E8C1 /* CommonViewModel.swift */,
 				8C9EE9D92555CB250088E8DB /* ViewModelBindableType.swift */,
+				8CF56F2B256A4157009DDBE9 /* XibView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -394,6 +401,24 @@
 				8CEE9867255D793700C77940 /* CalendarListTableViewCell.xib */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8CF56F23256A4085009DDBE9 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				8CF56F24256A40AB009DDBE9 /* DetailHeaderView.swift */,
+				8CF56F28256A40B6009DDBE9 /* DetailHeaderView.xib */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		8CF56F2E256A940D009DDBE9 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				8C4B52C125601E9400E20FAB /* CalendarDetailPlayersTableViewCell.swift */,
+				8C4B52C225601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib */,
+			);
+			path = TableCell;
 			sourceTree = "<group>";
 		};
 		E5BDE451AC910163B1B8B0FC /* Pods */ = {
@@ -470,6 +495,7 @@
 				8C6DA92B25529E1600517415 /* Main.storyboard in Resources */,
 				8C19A15625616B64006EE40F /* RosterTopCell.xib in Resources */,
 				8C4B52C425601E9400E20FAB /* CalendarDetailPlayersTableViewCell.xib in Resources */,
+				8CF56F29256A40B6009DDBE9 /* DetailHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +552,7 @@
 				8C4B52BF255FECC900E20FAB /* Opponent.swift in Sources */,
 				8C9EE9E12555CF410088E8DB /* JSON+Tools.swift in Sources */,
 				8C9EEA00255702520088E8DB /* UIImageView+Extension.swift in Sources */,
+				8CF56F25256A40AB009DDBE9 /* DetailHeaderView.swift in Sources */,
 				8C8264332568539D005668DC /* IndicatorView.swift in Sources */,
 				8CC02BC2255417A40053E8C1 /* TransitionModel.swift in Sources */,
 				8CEE9862255D792A00C77940 /* CalendarListViewController.swift in Sources */,
@@ -543,6 +570,7 @@
 				8CC02BD2255429180053E8C1 /* App.swift in Sources */,
 				8CBC11C32562EEA6009BEC5C /* League.swift in Sources */,
 				8C9EE9D72555C9250088E8DB /* RosterViewController.swift in Sources */,
+				8CF56F2C256A4157009DDBE9 /* XibView.swift in Sources */,
 				8C4B52DC25612FAA00E20FAB /* Rosters.swift in Sources */,
 				8C9EE9C52555C8F50088E8DB /* LobbyViewModel.swift in Sources */,
 				8C4B52C725602F7100E20FAB /* KingFisher+Rx.swift in Sources */,

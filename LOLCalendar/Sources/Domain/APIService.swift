@@ -133,7 +133,8 @@ class APIService {
                     if let headers = response.allHeaderFields as? [String:Any] {
                         curPage = Int(headers["x-page"] as! String) ?? 0
                         perPage = Int(headers["x-per-page"] as! String) ?? 0
-                        total = Int(headers["x-total"] as! String) ?? 0                        
+                        total = Int(headers["x-total"] as! String) ?? 0
+
                         isFinish = (curPage * perPage) >= total
                     }
                 }

@@ -15,18 +15,19 @@ import Foundation
 //    let opponents: [OpponentElement]
 //}
 
-struct LOLCalendar: Codable, Equatable {
-    static func == (lhs: LOLCalendar, rhs: LOLCalendar) -> Bool {
-        if lhs.id == rhs.id && lhs.identity == rhs.identity &&
-            lhs.opponents == rhs.opponents &&
-            lhs.scheduleAt == rhs.scheduleAt &&
-            lhs.score == rhs.score &&
-            lhs.winnner == rhs.winnner {
-            return true
-        } else {
-            return false
-        }
-    }
+struct LOLCalendar: Codable, Hashable {
+
+//    static func == (lhs: LOLCalendar, rhs: LOLCalendar) -> Bool {
+//        if lhs.id == rhs.id && lhs.identity == rhs.identity &&
+//            lhs.opponents == rhs.opponents &&
+//            lhs.scheduleAt == rhs.scheduleAt &&
+//            lhs.score == rhs.score &&
+//            lhs.winnner == rhs.winnner {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     var id: Int
     var identity: String
     var scheduleAt: Date
@@ -44,7 +45,7 @@ struct LOLCalendar: Codable, Equatable {
     }
 }
 
-struct OpponentTeam: Codable, Equatable {
+struct OpponentTeam: Codable, Equatable, Hashable {
     let id: Int
     let name: String
     let logoURL: String

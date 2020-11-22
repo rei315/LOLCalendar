@@ -33,13 +33,13 @@ class CalendarListTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        attribute()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     func setData(data: LOLCalendar) {
@@ -72,5 +72,41 @@ class CalendarListTableViewCell: UITableViewCell {
         rightTeamImage.kf.setImage(with: URL(string: right!.logoURL)!)
 
     
+    }
+    
+    func attribute() {
+        dateLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(9)
+            make.leading.equalToSuperview().offset(108)
+            make.trailing.equalToSuperview().offset(-108)
+            make.centerX.equalTo(vsLabel.snp.centerX)
+        }
+        leftTeamImage.snp.makeConstraints { (make) in
+            make.width.equalTo(leftTeamImage.snp.height).multipliedBy(1.0/1.0)
+            make.height.equalTo(40)
+            make.centerY.equalTo(vsLabel.snp.centerY)
+            make.leading.equalToSuperview().offset(34)
+        }
+        rightTeamImage.snp.makeConstraints { (make) in
+            make.width.equalTo(rightTeamImage.snp.height).multipliedBy(1.0/1.0)
+            make.height.equalTo(40)
+            make.centerY.equalTo(vsLabel.snp.centerY)
+            make.centerY.equalTo(rightResultLabel.snp.centerY)
+            make.trailing.equalToSuperview().offset(-34)
+        }
+        vsLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        leftResultLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(vsLabel.snp.centerY)
+            make.leading.equalTo(leftTeamImage.snp.trailing).offset(30)
+            make.trailing.equalTo(vsLabel.snp.leading).offset(-30)
+        }
+        rightResultLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(vsLabel.snp.centerY)
+            make.leading.equalTo(vsLabel.snp.trailing).offset(30)
+            make.trailing.equalTo(rightTeamImage.snp.leading).offset(-30)
+        }
     }
 }
