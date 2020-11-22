@@ -8,8 +8,5 @@ League of Legends E-Sports Calendar
 3. SnapKit - AutoLayout
 
 
-### Start Day
-#### 2020/11/06
-
-### End Day
-#### 2020/11/22
+### Start Day - End Day
+#### 2020/11/06 - 2020/11/22
