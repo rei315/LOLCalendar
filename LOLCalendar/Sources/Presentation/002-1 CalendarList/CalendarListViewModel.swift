@@ -33,6 +33,8 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
     var lastPageNum = BehaviorSubject<Int>(value: 1)
 //    var pageNum: Int = 1
     
+    var idsData = BehaviorRelay<[Int]>(value: [])
+    
     private let activityIndicator = ActivityIndicator()
     
     var isRunning: Observable<Bool> {
@@ -106,6 +108,13 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
                 self.nextPageNum.onNext(page)
             })
             .disposed(by: disposeBag)
+        
+        let _ = ids
+            .map { $0.0 }
+            .subscribe(onNext: { id in
+                self.idsData.accept(self.idsData.value + [id])
+            })
+            .disposed(by: disposeBag)
     }
 
     func updateList() -> Bool {
@@ -121,10 +130,28 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
                 })
                 .share()
                 .trackActivity(self.activityIndicator)
+            
+            let id = ids
+                .map { $0.0 }
+                .map { (id) -> Int? in
+                    if self.idsData.value.contains(id) {
+                        return nil
+                    } else {
+                        return id
+                    }
+                }
+                .filterNil()
+                .share()
+            
+            let _ = id
+                .subscribe(onNext: { id in
+                    self.idsData.accept(self.idsData.value + [id])
+                })
+                .disposed(by: disposeBag)
                             
-            let _ = ids
+            let _ = id
                 .flatMap {
-                    self.model.getLOLBracket(id: $0.0)
+                    self.model.getLOLBracket(id: $0)
                 }
                 .catchError({ (error) -> Observable<LOLCalendar> in
                     let tmpCalendar = LOLCalendar()
@@ -139,13 +166,10 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
                 })
                 .trackActivity(self.activityIndicator)
                 .subscribe(onNext: { lists in
-                    var tmpList: [LOLCalendar] = []
-                    for list in lists {
-                        if !self.cells.value.contains(list) {
-                            tmpList.append(list)
-                        }
-                    }
-                    self.cells.accept(tmpList)
+//                    let value = Set(self.cells.value)
+//                    let union = value.union(lists)
+//                    self.cells.accept(Array(union))
+                    self.cells.accept(self.cells.value + lists)
                     self.lastPageNum.onNext(lastPage+1)
                 })
                 .disposed(by: self.disposeBag)

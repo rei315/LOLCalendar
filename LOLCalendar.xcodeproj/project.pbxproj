@@ -11,6 +11,7 @@
 		8C11DA982557FF7D00C570BE /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C11DA972557FF7D00C570BE /* ImageUtils.swift */; };
 		8C19A15525616B64006EE40F /* RosterTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C19A15325616B64006EE40F /* RosterTopCell.swift */; };
 		8C19A15625616B64006EE40F /* RosterTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C19A15425616B64006EE40F /* RosterTopCell.xib */; };
+		8C2E479E256AB0F7008D8B6D /* RoleTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E479D256AB0F7008D8B6D /* RoleTranslator.swift */; };
 		8C37C7572553AAA700D47F23 /* LOLCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7562553AAA700D47F23 /* LOLCalendar.swift */; };
 		8C37C75A2553AB6F00D47F23 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C37C7592553AB6E00D47F23 /* APIService.swift */; };
 		8C4B52BF255FECC900E20FAB /* Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B52BE255FECC900E20FAB /* Opponent.swift */; };
@@ -71,6 +72,7 @@
 		8C11DA972557FF7D00C570BE /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		8C19A15325616B64006EE40F /* RosterTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterTopCell.swift; sourceTree = "<group>"; };
 		8C19A15425616B64006EE40F /* RosterTopCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RosterTopCell.xib; sourceTree = "<group>"; };
+		8C2E479D256AB0F7008D8B6D /* RoleTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleTranslator.swift; sourceTree = "<group>"; };
 		8C37C7562553AAA700D47F23 /* LOLCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LOLCalendar.swift; sourceTree = "<group>"; };
 		8C37C7592553AB6E00D47F23 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8C4B52BE255FECC900E20FAB /* Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opponent.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			children = (
 				8C9EE9E02555CF410088E8DB /* JSON+Tools.swift */,
 				8C11DA972557FF7D00C570BE /* ImageUtils.swift */,
+				8C2E479D256AB0F7008D8B6D /* RoleTranslator.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				8C9EE9DA2555CB250088E8DB /* ViewModelBindableType.swift in Sources */,
 				8C4B52C325601E9400E20FAB /* CalendarDetailPlayersTableViewCell.swift in Sources */,
 				8C6DA92425529E1600517415 /* AppDelegate.swift in Sources */,
+				8C2E479E256AB0F7008D8B6D /* RoleTranslator.swift in Sources */,
 				8C9EE9DD2555CEFB0088E8DB /* URLSession+Extension.swift in Sources */,
 				8C6DA93C2552C1E100517415 /* LOLBracket.swift in Sources */,
 				8C8264602569C11A005668DC /* LCAnimatedButton.swift in Sources */,

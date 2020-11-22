@@ -15,7 +15,6 @@ import SnapKit
 import RxSwiftExt
 
 class CalendarListViewController: UIViewController, ViewModelBindableType {
-    
     var viewModel: CalendarListViewModel!
     
     @IBOutlet weak var tableView: UITableView!
@@ -53,6 +52,11 @@ extension CalendarListViewController {
             .disposed(by: rx.disposeBag)
         
         viewModel.cells
+            .map( { (items) -> [LOLCalendar] in
+                return items.sorted { (bracket1, bracket2) -> Bool in
+                    return bracket1.scheduleAt > bracket2.scheduleAt
+                }
+            })
             .bind(to: tableView.rx.items) { [unowned self] tv, row, data in
                 if (data.opponents.isEmpty) {
                     self.showAlert(title: "서버 오류", message: "서버에 연결하지 못하였습니다.", style: .alert, actions: [AlertAction.action(title: "확인")])

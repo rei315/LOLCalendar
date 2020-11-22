@@ -17,17 +17,21 @@ import Foundation
 
 struct LOLCalendar: Codable, Hashable {
 
-//    static func == (lhs: LOLCalendar, rhs: LOLCalendar) -> Bool {
-//        if lhs.id == rhs.id && lhs.identity == rhs.identity &&
-//            lhs.opponents == rhs.opponents &&
-//            lhs.scheduleAt == rhs.scheduleAt &&
-//            lhs.score == rhs.score &&
-//            lhs.winnner == rhs.winnner {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(scheduleAt)
+    }
+    
+    static func == (lhs: LOLCalendar, rhs: LOLCalendar) -> Bool {
+        if lhs.id == rhs.id && lhs.identity == rhs.identity &&
+            lhs.opponents == rhs.opponents &&
+            lhs.scheduleAt == rhs.scheduleAt &&
+            lhs.score == rhs.score &&
+            lhs.winnner == rhs.winnner {
+            return true
+        } else {
+            return false
+        }
+    }
     var id: Int
     var identity: String
     var scheduleAt: Date

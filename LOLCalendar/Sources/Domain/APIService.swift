@@ -196,7 +196,7 @@ class APIService {
                                     let birthYear: Int = player["birth_year"] as? Int ?? 0
                                     let image_url: String = player["image_url"] as? String ?? ""
                                     
-                                    let tmpPlayer = Player(name: name, first_name: first_name, last_name: last_name, role: role, birthYear: birthYear, image_url: image_url)
+                                    let tmpPlayer = Player(name: name, first_name: first_name, last_name: last_name, role: RoleTranslator.translate(role: role), birthYear: birthYear, image_url: image_url)
                                     observer.onNext(tmpPlayer)
                                 }
                             }
@@ -266,7 +266,7 @@ class APIService {
                                             let name = player["name"] as? String ?? ""
                                             let role = player["role"] as? String ?? ""
                                             let image_url = player["image_url"] as? String ?? ""
-                                            tmpOpponent.append(Opponent(name: name, role: role, image_url: image_url))
+                                            tmpOpponent.append(Opponent(name: name, role: RoleTranslator.translate(role: role), image_url: image_url))
                                         }
                                         tmpOpponent.sort { (player1, player2) -> Bool in
                                             return getRoleOrder(role: player1.role) < getRoleOrder(role: player2.role)
