@@ -8,6 +8,7 @@
 <img width="280" alt="스크린샷 2020-11-23 오후 10 27 31" src="https://user-images.githubusercontent.com/27776755/99967562-6590ac80-2ddb-11eb-9c21-4476aa8af565.png">
 <img width="280" alt="스크린샷 2020-11-23 오후 10 27 50" src="https://user-images.githubusercontent.com/27776755/99967591-6fb2ab00-2ddb-11eb-9897-88be3ee6a33f.png">
 <br></br>
+# YouTube Link (Click this image)
 [![Watch the video](https://img.youtube.com/vi/n7U4U77SLdE/maxresdefault.jpg)](https://youtu.be/n7U4U77SLdE)
 
 ## Using
