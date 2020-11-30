@@ -173,30 +173,17 @@
 			isa = PBXGroup;
 			children = (
 				8C6DA92325529E1600517415 /* AppDelegate.swift */,
+				8C96A81325752224003FA6E7 /* Controller-ViewModel */,
+				8C96A81225752202003FA6E7 /* Model */,
 				8C543C49255A88CA0081A7FB /* Services */,
 				8C9EE9DF2555CF280088E8DB /* Tools */,
 				8CC02BD0255429100053E8C1 /* Define */,
 				8CC02BB92554178D0053E8C1 /* Scene */,
 				8CC02BB52554175B0053E8C1 /* Common */,
 				8C37C7542553A9C000D47F23 /* Extensions */,
-				8C37C7532553A9B900D47F23 /* Entity */,
 				8C37C7522553A99300D47F23 /* Domain */,
-				8C37C74D2553A93B00D47F23 /* Presentation */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		8C37C74D2553A93B00D47F23 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				8C786CAF2563D68700D96C88 /* 003 - More */,
-				8C4B52E32561301E00E20FAB /* 003 - Roster  */,
-				8CEE9847255D786800C77940 /* 002-2 CalendarDetail */,
-				8CEE985C255D791A00C77940 /* 002-1 CalendarList */,
-				8C37C74F2553A96500D47F23 /* 001 - MainTab */,
-				8C37C74E2553A94800D47F23 /* 000 - Lobby */,
-			);
-			path = Presentation;
 			sourceTree = "<group>";
 		};
 		8C37C74E2553A94800D47F23 /* 000 - Lobby */ = {
@@ -223,17 +210,6 @@
 				8C37C7592553AB6E00D47F23 /* APIService.swift */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		8C37C7532553A9B900D47F23 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				8C37C7562553AAA700D47F23 /* LOLCalendar.swift */,
-				8C81A12E255D85C5003F74EC /* Player.swift */,
-				8C4B52BE255FECC900E20FAB /* Opponent.swift */,
-				8C4B52DB25612FAA00E20FAB /* Rosters.swift */,
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		8C37C7542553A9C000D47F23 /* Extensions */ = {
@@ -322,6 +298,30 @@
 				8C786CB42563D6A400D96C88 /* MoreViewController.swift */,
 			);
 			path = "003 - More";
+			sourceTree = "<group>";
+		};
+		8C96A81225752202003FA6E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C37C7562553AAA700D47F23 /* LOLCalendar.swift */,
+				8C81A12E255D85C5003F74EC /* Player.swift */,
+				8C4B52BE255FECC900E20FAB /* Opponent.swift */,
+				8C4B52DB25612FAA00E20FAB /* Rosters.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8C96A81325752224003FA6E7 /* Controller-ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8C786CAF2563D68700D96C88 /* 003 - More */,
+				8C4B52E32561301E00E20FAB /* 003 - Roster  */,
+				8CEE9847255D786800C77940 /* 002-2 CalendarDetail */,
+				8CEE985C255D791A00C77940 /* 002-1 CalendarList */,
+				8C37C74F2553A96500D47F23 /* 001 - MainTab */,
+				8C37C74E2553A94800D47F23 /* 000 - Lobby */,
+			);
+			path = "Controller-ViewModel";
 			sourceTree = "<group>";
 		};
 		8C9EE9DF2555CF280088E8DB /* Tools */ = {
