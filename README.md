@@ -18,7 +18,7 @@
 
 
 ## Start Day - End Day
-#### 2020/11/06 - 2020/11/22
+2020/11/06 - 2020/11/22
 
 ## Added
 2020/11/30 - Refactoring for clean code
