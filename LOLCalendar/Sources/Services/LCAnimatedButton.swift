@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class LCAnimatedButton: UIButton {
+    
+    // MARK: - Initialize
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -21,6 +24,12 @@ class LCAnimatedButton: UIButton {
         phaseTwo(title: title, color: backgroundColor)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Helpers
+    
     fileprivate func phaseTwo(title: String, color: UIColor) {
         
         layer.cornerRadius = 5
@@ -30,6 +39,8 @@ class LCAnimatedButton: UIButton {
         addTarget(self, action: #selector(down), for: .touchDown)
         addTarget(self, action: #selector(up), for: .touchUpInside)
     }
+    
+    // MARK: - Selectors
     
     @objc fileprivate func down() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseIn) {
@@ -45,7 +56,5 @@ class LCAnimatedButton: UIButton {
         }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
 }

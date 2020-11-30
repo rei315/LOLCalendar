@@ -9,6 +9,8 @@ import Foundation
 
 class MoreViewModel: CommonViewModel {
     
+    // MARK: - Initialize
+    
     override init(sceneCoordinator: SceneCoordinatorType) {
         super.init(sceneCoordinator: sceneCoordinator)
     }

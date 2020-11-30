@@ -8,11 +8,13 @@
 import Foundation
 
 class HomeTabViewModel: CommonViewModel {
+    // MARK: - Property
     
     let calendarListViewModel: CalendarListViewModel
 //    let rosterViewModel: RosterViewModel
     let moreViewModel: MoreViewModel
 
+    // MARK: - Initialize
     
     init(sceneCoordinator: SceneCoordinatorType, leagueType: Int) {
         self.calendarListViewModel = CalendarListViewModel(coordinator: sceneCoordinator, leagueType: leagueType)

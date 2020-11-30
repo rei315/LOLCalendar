@@ -8,6 +8,8 @@
 import UIKit
 
 class XibView: UIView {
+    // MARK: - Initialize
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

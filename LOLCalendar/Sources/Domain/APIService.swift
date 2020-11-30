@@ -10,7 +10,9 @@ import RxSwift
 import RxCocoa
 
 class APIService {
+    // MARK: - API
     
+    // MARK: - Rosters
     static func fetchLOLRosters(url: URL) -> Observable<Roster> {
         return Observable.create { observer in
             var request = URLRequest(url: url)
@@ -30,28 +32,10 @@ class APIService {
                         let jsonObjet = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                         if let jsonDic = jsonObjet as? [String:Any] {
                             if let rosters = jsonDic["rosters"] as? [[String:Any]] {
-                                for roster in rosters {
-                                    
-                                    let name = roster["name"] as? String ?? ""
-                                    let acronym = roster["acronym"] as? String ?? ""
-                                    let image_url = roster["image_url"] as? String ?? ""
-                                    let id = roster["id"] as? Int ?? 0
-                                    var tmpPlayers: [Player] = []
-                                    if let players = roster["players"] as? [[String:Any]] {
-                                        for player in players {
-                                            let name = player["name"] as? String ?? ""
-                                            let first_name = player["first_name"] as? String ?? ""
-                                            let last_name = player["last_name"] as? String ?? ""
-                                            let role = player["role"] as? String ?? ""
-                                            let birthYear = player["birth_year"] as? Int ?? 0
-                                            let image_url = player["image_url"] as? String ?? ""
-                                            let player = Player(name: name, first_name: first_name, last_name: last_name, role: role, birthYear: birthYear, image_url: image_url)
-                                            tmpPlayers.append(player)
-                                        }                                        
-                                    }
-                                    let tmpRoster: Roster = Roster(id: id, acronym: acronym, name: name, imageURL: image_url, players: tmpPlayers)
-                                    observer.onNext(tmpRoster)
-                                    
+                                for rosterJson in rosters {
+                                    let tmpRoster: Roster = Roster(rosterJson: rosterJson)
+
+                                    observer.onNext(tmpRoster)           
                                 }
                                 observer.onCompleted()
                             }
@@ -70,6 +54,7 @@ class APIService {
         }
     }
     
+    // MARK: - TournamentID-Recent
     static func fetchLOLLeagueTournamentIDRecent(url: URL) -> Observable<Int> {
         return Observable.create { observer in
             var request = URLRequest(url: url)
@@ -112,6 +97,7 @@ class APIService {
         }
     }
     
+    // MARK: - TournamentID
     static func fetchLOLLeagueTournamentID(url: URL) -> Observable<(Int,Bool,Int)> {
         
         return Observable.create { observer in
@@ -175,6 +161,7 @@ class APIService {
         }
     }
     
+    // MARK: - Team
     static func fetchLOLTeam(url: URL) -> Observable<Player> {
         return Observable.create { observer in
             var request = URLRequest(url: url)
@@ -188,15 +175,8 @@ class APIService {
                         let jsonObjes = try JSONSerialization.jsonObject(with: team, options: .allowFragments)
                         if let jsonDic = jsonObjes as? [String: Any] {
                             if let players = jsonDic["players"] as? [[String:Any]] {
-                                for player in players {
-                                    let name: String = player["name"] as? String ?? ""
-                                    let first_name: String = player["first_name"] as? String ?? ""
-                                    let last_name: String = player["last_name"] as? String ?? ""
-                                    let role: String = player["role"] as? String ?? ""
-                                    let birthYear: Int = player["birth_year"] as? Int ?? 0
-                                    let image_url: String = player["image_url"] as? String ?? ""
-                                    
-                                    let tmpPlayer = Player(name: name, first_name: first_name, last_name: last_name, role: RoleTranslator.translate(role: role), birthYear: birthYear, image_url: image_url)
+                                for playerJson in players {
+                                    let tmpPlayer = Player(jsonString: playerJson)
                                     observer.onNext(tmpPlayer)
                                 }
                             }
@@ -219,32 +199,8 @@ class APIService {
             }
         }
     }
-    enum Role: String{
-        case top
-        case jun
-        case mid
-        case adc
-        case sup
-    }
-    static func getRoleOrder(role: String) -> Int{
-        switch role {
-        case Role.top.rawValue:
-            return 0
-        case Role.jun.rawValue:
-            return 1
-        case Role.mid.rawValue:
-            return 2
-        case Role.mid.rawValue:
-            return 3
-        case Role.adc.rawValue:
-            return 4
-        case Role.sup.rawValue:
-            return 5
-        default:
-            return 0
-        }
-    }
     
+    // MARK: - Opponent
     static func fetchLOLOpponent(url: URL) -> Observable<OpponentCell> {
         return Observable.create { observer in
             var request = URLRequest(url: url)
@@ -262,11 +218,8 @@ class APIService {
                                 for opponent in opponents {
                                     if let players = opponent["players"] as? [[String:Any]] {
                                         var tmpOpponent: [Opponent] = []
-                                        for player in players {
-                                            let name = player["name"] as? String ?? ""
-                                            let role = player["role"] as? String ?? ""
-                                            let image_url = player["image_url"] as? String ?? ""
-                                            tmpOpponent.append(Opponent(name: name, role: RoleTranslator.translate(role: role), image_url: image_url))
+                                        for playerJson in players {
+                                            tmpOpponent.append(Opponent(opponentJson: playerJson))
                                         }
                                         tmpOpponent.sort { (player1, player2) -> Bool in
                                             return getRoleOrder(role: player1.role) < getRoleOrder(role: player2.role)
@@ -276,8 +229,7 @@ class APIService {
                                 }
 
                                 if let leftTeam = tmpOpponents.first, let rightTeam = tmpOpponents.last {
-                                    let lessCount = leftTeam.count < rightTeam.count ? leftTeam.count : rightTeam.count
-
+                                    let lessCount = leftTeam.count < rightTeam.count ? leftTeam.count : rightTeam.count                    
                                     for i in 0...lessCount-1 {
                                         observer.onNext(OpponentCell(playerLeft: leftTeam[i], playerRight: rightTeam[i]))
                                     }
@@ -317,6 +269,7 @@ class APIService {
         }
     }
     
+    // MARK: - Bracket(LOLCalendar)
     static func fetchLOLBracket(url: URL, isError: Bool) -> Observable<LOLCalendar> {
         return Observable.create { observer in
             if isError{
@@ -333,57 +286,9 @@ class APIService {
                     if let brackets = data {
                         let jsonObject = try JSONSerialization.jsonObject(with: brackets, options: .allowFragments)
                         if let jsonDic = jsonObject as? [[String:Any]] {
-                            for bracket in jsonDic {
-                                var calendar = LOLCalendar()
-                                                                
-                                // ID
-                                if let id = bracket["id"] as? Int {
-                                    calendar.id = id
-                                }
-                                
-                                // Scheduled_At
-                                if let schedule = bracket["scheduled_at"] as? String {
-                                    let dateFormatter = DateFormatter()
-                                    dateFormatter.locale = Locale(identifier: "ko_KR")
-                                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssXXXXX"
-                                    if let date = dateFormatter.date(from: schedule) {
-                                        calendar.scheduleAt = date
-                                    }
-                                    
-                                }
-                                
-                                // Opponents
-                                if let opponets = bracket["opponents"] as? [[String:Any]] {
-                                    for opponent in opponets {
-                                        if let element = opponent["opponent"] as? [String:Any] {
-                                            let team = OpponentTeam(id: element["id"] as! Int, name: element["acronym"] as! String, logoURL: element["image_url"] as! String)
-                                            calendar.opponents.append(team)
-                                        }
-                                    }
-                                }
-                                
-                                // Winner
-                                if let winner = bracket["winner_id"] as? Int {
-                                    calendar.winnner = winner
-                                }
-                                
-                                // Score
-                                if let games = bracket["games"] as? [[String:Any]] {
-                                    for game in games {
-                                        if let isFinish = game["status"] as? String, isFinish == "finished" {
-                                            if let winner = game["winner"] as? [String:Any] {
-                                                if let winnerID = winner["id"] as? Int {
-                                                    if calendar.score[winnerID] != nil {
-                                                        calendar.score.updateValue(calendar.score[winnerID]! + 1, forKey: winnerID)
-                                                    } else {
-                                                        calendar.score.updateValue(1, forKey: winnerID)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                observer.onNext(calendar)
+                            for calendarJson in jsonDic {
+                                let tmpCalendar = LOLCalendar(calendarJson: calendarJson)
+                                observer.onNext(tmpCalendar)
                             }
                         }
                         observer.onCompleted()
@@ -406,6 +311,7 @@ class APIService {
         }
     }
     
+    // MARK: - Image Download with Cache
     static func loadImage(url: URL) -> Observable<UIImage?> {
         return Observable.create { observer in
             let task = URLSession.shared.dataTask(with: url) { data, _, error in

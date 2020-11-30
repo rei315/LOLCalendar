@@ -16,15 +16,21 @@ extension UIViewController {
 }
 
 class SceneCoordinator: SceneCoordinatorType {
+    // MARK: - Property
+    
     private let bag = DisposeBag()
     
     private var window: UIWindow
     private var currentVC: UIViewController
     
+    // MARK: - Initialize
+    
     required init(window: UIWindow) {
         self.window = window
         currentVC = window.rootViewController!
     }
+    
+    // MARK: - Helpers
     
     @discardableResult
     func transition(to scene: Scene, using style: TransitionStyle, animated: Bool) -> Completable {

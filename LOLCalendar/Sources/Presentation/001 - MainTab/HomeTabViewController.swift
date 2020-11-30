@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeTabViewController: UITabBarController, ViewModelBindableType {
+    // MARK: - Property
     
     enum Tab: Int {
         case CalendarList
@@ -28,11 +29,15 @@ class HomeTabViewController: UITabBarController, ViewModelBindableType {
 }
 
 extension HomeTabViewController {
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
     }
 
+    // MARK: - Helpers
+    
     func bindViewModel() {
                 
     }

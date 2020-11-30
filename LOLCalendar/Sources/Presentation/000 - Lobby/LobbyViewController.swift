@@ -13,6 +13,7 @@ import NSObject_Rx
 import SnapKit
 
 class LobbyViewController: UIViewController, ViewModelBindableType {
+    // MARK: - Property
     
     var viewModel: LobbyViewModel!
     let tapGesture = UITapGestureRecognizer()
@@ -32,6 +33,8 @@ class LobbyViewController: UIViewController, ViewModelBindableType {
 
 extension LobbyViewController {
     
+    // MARK: - Lifecycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -45,6 +48,8 @@ extension LobbyViewController {
         super.viewDidLoad()
         attribute()
     }
+    
+    // MARK: - Helpers
     
     func bindViewModel() {        
         tapGesture.rx.event.asObservable()

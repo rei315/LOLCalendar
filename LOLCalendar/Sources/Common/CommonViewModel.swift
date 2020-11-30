@@ -10,8 +10,11 @@ import RxSwift
 import RxCocoa
 
 class CommonViewModel: NSObject {
+    // MARK: - Property
+    
     let sceneCoordinator: SceneCoordinatorType
     
+    // MARK: - Initialize
     init(sceneCoordinator: SceneCoordinatorType){
         self.sceneCoordinator = sceneCoordinator
     }

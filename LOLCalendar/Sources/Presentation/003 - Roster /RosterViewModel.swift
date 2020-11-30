@@ -19,6 +19,8 @@ struct TeamID {
 }
 
 class RosterViewModel: CommonViewModel, RosterModelBindable {
+    // MARK: - Property
+    
     var topCellData: Driver<[RosterTopCell.Data]>
     
     let disposeBag = DisposeBag()
@@ -43,13 +45,15 @@ class RosterViewModel: CommonViewModel, RosterModelBindable {
             if let roster = try rosterData.value().first(where: { (roster) -> Bool in
                 return roster.id == id
             }) {
-                bottomCells.accept(roster.players)
+                bottomCells.accept(roster.players ?? [])
                 midCells.accept(RosterMid(acronym: roster.acronym, name: roster.name, imageURL: roster.imageURL))
             }
         } catch {
             print("Error")
         }
     }
+    
+    // MARK: - Initialize
     
     init(leagueType: Int ,sceneCoordinator: SceneCoordinatorType, model: RosterModel = RosterModel()) {
 

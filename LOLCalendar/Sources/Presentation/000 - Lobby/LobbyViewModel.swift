@@ -10,6 +10,8 @@ import RxSwift
 
 class LobbyViewModel: CommonViewModel {
     
+    // MARK: - Property
+    
     struct Input {
         let viewDidTap: AnyObserver<(Void, Int)>
     }
@@ -20,11 +22,11 @@ class LobbyViewModel: CommonViewModel {
     
     let disposeBag = DisposeBag()
     
+    // MARK: - Initialize
+    
     override init(sceneCoordinator: SceneCoordinatorType){
         input = Input(viewDidTap: viewDidTabSubject.asObserver())
-//        viewDidTabSubject.map { data -> Void? in
-//            data.0
-//        }
+
         viewDidTabSubject
             .subscribe(onNext: { data in
                 let homeTabViewModel = HomeTabViewModel(sceneCoordinator: sceneCoordinator, leagueType: data.1)

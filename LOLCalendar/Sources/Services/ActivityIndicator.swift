@@ -10,14 +10,17 @@ import RxSwift
 import RxCocoa
 
 private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
+    // MARK: - Property
     private let _source: Observable<E>
     private let _dispose: Cancelable
 
+    // MARK: - Initialize
     init(source: Observable<E>, disposeAction: @escaping () -> Void) {
         _source = source
         _dispose = Disposables.create(with: disposeAction)
     }
 
+    // MARK: - Helpers
     func dispose() {
         _dispose.dispose()
     }
@@ -27,13 +30,10 @@ private struct ActivityToken<E> : ObservableConvertibleType, Disposable {
     }
 }
 
-/**
-Enables monitoring of sequence computation.
 
-If there is at least one sequence computation in progress, `true` will be sent.
-When all activities complete `false` will be sent.
-*/
 public class ActivityIndicator : SharedSequenceConvertibleType {
+    // MARK: - Property
+    
     public typealias Element = Bool
     public typealias SharingStrategy = DriverSharingStrategy
 
@@ -41,12 +41,16 @@ public class ActivityIndicator : SharedSequenceConvertibleType {
     private let _relay = BehaviorRelay(value: 0)
     private let _loading: SharedSequence<SharingStrategy, Bool>
 
+    // MARK: - Initialize
+    
     public init() {
         _loading = _relay.asDriver()
             .map { $0 > 0 }
             .distinctUntilChanged()
     }
 
+    // MARK: - Helpers
+    
     fileprivate func trackActivityOfObservable<Source: ObservableConvertibleType>(_ source: Source) -> Observable<Source.Element> {
         return Observable.using({ () -> ActivityToken<Source.Element> in
             self.increment()

@@ -14,13 +14,14 @@ import Kingfisher
 
 class RosterViewControler: UIViewController, ViewModelBindableType {
     
+    // MARK: - Property
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var viewModel: RosterViewModel!
     
-    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,7 @@ class RosterViewControler: UIViewController, ViewModelBindableType {
 }
 
 extension RosterViewControler {
+    // MARK: - Helpers
     
     func bindViewModel() {
         viewModel.topCellData

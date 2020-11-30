@@ -8,19 +8,31 @@
 import Foundation
 
 struct Opponent {
+    // MARK: - Property
+    
     let name: String
     let role: String
-    let image_url: String
+    var image_url: URL?
+    
+    // MARK: - Initialize
     
     init() {
         name = ""
         role = ""
-        image_url = ""
+        image_url = URL(string: "")
     }
     
-    init (name: String, role: String, image_url: String) {
+    init (name: String, role: String, image_url: URL) {
         self.name = name
         self.role = role
         self.image_url = image_url
+    }
+    
+    init (opponentJson json: [String:Any]) {
+        self.name = json["name"] as? String ?? ""
+        self.role = json["role"] as? String ?? ""
+        if let url = URL(string: json["image_url"] as? String ?? "") {
+            self.image_url = url
+        }
     }
 }

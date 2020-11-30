@@ -8,6 +8,8 @@
 import UIKit
 
 class IndicatorView {
+    // MARK: - Property
+    
     var container = UIView()
     var loadingView = UIView()
     var activityIndicator = UIActivityIndicatorView()
@@ -15,6 +17,9 @@ class IndicatorView {
         return IndicatorView()
         
     }()
+    
+    // MARK: - Helpers
+    
     func show(parentView: UIView) {
         container.frame = parentView.frame
         container.center = parentView.center

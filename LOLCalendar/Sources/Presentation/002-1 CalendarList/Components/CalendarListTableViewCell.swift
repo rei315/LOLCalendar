@@ -12,7 +12,7 @@ import Kingfisher
 
 class CalendarListTableViewCell: UITableViewCell {
 
-//    typealias Data = (id: Int, scheduleAt: Date, winnner: Int, opponents: [OpponentTeam], score: [Int:Int])
+    // MARK: - Property
     
     @IBOutlet weak var dateLabel: UILabel!
     
@@ -31,6 +31,8 @@ class CalendarListTableViewCell: UITableViewCell {
         case Defeat = "패"
     }
     
+    // MARK: - Initialize
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         attribute()
@@ -42,13 +44,14 @@ class CalendarListTableViewCell: UITableViewCell {
 
     }
     
+    // MARK: - Helpers
+    
     func setData(data: LOLCalendar) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        dateLabel.text = dateFormatter.string(from: data.scheduleAt)
+        
+        dateLabel.text = dateToString(date: data.scheduleAt!)
         leftResultLabel.text = ""
-        let left = data.opponents.first
-        let right = data.opponents.last
+        let left = data.opponents?.first
+        let right = data.opponents?.last
         
         // Result
         leftResultLabel.text = Result.Defeat.rawValue
@@ -67,13 +70,11 @@ class CalendarListTableViewCell: UITableViewCell {
         leftTeamImage.translatesAutoresizingMaskIntoConstraints = false
         rightTeamImage.translatesAutoresizingMaskIntoConstraints = false
         
-        leftTeamImage.kf.setImage(with: URL(string: left!.logoURL)!)
+        leftTeamImage.kf.setImage(with: left!.logoURL)
 
-        rightTeamImage.kf.setImage(with: URL(string: right!.logoURL)!)
-
-    
+        rightTeamImage.kf.setImage(with: right!.logoURL)
     }
-    
+            
     func attribute() {
         dateLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(9)

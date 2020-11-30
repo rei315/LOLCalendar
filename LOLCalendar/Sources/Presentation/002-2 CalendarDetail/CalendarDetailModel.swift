@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 struct CalendarDetailModel {
-
+    // MARK: - Helpers
+    
     func getPlayers(matchID: Int) -> Observable<OpponentCell> {
         return APIService.fetchLOLOpponent(url: URL(string: String(format: App.Url.opponentsURL, matchID, App.Token.token))!)
     }

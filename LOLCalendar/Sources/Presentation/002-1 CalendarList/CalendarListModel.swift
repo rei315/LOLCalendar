@@ -10,7 +10,9 @@ import RxSwift
 
 struct CalendarListModel {
     
-    //world champion 297
+    // TODO: - World Champion 297
+    
+    // MARK: - Helpers
     
     func getLOLLeagueTournamentId(league: Int, page: Int = 1) -> Observable<(Int, Bool, Int)> {
         var tmpLeague = 0

@@ -10,10 +10,13 @@ import SnapKit
 
 class MoreViewController: UIViewController, ViewModelBindableType {
     
+    // MARK: - Property
+    
     @IBOutlet weak var nameLabel: UILabel!
     
-
     var viewModel: MoreViewModel!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,8 @@ class MoreViewController: UIViewController, ViewModelBindableType {
 }
 
 extension MoreViewController {
+    // MARK: - Helpers
+    
     func bindViewModel() {
         
     }

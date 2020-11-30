@@ -12,6 +12,7 @@ import NSObject_Rx
 import SnapKit
 
 class CalendarDetailViewController: UIViewController, ViewModelBindableType {
+    // MARK: - Property
     
     var viewModel: CalendarDetailViewModel!
 
@@ -21,6 +22,8 @@ class CalendarDetailViewController: UIViewController, ViewModelBindableType {
     
     var headerView: DetailHeaderView!
     
+    // MARK: - Initialize
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
@@ -28,6 +31,8 @@ class CalendarDetailViewController: UIViewController, ViewModelBindableType {
 }
 
 extension CalendarDetailViewController {
+    // MARK: - Helpers
+    
     func bindViewModel() {
         tableView
             .rx.setDelegate(self)
@@ -56,7 +61,7 @@ extension CalendarDetailViewController {
         headerView = DetailHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 252))
         tableView.tableHeaderView = headerView
         
-        viewModel.topData
+        viewModel.topData?
             .asObserver()
             .bind(to: headerView.headerData)
             .disposed(by: rx.disposeBag)

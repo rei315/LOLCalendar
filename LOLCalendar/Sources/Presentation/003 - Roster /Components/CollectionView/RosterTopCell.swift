@@ -10,8 +10,9 @@ import RxSwift
 import Kingfisher
 
 class RosterTopCell: UICollectionViewCell {
-
-    typealias Data = (id: Int, acronym: String, imageURL: String)
+    // MARK: - Property
+    
+    typealias Data = (id: Int, acronym: String, imageURL: URL)
         
     @IBOutlet weak var imageView: UIImageView!
     
@@ -19,13 +20,17 @@ class RosterTopCell: UICollectionViewCell {
     
     let disposeBag = DisposeBag()
     
+    // MARK: - Lifecycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
+    // MARK: - Helpers
+    
     func setData(data: Data) {
-        imageView.kf.rx.setImage(with: URL(string: data.imageURL)!)
+        imageView.kf.rx.setImage(with: data.imageURL)
         self.id = data.id
     }
 }

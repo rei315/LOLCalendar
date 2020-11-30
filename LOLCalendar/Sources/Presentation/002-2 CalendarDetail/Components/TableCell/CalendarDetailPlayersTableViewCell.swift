@@ -10,7 +10,7 @@ import Kingfisher
 import SnapKit
 
 class CalendarDetailPlayersTableViewCell: UITableViewCell {
-
+    // MARK: - Property
 
     @IBOutlet weak var leftImageView: UIImageView!
     @IBOutlet weak var leftRoleLabel: UILabel!
@@ -19,6 +19,8 @@ class CalendarDetailPlayersTableViewCell: UITableViewCell {
     @IBOutlet weak var rightImageView: UIImageView!
     @IBOutlet weak var rightRoleLabel: UILabel!
     @IBOutlet weak var rightNameLabel: UILabel!
+    
+    // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,11 +32,13 @@ class CalendarDetailPlayersTableViewCell: UITableViewCell {
 
     }
     
+    // MARK: - Helpers
+    
     func setData(players: OpponentCell) {
         if let left = players.playerLeft {
             leftRoleLabel.text = left.role
             leftNameLabel.text = left.name
-            leftImageView.kf.setImage(with: URL(string: left.image_url))
+            leftImageView.kf.setImage(with: left.image_url)
         } else {
             leftRoleLabel.text = ""
             leftNameLabel.text = ""
@@ -44,7 +48,7 @@ class CalendarDetailPlayersTableViewCell: UITableViewCell {
         if let right = players.playerRight {
             rightRoleLabel.text = right.role
             rightNameLabel.text = right.name
-            rightImageView.kf.setImage(with: URL(string: right.image_url))
+            rightImageView.kf.setImage(with: right.image_url)
         } else {
             rightRoleLabel.text = ""
             rightNameLabel.text = ""

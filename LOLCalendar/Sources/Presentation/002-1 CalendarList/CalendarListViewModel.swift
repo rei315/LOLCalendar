@@ -14,24 +14,17 @@ import Action
 protocol CalendarModelBindable {
     var viewWillAppear: PublishSubject<Void> { get }
     var willDisplayCell: PublishRelay<IndexPath> { get }
-    
-//    var cellData: Driver<[CalendarListTableViewCell.Data]> { get }
-//    var reloadList: Signal<Void> { get }
-//    var errorMessage: Signal<String> { get }
 }
 
 class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
+    // MARK: - Property
     
-//    var cellData: Driver<[CalendarListTableViewCell.Data]>
     let viewWillAppear = PublishSubject<Void>()
     let willDisplayCell = PublishRelay<IndexPath>()
-//    let reloadList: Signal<Void>()
-//    let errorMessage: Signal<String>()
     
     var cells = BehaviorRelay<[LOLCalendar]>(value: [])
     var nextPageNum = BehaviorSubject<Int>(value: 1)
     var lastPageNum = BehaviorSubject<Int>(value: 1)
-//    var pageNum: Int = 1
     
     var idsData = BehaviorRelay<[Int]>(value: [])
     
@@ -55,6 +48,8 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
         }
     }()
     
+    // MARK: - Initialize
+    
     init(coordinator: SceneCoordinatorType, leagueType: Int, model: CalendarListModel = CalendarListModel()){
         self.model = model
         
@@ -70,15 +65,15 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
             .flatMap {
                 model.getLOLBracket(id: $0.0)
             }
-            .catchError({ (error) -> Observable<LOLCalendar> in
-                let tmpCalendar = LOLCalendar()
-                return .just(tmpCalendar)
+            .catchError({ (error) in
+                return .error(error)
             })
             .toArray()
             .asObservable()
+            .filterEmpty()
             .map( { (items) -> [LOLCalendar] in
                 return items.sorted { (bracket1, bracket2) -> Bool in
-                    return bracket1.scheduleAt > bracket2.scheduleAt
+                    return bracket1.scheduleAt! > bracket2.scheduleAt!
                 }
             })
             .share()
@@ -117,6 +112,8 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
             .disposed(by: disposeBag)
     }
 
+    // MARK: - Helpers
+    
     func updateList() -> Bool {
         do {
             let page = try self.nextPageNum.value()
@@ -153,22 +150,19 @@ class CalendarListViewModel: CommonViewModel, CalendarModelBindable {
                 .flatMap {
                     self.model.getLOLBracket(id: $0)
                 }
-                .catchError({ (error) -> Observable<LOLCalendar> in
-                    let tmpCalendar = LOLCalendar()
-                    return .just(tmpCalendar)
+                .catchError({ (error) in
+                    return .error(error)
                 })
                 .toArray()
                 .asObservable()
+                .filterEmpty()
                 .map( { (items) -> [LOLCalendar] in
                     return items.sorted { (bracket1, bracket2) -> Bool in
-                        return bracket1.scheduleAt > bracket2.scheduleAt
+                        return bracket1.scheduleAt! > bracket2.scheduleAt!
                     }
                 })
                 .trackActivity(self.activityIndicator)
                 .subscribe(onNext: { lists in
-//                    let value = Set(self.cells.value)
-//                    let union = value.union(lists)
-//                    self.cells.accept(Array(union))
                     self.cells.accept(self.cells.value + lists)
                     self.lastPageNum.onNext(lastPage+1)
                 })

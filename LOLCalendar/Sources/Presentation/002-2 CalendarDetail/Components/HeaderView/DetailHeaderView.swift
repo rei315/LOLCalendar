@@ -13,6 +13,8 @@ import Kingfisher
 
 class DetailHeaderView: XibView {
 
+    // MARK: - Property
+    
     @IBOutlet weak var vsLabel: UILabel!
     @IBOutlet weak var scoreDivideLabel: UILabel!
     
@@ -28,31 +30,27 @@ class DetailHeaderView: XibView {
     
     let disposeBag = DisposeBag()
     
+    // MARK: - Initialize
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         bindData()
         attribute()
     }
     
+    // MARK: - Helpers
+    
     func bindData(){
         headerData
             .filterNil()
-            .asObservable()
-            .subscribe(onNext: { data in
-                print(data)
-            })
-            .disposed(by: disposeBag)
-        
-        headerData
-            .filterNil()
-            .map { $0.scheduleAt }
+            .map { dateToString(date: $0.scheduleAt) }
             .asObservable()
             .bind(to: timeLabel.rx.text)
             .disposed(by: disposeBag)
         
         headerData
             .filterNil()
-            .map { URL(string: $0.leftURL) }
+            .map { $0.leftURL }
             .asObservable()
             .bind(to: leftImageView.kf.rx.image(options: [.transition(.fade(0.2)),
                                                           .keepCurrentImageWhileLoading,
@@ -61,7 +59,7 @@ class DetailHeaderView: XibView {
 
         headerData
             .filterNil()
-            .map { URL(string: $0.rightURL) }
+            .map { $0.rightURL }
             .asObservable()
             .bind(to: rightImageView.kf.rx.image(options: [.transition(.fade(0.2)),
                                                           .keepCurrentImageWhileLoading,

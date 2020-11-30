@@ -9,6 +9,8 @@ import Foundation
 import RxSwift
 
 struct RosterModel {
+    // MARK: - API
+    
     func getTournamentID(leagueID: Int) -> Observable<Int> {
         
         var tmpLeague = 0
@@ -51,7 +53,7 @@ struct RosterModel {
     }
     func parseTopCell(value: [RosterTop]) -> [RosterTopCell.Data] {
         return value.map {
-            (id: $0.id, acronym: $0.acronym, imageURL: $0.imageURL)
+            (id: $0.id, acronym: $0.acronym, imageURL: $0.imageURL!)
         }
     }
     func fetchMoreData(league: Int, page: Int) -> Observable<(Int, Bool, Int)>{

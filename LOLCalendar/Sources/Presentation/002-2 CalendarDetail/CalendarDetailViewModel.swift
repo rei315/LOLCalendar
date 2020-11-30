@@ -22,14 +22,15 @@ protocol CalendarDetailModelBindable {
 }
 
 struct DetailHeaderData {
-    var scheduleAt: String = ""
-    var leftScore: Int = 0
-    var rightScore: Int = 0
-    var leftURL: String = ""
-    var rightURL: String = ""
+    let scheduleAt: Date
+    let leftScore: Int
+    let rightScore: Int
+    let leftURL: URL
+    let rightURL: URL
 }
 
 class CalendarDetailViewModel: CommonViewModel, CalendarDetailModelBindable {
+    // MARK: - Property
     
     let disposedBag = DisposeBag()
     
@@ -38,7 +39,7 @@ class CalendarDetailViewModel: CommonViewModel, CalendarDetailModelBindable {
     let willDisplayCell = PublishRelay<IndexPath>()
     
     private let cells = BehaviorRelay<[OpponentCell]>(value: [])
-    var topData: BehaviorSubject<DetailHeaderData>
+    var topData: BehaviorSubject<DetailHeaderData>?
     
     private let activityIndicator = ActivityIndicator()
     
@@ -46,21 +47,23 @@ class CalendarDetailViewModel: CommonViewModel, CalendarDetailModelBindable {
         return activityIndicator.asObservable()
     }
     
+    // MARK: - Initialize
+    
     init(coordinator: SceneCoordinatorType, data: LOLCalendar, model: CalendarDetailModel = CalendarDetailModel()) {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-        let date = dateFormatter.string(from: data.scheduleAt)
                 
-        let leftTeam = data.opponents.first
-        let rightTeam = data.opponents.last
-         
-        let leftURL = leftTeam?.logoURL ?? ""
-        let rightURL = rightTeam?.logoURL ?? ""
-        let leftScore = data.score[leftTeam!.id] ?? 0
-        let rightScore = data.score[rightTeam!.id] ?? 0
-        let header = DetailHeaderData(scheduleAt: date, leftScore: leftScore, rightScore: rightScore, leftURL: leftURL, rightURL: rightURL)
-        topData = BehaviorSubject<DetailHeaderData>(value: header)
+        if let leftTeam = data.opponents?.first,
+           let rightTeam = data.opponents?.last {
+            let leftURL = leftTeam.logoURL ?? URL(string: "")!
+            let rightURL = rightTeam.logoURL ?? URL(string: "")!
+            let score = data.score ?? [:]
+            let scheduleAt = data.scheduleAt ?? Date()
+            
+            let leftScore = score[leftTeam.id] ?? 0
+            let rightScore = score[rightTeam.id] ?? 0
+
+            let header = DetailHeaderData(scheduleAt: scheduleAt, leftScore: leftScore, rightScore: rightScore, leftURL: leftURL, rightURL: rightURL)
+            topData = BehaviorSubject<DetailHeaderData>(value: header)
+        }
         
         let _ = model.getPlayers(matchID: data.id)
             .toArray()

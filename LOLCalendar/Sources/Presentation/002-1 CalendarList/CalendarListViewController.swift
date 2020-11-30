@@ -15,9 +15,13 @@ import SnapKit
 import RxSwiftExt
 
 class CalendarListViewController: UIViewController, ViewModelBindableType {
+    // MARK: - Property
+    
     var viewModel: CalendarListViewModel!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,8 @@ class CalendarListViewController: UIViewController, ViewModelBindableType {
 }
 
 extension CalendarListViewController {
+    // MARK: - Helpers
+    
     func bindViewModel() {
         tableView
             .rx.setDelegate(self)
@@ -54,11 +60,11 @@ extension CalendarListViewController {
         viewModel.cells
             .map( { (items) -> [LOLCalendar] in
                 return items.sorted { (bracket1, bracket2) -> Bool in
-                    return bracket1.scheduleAt > bracket2.scheduleAt
+                    return bracket1.scheduleAt! > bracket2.scheduleAt!
                 }
             })
             .bind(to: tableView.rx.items) { [unowned self] tv, row, data in
-                if (data.opponents.isEmpty) {
+                if (data.opponents == nil) {
                     self.showAlert(title: "서버 오류", message: "서버에 연결하지 못하였습니다.", style: .alert, actions: [AlertAction.action(title: "확인")])
                         .subscribe(onNext: { index in
                             print(index)
@@ -114,7 +120,6 @@ extension CalendarListViewController {
         }
         
         tableView.tableFooterView = footerView
-        
     }
     
     private func onUpdateList() {
@@ -127,7 +132,6 @@ extension CalendarListViewController {
         }
     }
 
-    
     func showAlert(title: String?, message: String?, style: UIAlertController.Style, actions: [AlertAction]) -> Observable<Int>
     {
         return Observable.create { observer in
@@ -149,6 +153,8 @@ extension CalendarListViewController {
 }
 
 extension CalendarListViewController: UITableViewDelegate {
+    // MARK: - TableViewDelegate
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 112
     }
