@@ -12,10 +12,13 @@
 [![Watch the video](https://img.youtube.com/vi/n7U4U77SLdE/maxresdefault.jpg)](https://youtu.be/n7U4U77SLdE)
 
 ## Using
-#### 1. RxSwift - MVVM
-#### 2. KingFisher -> ImageDownload, Cache
-#### 3. SnapKit - AutoLayout
+1. RxSwift - MVVM
+2. KingFisher -> ImageDownload, Cache
+3. SnapKit - AutoLayout
 
 
 ## Start Day - End Day
 #### 2020/11/06 - 2020/11/22
+
+## Added
+2020/11/30 - Refactoring for clean code
