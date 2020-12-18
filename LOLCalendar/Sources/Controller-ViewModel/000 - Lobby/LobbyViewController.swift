@@ -13,6 +13,7 @@ import NSObject_Rx
 import SnapKit
 
 class LobbyViewController: UIViewController, ViewModelBindableType {
+    
     // MARK: - Property
     
     var viewModel: LobbyViewModel!

@@ -311,6 +311,8 @@ class APIService {
         }
     }
     
+    // SDWebImage, KingFisher
+    
     // MARK: - Image Download with Cache
     static func loadImage(url: URL) -> Observable<UIImage?> {
         return Observable.create { observer in

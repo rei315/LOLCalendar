@@ -43,6 +43,7 @@ struct LOLCalendar: Codable, Hashable {
         self.winnner = json["winner_id"] as? Int ?? 0
         
         if let gamesJson = json["games"] as? [[String:Any]] {
+            
             let winnersJson = gamesJson.map { $0["winner"] as? [String:Any]}
             var tmpScore = [Int:Int]()
             winnersJson.forEach { (winnerJson) in

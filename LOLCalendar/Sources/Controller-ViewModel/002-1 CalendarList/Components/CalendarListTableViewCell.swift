@@ -74,7 +74,7 @@ class CalendarListTableViewCell: UITableViewCell {
 
         rightTeamImage.kf.setImage(with: right!.logoURL)
     }
-            
+
     func attribute() {
         dateLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(9)
